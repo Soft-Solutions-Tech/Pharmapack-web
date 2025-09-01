@@ -1,8 +1,16 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Users, Beaker, Cog, Package, Globe, TrendingUp } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  Users,
+  Beaker,
+  Cog,
+  Package,
+  Globe,
+  TrendingUp,
+} from "lucide-react";
 
 export const HeroBanner = () => {
   return (
@@ -16,11 +24,14 @@ export const HeroBanner = () => {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="https://www.pexels.com/download/video/3191916/" type="video/mp4" />
+          <source
+            src="https://www.pexels.com/download/video/3191916/"
+            type="video/mp4"
+          />
           {/* Fallback gradient for video loading */}
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"></div>
         </video>
-        
+
         {/* Professional dark overlay for readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30"></div>
@@ -31,10 +42,10 @@ export const HeroBanner = () => {
         {/* Lab Flask Animation */}
         <motion.div
           initial={{ opacity: 0, x: -100, y: 100 }}
-          animate={{ 
+          animate={{
             opacity: [0.1, 0.3, 0.1],
             x: [-100, -50, -100],
-            y: [100, 50, 100]
+            y: [100, 50, 100],
           }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-1/4 left-1/4"
@@ -45,9 +56,9 @@ export const HeroBanner = () => {
         {/* Gear Animation */}
         <motion.div
           initial={{ opacity: 0, rotate: 0 }}
-          animate={{ 
+          animate={{
             opacity: [0.1, 0.2, 0.1],
-            rotate: [0, 180, 360]
+            rotate: [0, 180, 360],
           }}
           transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
           className="absolute top-1/3 right-1/3"
@@ -58,9 +69,9 @@ export const HeroBanner = () => {
         {/* Package Animation */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ 
+          animate={{
             opacity: [0.1, 0.25, 0.1],
-            scale: [0.8, 1.2, 0.8]
+            scale: [0.8, 1.2, 0.8],
           }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-1/4 right-1/4"
@@ -71,9 +82,9 @@ export const HeroBanner = () => {
         {/* Globe Animation */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
-          animate={{ 
+          animate={{
             opacity: [0.1, 0.2, 0.1],
-            y: [50, -20, 50]
+            y: [50, -20, 50],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-1/3 left-1/5"
@@ -85,7 +96,6 @@ export const HeroBanner = () => {
       {/* Main Content */}
       <div className="relative z-10 flex items-center justify-center h-full px-6 lg:px-12">
         <div className="max-w-6xl mx-auto text-center">
-          
           {/* Company Identifier */}
           <motion.div
             initial={{ opacity: 0, y: -30 }}
@@ -95,9 +105,13 @@ export const HeroBanner = () => {
           >
             <div className="inline-flex items-center px-6 py-3 rounded-full border border-red-600/30 bg-black/60 backdrop-blur-md">
               <div className="w-2 h-2 bg-red-600 rounded-full mr-3 animate-pulse"></div>
-              <span className="text-sm font-semibold text-white tracking-widest uppercase">Pharmapack</span>
+              <span className="text-sm font-semibold text-white tracking-widest uppercase">
+                Pharmapack
+              </span>
               <div className="w-px h-4 bg-white/30 mx-4"></div>
-              <span className="text-xs text-gray-300 font-medium">Manufacturing Excellence</span>
+              <span className="text-xs text-gray-300 font-medium">
+                Manufacturing Excellence
+              </span>
             </div>
           </motion.div>
 
@@ -124,8 +138,8 @@ export const HeroBanner = () => {
             className="mb-8"
           >
             <p className="text-lg lg:text-xl text-white/90 leading-relaxed max-w-4xl mx-auto font-light">
-              End-to-end toll manufacturing and private label solutions with quality, 
-              compliance, and innovation at every step.
+              End-to-end toll manufacturing and private label solutions with
+              quality, compliance, and innovation at every step.
             </p>
           </motion.div>
 
@@ -146,7 +160,7 @@ export const HeroBanner = () => {
               <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
             </motion.button>
-            
+
             {/* Secondary CTA */}
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -171,10 +185,14 @@ export const HeroBanner = () => {
                 <div className="w-14 h-14 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center mb-3 group-hover:bg-red-600/20 transition-all duration-300">
                   <Beaker className="w-7 h-7 text-brand-red" />
                 </div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-600 rounded-full text-white text-xs flex items-center justify-center font-bold">1</div>
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-600 rounded-full text-white text-xs flex items-center justify-center font-bold">
+                  1
+                </div>
               </div>
               <h3 className="text-white font-semibold text-sm mb-1">R&D Lab</h3>
-              <p className="text-gray-400 text-xs text-center leading-relaxed">Custom formulation & testing</p>
+              <p className="text-gray-400 text-xs text-center leading-relaxed">
+                Custom formulation & testing
+              </p>
             </div>
 
             {/* Production Stage */}
@@ -183,10 +201,16 @@ export const HeroBanner = () => {
                 <div className="w-14 h-14 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center mb-3 group-hover:bg-red-600/20 transition-all duration-300">
                   <Cog className="w-7 h-7 text-brand-red" />
                 </div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-600 rounded-full text-white text-xs flex items-center justify-center font-bold">2</div>
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-600 rounded-full text-white text-xs flex items-center justify-center font-bold">
+                  2
+                </div>
               </div>
-              <h3 className="text-white font-semibold text-sm mb-1">Production</h3>
-              <p className="text-gray-400 text-xs text-center leading-relaxed">Advanced manufacturing lines</p>
+              <h3 className="text-white font-semibold text-sm mb-1">
+                Production
+              </h3>
+              <p className="text-gray-400 text-xs text-center leading-relaxed">
+                Advanced manufacturing lines
+              </p>
             </div>
 
             {/* Packaging Stage */}
@@ -195,10 +219,16 @@ export const HeroBanner = () => {
                 <div className="w-14 h-14 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center mb-3 group-hover:bg-red-600/20 transition-all duration-300">
                   <Package className="w-7 h-7 text-brand-red" />
                 </div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-600 rounded-full text-white text-xs flex items-center justify-center font-bold">3</div>
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-600 rounded-full text-white text-xs flex items-center justify-center font-bold">
+                  3
+                </div>
               </div>
-              <h3 className="text-white font-semibold text-sm mb-1">Packaging</h3>
-              <p className="text-gray-400 text-xs text-center leading-relaxed">Custom brand packaging</p>
+              <h3 className="text-white font-semibold text-sm mb-1">
+                Packaging
+              </h3>
+              <p className="text-gray-400 text-xs text-center leading-relaxed">
+                Custom brand packaging
+              </p>
             </div>
 
             {/* Global Distribution */}
@@ -207,47 +237,33 @@ export const HeroBanner = () => {
                 <div className="w-14 h-14 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center mb-3 group-hover:bg-red-600/20 transition-all duration-300">
                   <TrendingUp className="w-7 h-7 text-brand-red" />
                 </div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-600 rounded-full text-white text-xs flex items-center justify-center font-bold">4</div>
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-600 rounded-full text-white text-xs flex items-center justify-center font-bold">
+                  4
+                </div>
               </div>
-              <h3 className="text-white font-semibold text-sm mb-1">Market Launch</h3>
-              <p className="text-gray-400 text-xs text-center leading-relaxed">Global distribution ready</p>
+              <h3 className="text-white font-semibold text-sm mb-1">
+                Market Launch
+              </h3>
+              <p className="text-gray-400 text-xs text-center leading-relaxed">
+                Global distribution ready
+              </p>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Professional Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-10"
-      >
-        <div className="flex flex-col items-center">
-          <span className="text-white/40 text-xs font-medium mb-3 tracking-[0.2em] uppercase">Scroll to Explore</span>
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-6 h-10 border border-white/30 rounded-full flex justify-center relative"
-          >
-            <motion.div
-              animate={{ y: [0, 16, 0], opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-1 h-3 bg-white/60 rounded-full mt-2"
-            ></motion.div>
-          </motion.div>
-        </div>
-      </motion.div>
-
       {/* Subtle Tech Pattern Overlay */}
       <div className="absolute inset-0 z-0 opacity-5">
-        <div className="w-full h-full" style={{
-          backgroundImage: `
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
             linear-gradient(90deg, transparent 98%, rgba(110, 13, 15, 0.3) 100%),
             linear-gradient(180deg, transparent 98%, rgba(110, 13, 15, 0.3) 100%)
           `,
-          backgroundSize: '80px 80px'
-        }}></div>
+            backgroundSize: "80px 80px",
+          }}
+        ></div>
       </div>
     </section>
   );
