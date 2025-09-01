@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const NAV_ITEMS = [
   { name: "About Us", href: "/about" },
@@ -27,7 +27,6 @@ export function Header() {
   const [clientPathname, setClientPathname] = React.useState("");
   const [mobileDropdownOpen, setMobileDropdownOpen] = React.useState(false);
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const router = useRouter();
 
   const toggleMobileMenu = React.useCallback(() => {
@@ -56,8 +55,6 @@ export function Header() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isMobileMenuOpen]);
-
-  const currentType = searchParams.get("type") || "ALL";
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-transparent supports-[backdrop-filter]:bg-[var(--color-background)/60] shadow-sm pointer-events-none">
