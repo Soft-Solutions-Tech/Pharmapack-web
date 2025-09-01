@@ -1,5 +1,13 @@
 import "./globals.css";
 
+export const metadata = {
+  title: "Pharmapack",
+  description: "",
+  icons: {
+    icon: "/favicon.png",
+  },
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
