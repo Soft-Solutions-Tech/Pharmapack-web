@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { productionLines } from "@/data/production-lines-data";
+import { content } from "@/data/production-lines-data";
 import { ChevronRight, Sparkles, Zap, Shield, Clock } from "lucide-react";
 
 // Animation variants
@@ -127,7 +127,7 @@ export default function ProductionLinesSection() {
           >
             <Sparkles className="w-5 h-5 text-[#6E0D0F]" />
             <span className="text-[#000000] font-semibold tracking-wide">
-              Premium Pharmaceutical Manufacturing
+              {content.badge}
             </span>
           </motion.div>
 
@@ -140,10 +140,10 @@ export default function ProductionLinesSection() {
           >
             <h2 className="text-7xl md:text-8xl font-black tracking-tight leading-none">
               <span className="block bg-gradient-to-r from-[#000000] via-[#5F6062] to-[#000000] bg-clip-text text-transparent drop-shadow-lg">
-                Production
+                {content.titlePart1}
               </span>
               <span className="block bg-gradient-to-r from-[#6E0D0F] via-[#8B1113] to-[#6E0D0F] bg-clip-text text-transparent">
-                Excellence
+                {content.titlePart2}
               </span>
             </h2>
           </motion.div>
@@ -155,9 +155,7 @@ export default function ProductionLinesSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            State-of-the-art manufacturing facilities delivering
-            pharmaceutical-grade products with uncompromising quality,
-            precision, and innovation across six specialized production lines.
+            {content.subtitle}
           </motion.p>
         </motion.div>
 
@@ -168,7 +166,7 @@ export default function ProductionLinesSection() {
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8"
         >
-          {productionLines.map((line, index) => {
+          {content.productionLines.map((line, index) => {
             const IconComponent = line.icon;
             const isHovered = hoveredCard === line.id;
 
@@ -203,7 +201,7 @@ export default function ProductionLinesSection() {
                     transition={{ duration: 0.5, ease: "easeOut" }}
                   />
 
-                  {/* Professional Icon Design */}
+                  {/* Icon Design */}
                   <motion.div
                     className="relative w-20 h-20 mb-8 mx-auto"
                     whileHover={{
@@ -225,8 +223,6 @@ export default function ProductionLinesSection() {
                     <motion.div
                       className="relative w-full h-full bg-gradient-to-br from-[#6E0D0F] to-[#5F6062] rounded-2xl flex items-center justify-center shadow-lg border border-[#FBFEF9]/15"
                       whileHover={{
-                        background:
-                          "linear-gradient(135deg, #6E0D0F 0%, #8B1113 50%, #5F6062 100%)",
                         borderColor: "rgba(251, 254, 249, 0.25)",
                         boxShadow: "0 15px 30px rgba(110, 13, 15, 0.4)",
                       }}
@@ -247,7 +243,7 @@ export default function ProductionLinesSection() {
                     </motion.div>
                   </motion.div>
 
-                  {/* Enhanced Content */}
+                  {/* Content */}
                   <div className="relative flex-grow text-center">
                     <motion.h3
                       className="text-2xl md:text-3xl font-bold text-[#000000] mb-6 leading-tight"
@@ -293,10 +289,6 @@ export default function ProductionLinesSection() {
                           }}
                           initial={{ opacity: 0, y: 10 }}
                           animate={isInView ? { opacity: 1, y: 0 } : {}}
-                          transition={{
-                            delay: 0.7 + index * 0.08 + featureIndex * 0.03,
-                            duration: 0.4,
-                          }}
                         >
                           {feature}
                         </motion.span>
@@ -306,7 +298,7 @@ export default function ProductionLinesSection() {
 
                   {/* Sleek Bottom Accent */}
                   <motion.div
-                    className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-[#6E0D0F] via-red-400 to-[#5F6062] rounded-b-2xl"
+                    className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-[#6E0D0F] via-red-400 to-[#5F6062] rounded-b-2xl"
                     initial={{ scaleX: 0, opacity: 0 }}
                     animate={{
                       scaleX: isHovered ? 1 : 0,
@@ -315,7 +307,7 @@ export default function ProductionLinesSection() {
                     transition={{ duration: 0.4, ease: "easeOut" }}
                   />
 
-                  {/* Professional shimmer effect */}
+                  {/* shimmer effect */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-[#FBFEF9]/8 to-transparent rounded-2xl pointer-events-none"
                     initial={{ x: "-100%", opacity: 0 }}
@@ -338,7 +330,7 @@ export default function ProductionLinesSection() {
           })}
         </motion.div>
 
-        {/* Enhanced Statistics Section */}
+        {/* Statistics Section */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -347,26 +339,7 @@ export default function ProductionLinesSection() {
         >
           {/* Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-            {[
-              {
-                number: "6",
-                label: "Specialized Production Lines",
-                icon: Zap,
-                suffix: "",
-              },
-              {
-                number: "99.9",
-                label: "Quality Assurance Rate",
-                icon: Shield,
-                suffix: "%",
-              },
-              {
-                number: "24",
-                label: "Continuous Manufacturing",
-                icon: Clock,
-                suffix: "/7",
-              },
-            ].map((stat, index) => (
+            {content.stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 className="text-center group/stat"
@@ -378,13 +351,12 @@ export default function ProductionLinesSection() {
                   ease: "easeOut",
                 }}
               >
-                {/* Icon with professional hover */}
+                {/* Icon */}
                 <motion.div
                   className="inline-flex items-center justify-center w-18 h-18 bg-[#000000]/8 backdrop-blur-xl rounded-2xl mb-6 border border-[#5F6062]/20 shadow-lg"
                   whileHover={{
                     scale: 1.05,
                     y: -3,
-                    backgroundColor: "rgba(110, 13, 15, 0.1)",
                     borderColor: "rgba(110, 13, 15, 0.25)",
                     boxShadow: "0 20px 40px rgba(110, 13, 15, 0.15)",
                     transition: { duration: 0.3, ease: "easeOut" },
@@ -401,7 +373,7 @@ export default function ProductionLinesSection() {
                   </motion.div>
                 </motion.div>
 
-                {/* Number with smooth animation */}
+                {/* Number */}
                 <motion.div
                   className="text-5xl md:text-6xl font-black text-[#000000] mb-3 tracking-tight"
                   initial={{ scale: 0 }}
@@ -430,7 +402,7 @@ export default function ProductionLinesSection() {
             ))}
           </div>
 
-          {/* Professional Call-to-Action */}
+          {/* Call-to-Action */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -439,7 +411,6 @@ export default function ProductionLinesSection() {
           >
             <motion.button
               onClick={() => {
-                // Add your contact page navigation here
                 window.location.href = "/contact";
               }}
               className="relative group/cta bg-[#6E0D0F] text-[#FBFEF9] px-12 py-5 rounded-xl font-semibold text-xl shadow-lg border border-[#6E0D0F] overflow-hidden uppercase tracking-wide"
@@ -456,19 +427,8 @@ export default function ProductionLinesSection() {
                 transition: { duration: 0.1 },
               }}
             >
-              {/* Subtle background animation */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#5F6062]/20 via-transparent to-[#5F6062]/20"
-                initial={{ opacity: 0, x: "-100%" }}
-                whileHover={{
-                  opacity: 1,
-                  x: "0%",
-                  transition: { duration: 0.5, ease: "easeOut" },
-                }}
-              />
-
               <span className="relative flex items-center gap-4">
-                Contact Us
+                {content.cta}
                 <motion.div
                   whileHover={{
                     x: 4,
@@ -487,24 +447,10 @@ export default function ProductionLinesSection() {
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 2.0 }}
             >
-              Discuss custom toll manufacturing and private label solutions
+              {content.ctaSubtitle}
             </motion.p>
           </motion.div>
         </motion.div>
-      </div>
-
-      {/* Subtle Grid Overlay */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.02]">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(251, 254, 249, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(251, 254, 249, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: "60px 60px",
-          }}
-        />
       </div>
     </section>
   );
