@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { content } from "@/data/production-lines-data";
-import { ChevronRight, Sparkles, Zap, Shield, Clock } from "lucide-react";
+import { ChevronRight, ChevronLeft, Sparkles, Zap, Shield, Clock } from "lucide-react";
 
 // Animation variants
 const containerVariants = {
@@ -49,8 +49,50 @@ const iconVariants = {
 
 export default function ProductionLinesSection() {
   const [hoveredCard, setHoveredCard] = useState(null);
-  const ref = React.useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [cardsPerView, setCardsPerView] = useState(3);
+  const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
+
+  const totalCards = content.productionLines.length;
+  // Fixed calculation: ensure we don't go beyond showing all cards properly
+  const maxIndex = Math.max(0, totalCards - Math.floor(cardsPerView));
+
+  const goToPrevious = () => {
+    setCurrentIndex(prev => Math.max(0, prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
+  };
+
+  // Update cards per view and recalculate boundaries
+  React.useEffect(() => {
+    const updateCardsPerView = () => {
+      if (window.innerWidth >= 1536) { // 2xl
+        setCardsPerView(3);
+      } else if (window.innerWidth >= 1280) { // xl
+        setCardsPerView(2.5);
+      } else if (window.innerWidth >= 1024) { // lg
+        setCardsPerView(2);
+      }
+    };
+
+    updateCardsPerView();
+    window.addEventListener('resize', updateCardsPerView);
+    
+    return () => {
+      window.removeEventListener('resize', updateCardsPerView);
+    };
+  }, []);
+
+  // Reset currentIndex when cardsPerView changes to prevent out-of-bounds
+  React.useEffect(() => {
+    const newMaxIndex = Math.max(0, totalCards - Math.floor(cardsPerView));
+    if (currentIndex > newMaxIndex) {
+      setCurrentIndex(newMaxIndex);
+    }
+  }, [cardsPerView, currentIndex, totalCards]);
 
   return (
     <section
@@ -113,24 +155,6 @@ export default function ProductionLinesSection() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-24"
         >
-          {/* Badge */}
-          <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{
-              duration: 0.6,
-              delay: 0.2,
-              type: "spring",
-              stiffness: 200,
-            }}
-            className="inline-flex items-center gap-3 bg-[#000000]/10 backdrop-blur-xl border border-[#5F6062]/20 rounded-full px-8 py-3 mb-10 shadow-lg"
-          >
-            <Sparkles className="w-5 h-5 text-[#6E0D0F]" />
-            <span className="text-[#000000] font-semibold tracking-wide">
-              {content.badge}
-            </span>
-          </motion.div>
-
           {/* Main Title */}
           <motion.div
             className="space-y-4 mb-8"
@@ -159,299 +183,300 @@ export default function ProductionLinesSection() {
           </motion.p>
         </motion.div>
 
-        {/* Professional Production Lines Grid */}
+        {/* Production Lines Container */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8"
+          className="relative"
         >
-          {content.productionLines.map((line, index) => {
-            const IconComponent = line.icon;
-            const isHovered = hoveredCard === line.id;
-
-            return (
-              <motion.div
+          {/* Mobile: Vertical Grid */}
+          <div className="lg:hidden grid grid-cols-1 gap-8">
+            {content.productionLines.map((line, index) => (
+              <ProductionCard
                 key={line.id}
-                variants={cardVariants}
-                onHoverStart={() => setHoveredCard(line.id)}
-                onHoverEnd={() => setHoveredCard(null)}
-                className="group relative h-full cursor-pointer"
-              >
-                {/* Main Card with Professional Hover */}
-                <motion.div
-                  className="relative bg-[#FBFEF9]/95 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-[#5F6062]/15 h-full flex flex-col overflow-hidden"
-                  whileHover={{
-                    y: -8,
-                    scale: 1.015,
-                    boxShadow: "0 25px 50px -12px rgba(95, 96, 98, 0.3)",
-                    borderColor: "rgba(110, 13, 15, 0.2)",
-                    backgroundColor: "rgba(251, 254, 249, 1)",
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                  }}
-                >
-                  {/* Subtle gradient overlay on hover */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-[#6E0D0F]/4 via-transparent to-[#5F6062]/4 rounded-2xl"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: isHovered ? 1 : 0 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                  />
-
-                  {/* Icon Design */}
-                  <motion.div
-                    className="relative w-20 h-20 mb-8 mx-auto"
-                    whileHover={{
-                      scale: 1.08,
-                      transition: { duration: 0.3, ease: "easeOut" },
-                    }}
-                  >
-                    {/* Icon background with subtle glow */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-[#6E0D0F]/25 to-[#5F6062]/25 rounded-2xl blur-lg"
-                      animate={{
-                        opacity: isHovered ? 0.9 : 0.5,
-                        scale: isHovered ? 1.1 : 1,
-                      }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                    />
-
-                    {/* Icon container */}
-                    <motion.div
-                      className="relative w-full h-full bg-gradient-to-br from-[#6E0D0F] to-[#5F6062] rounded-2xl flex items-center justify-center shadow-lg border border-[#FBFEF9]/15"
-                      whileHover={{
-                        borderColor: "rgba(251, 254, 249, 0.25)",
-                        boxShadow: "0 15px 30px rgba(110, 13, 15, 0.4)",
-                      }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <motion.div
-                        variants={iconVariants}
-                        initial="hidden"
-                        animate={isInView ? "visible" : "hidden"}
-                        transition={{ delay: 0.3 + index * 0.08 }}
-                        whileHover={{
-                          scale: 1.1,
-                          rotate: 5,
-                        }}
-                      >
-                        <IconComponent className="w-10 h-10 text-[#FBFEF9] drop-shadow-lg" />
-                      </motion.div>
-                    </motion.div>
-                  </motion.div>
-
-                  {/* Content */}
-                  <div className="relative flex-grow text-center">
-                    <motion.h3
-                      className="text-2xl md:text-3xl font-bold text-[#000000] mb-6 leading-tight"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ delay: 0.4 + index * 0.08 }}
-                      whileHover={{
-                        color: "#6E0D0F",
-                        transition: { duration: 0.3 },
-                      }}
-                    >
-                      {line.title}
-                    </motion.h3>
-
-                    <motion.p
-                      className="text-[#5F6062] leading-relaxed text-base mb-8 min-h-[120px] flex items-center justify-center"
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ delay: 0.5 + index * 0.08 }}
-                    >
-                      {line.description}
-                    </motion.p>
-
-                    {/* Professional Feature Tags */}
-                    <motion.div
-                      className="flex flex-wrap justify-center gap-2 mb-8"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ delay: 0.6 + index * 0.08 }}
-                    >
-                      {line.features.map((feature, featureIndex) => (
-                        <motion.span
-                          key={feature}
-                          className="px-4 py-2 bg-[#FBFEF9] text-[#6E0D0F] text-sm font-medium rounded-lg border border-[#5F6062]/20 shadow-sm"
-                          whileHover={{
-                            scale: 1.05,
-                            backgroundColor: "#6E0D0F",
-                            color: "#FBFEF9",
-                            y: -2,
-                            borderColor: "rgba(110, 13, 15, 0.4)",
-                            boxShadow: "0 8px 20px rgba(110, 13, 15, 0.3)",
-                            transition: { duration: 0.2, ease: "easeOut" },
-                          }}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        >
-                          {feature}
-                        </motion.span>
-                      ))}
-                    </motion.div>
-                  </div>
-
-                  {/* Sleek Bottom Accent */}
-                  <motion.div
-                    className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-[#6E0D0F] via-red-400 to-[#5F6062] rounded-b-2xl"
-                    initial={{ scaleX: 0, opacity: 0 }}
-                    animate={{
-                      scaleX: isHovered ? 1 : 0,
-                      opacity: isHovered ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                  />
-
-                  {/* shimmer effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-[#FBFEF9]/8 to-transparent rounded-2xl pointer-events-none"
-                    initial={{ x: "-100%", opacity: 0 }}
-                    animate={
-                      isHovered
-                        ? {
-                            x: "100%",
-                            opacity: [0, 1, 0],
-                            transition: {
-                              duration: 1.2,
-                              ease: "easeInOut",
-                            },
-                          }
-                        : { x: "-100%", opacity: 0 }
-                    }
-                  />
-                </motion.div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-
-        {/* Statistics Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-32"
-        >
-          {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-            {content.stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                className="text-center group/stat"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  delay: 1.4 + index * 0.1,
-                  duration: 0.6,
-                  ease: "easeOut",
-                }}
-              >
-                {/* Icon */}
-                <motion.div
-                  className="inline-flex items-center justify-center w-18 h-18 bg-[#000000]/8 backdrop-blur-xl rounded-2xl mb-6 border border-[#5F6062]/20 shadow-lg"
-                  whileHover={{
-                    scale: 1.05,
-                    y: -3,
-                    borderColor: "rgba(110, 13, 15, 0.25)",
-                    boxShadow: "0 20px 40px rgba(110, 13, 15, 0.15)",
-                    transition: { duration: 0.3, ease: "easeOut" },
-                  }}
-                >
-                  <motion.div
-                    whileHover={{
-                      rotate: 10,
-                      scale: 1.1,
-                      transition: { duration: 0.3 },
-                    }}
-                  >
-                    <stat.icon className="w-9 h-9 text-[#6E0D0F] drop-shadow-lg" />
-                  </motion.div>
-                </motion.div>
-
-                {/* Number */}
-                <motion.div
-                  className="text-5xl md:text-6xl font-black text-[#000000] mb-3 tracking-tight"
-                  initial={{ scale: 0 }}
-                  animate={isInView ? { scale: 1 } : {}}
-                  transition={{
-                    delay: 1.6 + index * 0.1,
-                    type: "spring",
-                    stiffness: 200,
-                    damping: 15,
-                  }}
-                  whileHover={{
-                    scale: 1.05,
-                    color: "#6E0D0F",
-                    transition: { duration: 0.2 },
-                  }}
-                >
-                  {stat.number}
-                  <span className="text-3xl">{stat.suffix}</span>
-                </motion.div>
-
-                {/* Label */}
-                <div className="text-[#5F6062] font-medium text-lg tracking-wide">
-                  {stat.label}
-                </div>
-              </motion.div>
+                line={line}
+                index={index}
+                hoveredCard={hoveredCard}
+                setHoveredCard={setHoveredCard}
+                isInView={isInView}
+              />
             ))}
           </div>
 
-          {/* Call-to-Action */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 1.8 }}
-            className="text-center space-y-6"
-          >
+          {/* Desktop: Card-by-Card Navigation */}
+          <div className="hidden lg:block relative">
+            {/* Left Navigation Button */}
             <motion.button
-              onClick={() => {
-                window.location.href = "/contact";
-              }}
-              className="relative group/cta bg-[#6E0D0F] text-[#FBFEF9] px-12 py-5 rounded-xl font-semibold text-xl shadow-lg border border-[#6E0D0F] overflow-hidden uppercase tracking-wide"
-              whileHover={{
-                scale: 1.02,
-                y: -2,
-                backgroundColor: "#000000",
-                boxShadow: "0 20px 40px rgba(110, 13, 15, 0.4)",
-                borderColor: "rgba(0, 0, 0, 0.8)",
-                transition: { duration: 0.3, ease: "easeOut" },
-              }}
-              whileTap={{
-                scale: 0.98,
-                transition: { duration: 0.1 },
-              }}
+              onClick={goToPrevious}
+              disabled={currentIndex === 0}
+              className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 w-16 h-16 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                currentIndex > 0 
+                  ? 'border-[#6E0D0F] bg-[#6E0D0F] text-[#FBFEF9] hover:scale-110 hover:shadow-xl shadow-lg' 
+                  : 'border-[#5F6062]/30 bg-[#5F6062]/10 text-[#5F6062]/50 cursor-not-allowed'
+              }`}
+              style={{ marginLeft: '-2rem' }}
+              whileHover={currentIndex > 0 ? { scale: 1.1 } : {}}
+              whileTap={currentIndex > 0 ? { scale: 0.95 } : {}}
+              initial={{ opacity: 0, x: -20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 1 }}
             >
-              <span className="relative flex items-center gap-4">
-                {content.cta}
-                <motion.div
-                  whileHover={{
-                    x: 4,
-                    transition: { duration: 0.2 },
-                  }}
-                  className="flex items-center"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </motion.div>
-              </span>
+              <ChevronLeft className="w-7 h-7" />
             </motion.button>
 
-            <motion.p
-              className="text-[#5F6062] text-base font-medium"
+            {/* Right Navigation Button - Fixed condition */}
+            <motion.button
+              onClick={goToNext}
+              disabled={currentIndex >= maxIndex}
+              className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 w-16 h-16 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                currentIndex < maxIndex 
+                  ? 'border-[#6E0D0F] bg-[#6E0D0F] text-[#FBFEF9] hover:scale-110 hover:shadow-xl shadow-lg' 
+                  : 'border-[#5F6062]/30 bg-[#5F6062]/10 text-[#5F6062]/50 cursor-not-allowed'
+              }`}
+              style={{ marginRight: '-2rem' }}
+              whileHover={currentIndex < maxIndex ? { scale: 1.1 } : {}}
+              whileTap={currentIndex < maxIndex ? { scale: 0.95 } : {}}
+              initial={{ opacity: 0, x: 20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 1 }}
+            >
+              <ChevronRight className="w-7 h-7" />
+            </motion.button>
+
+            {/* Cards Container with Smooth Transition and Proper Height */}
+            <motion.div 
+              className="overflow-hidden py-8"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
-              transition={{ delay: 2.0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              style={{ minHeight: '600px' }}
             >
-              {content.ctaSubtitle}
-            </motion.p>
-          </motion.div>
+              <motion.div
+                className="flex gap-8 transition-transform duration-700 ease-out"
+                animate={{
+                  x: `calc(-${currentIndex * (100 / Math.floor(cardsPerView))}% - ${currentIndex * (32 / Math.floor(cardsPerView))}px)`
+                }}
+                style={{
+                  width: `calc(${(totalCards * 100) / Math.floor(cardsPerView)}% + ${((totalCards - 1) * 32) / Math.floor(cardsPerView)}px)`
+                }}
+              >
+                {content.productionLines.map((line, index) => (
+                  <motion.div 
+                    key={line.id} 
+                    className="flex-none"
+                    style={{ width: `calc(${100 / totalCards}% - ${(32 * (totalCards - 1)) / totalCards}px)` }}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.6 + index * 0.1, duration: 0.8 }}
+                  >
+                    <ProductionCard
+                      line={line}
+                      index={index}
+                      hoveredCard={hoveredCard}
+                      setHoveredCard={setHoveredCard}
+                      isInView={isInView}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+
+            {/* Progress Indicator - Fixed to show correct total */}
+            <motion.div
+              className="flex justify-center items-center gap-2 mt-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 1.2 }}
+            >
+              <div className="text-sm font-medium text-[#5F6062] mr-4">
+                {Math.min(currentIndex + Math.floor(cardsPerView), totalCards)} of {totalCards} cards visible
+              </div>
+              {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentIndex 
+                      ? 'bg-[#6E0D0F] scale-125' 
+                      : 'bg-[#5F6062]/30 hover:bg-[#5F6062]/50'
+                  }`}
+                  whileHover={{ scale: index === currentIndex ? 1.25 : 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                />
+              ))}
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>
+  );
+}
+
+// Separate ProductionCard component for cleaner code
+function ProductionCard({ line, index, hoveredCard, setHoveredCard, isInView }) {
+  const IconComponent = line.icon;
+  const isHovered = hoveredCard === line.id;
+
+  return (
+    <motion.div
+      variants={cardVariants}
+      onHoverStart={() => setHoveredCard(line.id)}
+      onHoverEnd={() => setHoveredCard(null)}
+      className="group relative h-full cursor-pointer"
+      style={{ zIndex: isHovered ? 10 : 1 }}
+    >
+      {/* Main Card with Professional Hover */}
+      <motion.div
+        className="relative bg-[#FBFEF9]/95 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-[#5F6062]/15 h-full flex flex-col overflow-hidden"
+        whileHover={{
+          y: -12,
+          scale: 1.05,
+          boxShadow: "0 35px 70px -12px rgba(95, 96, 98, 0.4)",
+          borderColor: "rgba(110, 13, 15, 0.3)",
+          backgroundColor: "rgba(251, 254, 249, 1)",
+        }}
+        transition={{
+          duration: 0.4,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        }}
+        style={{ 
+          minHeight: '520px',
+          transformOrigin: 'center center'
+        }}
+      >
+        {/* Subtle gradient overlay on hover */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-[#6E0D0F]/4 via-transparent to-[#5F6062]/4 rounded-2xl"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        />
+
+        {/* Icon Design */}
+        <motion.div
+          className="relative w-20 h-20 mb-8 mx-auto"
+          whileHover={{
+            scale: 1.08,
+            transition: { duration: 0.3, ease: "easeOut" },
+          }}
+        >
+          {/* Icon background with subtle glow */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-br from-[#6E0D0F]/25 to-[#5F6062]/25 rounded-2xl blur-lg"
+            animate={{
+              opacity: isHovered ? 0.9 : 0.5,
+              scale: isHovered ? 1.1 : 1,
+            }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+          />
+
+          {/* Icon container */}
+          <motion.div
+            className="relative w-full h-full bg-gradient-to-br from-[#6E0D0F] to-[#5F6062] rounded-2xl flex items-center justify-center shadow-lg border border-[#FBFEF9]/15"
+            whileHover={{
+              borderColor: "rgba(251, 254, 249, 0.25)",
+              boxShadow: "0 15px 30px rgba(110, 13, 15, 0.4)",
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div
+              variants={iconVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              transition={{ delay: 0.3 + index * 0.08 }}
+              whileHover={{
+                scale: 1.1,
+                rotate: 5,
+              }}
+            >
+              <IconComponent className="w-10 h-10 text-[#FBFEF9] drop-shadow-lg" />
+            </motion.div>
+          </motion.div>
+        </motion.div>
+
+        {/* Content */}
+        <div className="relative flex-grow text-center">
+          <motion.h3
+            className="text-2xl md:text-3xl font-bold text-[#000000] mb-6 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.4 + index * 0.08 }}
+            whileHover={{
+              color: "#6E0D0F",
+              transition: { duration: 0.3 },
+            }}
+          >
+            {line.title}
+          </motion.h3>
+
+          <motion.p
+            className="text-[#5F6062] leading-relaxed text-base mb-8 min-h-[120px] flex items-center justify-center"
+            initial={{ opacity: 0, y: 15 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.5 + index * 0.08 }}
+          >
+            {line.description}
+          </motion.p>
+
+          {/* Professional Feature Tags */}
+          <motion.div
+            className="flex flex-wrap justify-center gap-2 mb-8"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.6 + index * 0.08 }}
+          >
+            {line.features.map((feature, featureIndex) => (
+              <motion.span
+                key={feature}
+                className="px-4 py-2 bg-[#FBFEF9] text-[#6E0D0F] text-sm font-medium rounded-lg border border-[#5F6062]/20 shadow-sm"
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "#6E0D0F",
+                  color: "#FBFEF9",
+                  y: -2,
+                  borderColor: "rgba(110, 13, 15, 0.4)",
+                  boxShadow: "0 8px 20px rgba(110, 13, 15, 0.3)",
+                  transition: { duration: 0.2, ease: "easeOut" },
+                }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+              >
+                {feature}
+              </motion.span>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Sleek Bottom Accent */}
+        <motion.div
+          className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-[#6E0D0F] via-red-400 to-[#5F6062] rounded-b-2xl"
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{
+            scaleX: isHovered ? 1 : 0,
+            opacity: isHovered ? 1 : 0,
+          }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        />
+
+        {/* shimmer effect */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-[#FBFEF9]/8 to-transparent rounded-2xl pointer-events-none"
+          initial={{ x: "-100%", opacity: 0 }}
+          animate={
+            isHovered
+              ? {
+                  x: "100%",
+                  opacity: [0, 1, 0],
+                  transition: {
+                    duration: 1.2,
+                    ease: "easeInOut",
+                  },
+                }
+              : { x: "-100%", opacity: 0 }
+          }
+        />
+      </motion.div>
+    </motion.div>
   );
 }
