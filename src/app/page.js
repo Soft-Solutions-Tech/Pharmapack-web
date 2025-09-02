@@ -1,4 +1,5 @@
 import HeroBanner from "./sections/HeroBanner";
+import PharmapackServices from "./sections/PharmapackServices";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <>
       <Header />
       <HeroBanner />
+      <PharmapackServices />
       <Footer />
     </>
   );
