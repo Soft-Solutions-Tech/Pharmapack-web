@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { Droplets, Package, Heart, User, TestTube, Waves, ArrowRight } from "lucide-react";
+import { Droplets, Package, Heart, User, TestTube, Waves, ArrowUpRight } from "lucide-react";
 
 // Production lines data
 const productionLines = [
@@ -56,68 +56,116 @@ const productionLines = [
 
 const ProductionLines = () => {
   const handleCardClick = (href) => {
-    alert(`Navigating to: ${href}`);
+    // In a real Next.js app, this would use router.push(href) or Link component
+    console.log(`Navigating to: ${href}`);
   };
 
   return (
-    <section className="py-10 px-4 bg-white ">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-light text-brand-black mb-6">
-            Production <span className="font-normal">Excellence</span>
+    <section className="py-20 px-6 bg-brand-white relative overflow-hidden">
+      {/* Subtle background pattern */}
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header Section */}
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 mb-6">
+            <div className="h-px w-12 bg-brand-gray"></div>
+            <span className="text-sm font-medium text-brand-gray tracking-wider uppercase">Manufacturing Excellence</span>
+            <div className="h-px w-12 bg-brand-gray"></div>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-brand-black mb-6 tracking-tight">
+            Production <span className="font-normal text-brand-gray">Capabilities</span>
           </h2>
-          <p className="text-lg text-brand-gray max-w-3xl mx-auto leading-relaxed">
-            State-of-the-art manufacturing facilities delivering pharmaceutical-grade products with uncompromising quality, precision, and innovation across six specialized production lines.
-          </p>
+          
+          <div className="max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-brand-gray leading-relaxed font-light">
+              Six specialized production lines delivering pharmaceutical-grade solutions with precision engineering and uncompromising quality standards.
+            </p>
+          </div>
         </div>
 
-        {/* Navigation Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {productionLines.map((line) => {
+        {/* Production Lines Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {productionLines.map((line, index) => {
             const IconComponent = line.icon;
+            
             return (
               <div
                 key={line.id}
                 onClick={() => handleCardClick(line.href)}
-                className="group relative bg-brand-white border border-brand-gray/20 rounded-2xl p-8 hover:shadow-lg hover:border-brand-red/30 transition-all duration-300 cursor-pointer"
+                className="group bg-brand-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-brand-gray/20 flex flex-col"
+                style={{
+                  transform: 'translateY(0)',
+                  animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
+                }}
               >
-                {/* Icon */}
-                <div className="mb-6">
-                  <div className="w-14 h-14 bg-brand-red/10 rounded-xl flex items-center justify-center group-hover:bg-brand-red/20 transition-colors duration-300">
-                    <IconComponent className="w-7 h-7 text-brand-red" />
+                {/* Card Header */}
+                <div className="p-8 pb-6 flex-grow">
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="p-3 bg-brand-white/80 rounded-xl group-hover:bg-brand-red transition-colors duration-300">
+                      <IconComponent className="w-6 h-6 text-brand-gray group-hover:text-brand-white transition-colors duration-300" />
+                    </div>
+                    <ArrowUpRight className="w-5 h-5 text-brand-gray group-hover:text-brand-black group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
+                  </div>
+                  
+                  <h3 className="text-xl font-medium text-brand-black mb-3 leading-snug group-hover:text-brand-red">
+                    {line.title}
+                  </h3>
+                  
+                  <p className="text-brand-gray text-sm leading-relaxed line-clamp-3 mb-6">
+                    {line.description}
+                  </p>
+                </div>
+
+                {/* Features Tags */}
+                <div className="px-8 pb-8">
+                  <div className="flex flex-wrap gap-2">
+                    {line.features.map((feature, featureIndex) => (
+                      <span
+                        key={featureIndex}
+                        className="inline-flex items-center px-3 py-1 bg-brand-gray/10 text-brand-gray text-xs font-medium rounded-full"
+                      >
+                        {feature}
+                      </span>
+                    ))}
                   </div>
                 </div>
 
-                {/* Content */}
-                <h3 className="text-xl font-medium text-brand-black mb-3 group-hover:text-brand-red transition-colors duration-300">
-                  {line.title}
-                </h3>
-                
-                {/* Features */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {line.features.map((feature, index) => (
-                    <span
-                      key={index}
-                      className="text-xs text-brand-gray bg-brand-white/50 px-2 py-1 rounded-md"
-                    >
-                      {feature}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Arrow */}
-                <div className="flex items-center justify-end">
-                  <ArrowRight className="w-5 h-5 text-brand-gray group-hover:text-brand-red group-hover:translate-x-1 transition-all duration-300" />
-                </div>
-
-                {/* Hover Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-brand-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                {/* Hover indicator */}
+                <div className="h-1 bg-brand-gray/20 group-hover:bg-brand-red transition-colors duration-300 mt-auto"></div>
               </div>
             );
           })}
         </div>
+
+        {/* Bottom CTA Section */}
+        <div className="text-center mt-16">
+          <div className="inline-flex items-center gap-3 text-brand-gray hover:text-brand-black transition-colors duration-300 cursor-pointer">
+            <span className="text-sm font-medium tracking-wide">Explore All Capabilities</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </div>
+        </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
     </section>
   );
 };

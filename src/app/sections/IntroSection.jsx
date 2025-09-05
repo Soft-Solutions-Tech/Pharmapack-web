@@ -1,0 +1,289 @@
+'use client'
+
+import React, { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import { ArrowUpRight, Globe, Award, Users } from 'lucide-react'
+
+// Brand colors defined as CSS custom properties (assumed global, or add to global.css)
+const brandStyles = `
+  :root {
+    --color-brand-red: #6E0D0F;
+    --color-brand-gray: #5F6062;
+    --color-brand-white: #FBFEF9;
+    --color-brand-black: #000000;
+  }
+`
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+}
+
+const slideUpVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      ease: [0.25, 0.1, 0.25, 1]
+    }
+  }
+}
+
+const fadeInVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 1.5,
+      ease: "easeOut"
+    }
+  }
+}
+
+const scaleInVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 1.2,
+      ease: [0.25, 0.1, 0.25, 1]
+    }
+  }
+}
+
+// Count-up animation utility
+const useCountUp = (end, duration = 2000) => {
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    let start = 0
+    const increment = end / (duration / 16) // 60fps
+    let animationFrame
+
+    const animate = () => {
+      start += increment
+      if (start >= end) {
+        setCount(end)
+        return
+      }
+      setCount(Math.round(start * 10) / 10)
+      animationFrame = requestAnimationFrame(animate)
+    }
+
+    animationFrame = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(animationFrame)
+  }, [end, duration])
+
+  return count
+}
+
+export default function IntroSection() {
+  const handleCTAClick = () => {
+    console.log('Navigate to about page')
+  }
+
+  const handleExploreClick = () => {
+    console.log('Navigate to capabilities')
+  }
+
+  // Count-up values for metrics
+  const yearsCount = useCountUp(25, 2000)
+  const marketsCount = useCountUp(60, 2000)
+  const productsCount = useCountUp(5000000, 2500)
+  const qualityCount = useCountUp(99.9, 2000)
+
+  return (
+    <>
+      <style>{brandStyles}</style>
+      <section className="relative min-h-screen bg-brand-white overflow-hidden">
+        {/* Premium background with subtle patterns */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-brand-white via-brand-white to-brand-gray/10"></div>
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-brand-gray/20 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-brand-gray/10 to-transparent"></div>
+        </div>
+        
+        <div className="relative z-10">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+            <div className="min-h-screen grid lg:grid-cols-12 gap-16 items-center py-20">
+              
+              {/* Left Content - 7 columns */}
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="lg:col-span-7 space-y-12"
+              >
+                {/* Premium brand indicator */}
+                <motion.div variants={slideUpVariants} className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-px bg-gradient-to-r from-brand-gray to-transparent"></div>
+                    <Globe className="w-5 h-5 text-brand-gray" />
+                    <span className="text-sm font-medium text-brand-gray tracking-[0.2em] uppercase">
+                      Global Leader
+                    </span>
+                  </div>
+                </motion.div>
+                
+                {/* Hero headline */}
+                <motion.div variants={slideUpVariants} className="space-y-6">
+                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-extralight text-brand-black leading-[0.9] tracking-tight">
+                    Redefining
+                    <br />
+                    <span className="bg-gradient-to-r from-brand-black via-brand-gray to-brand-red bg-clip-text text-transparent font-light">
+                      Excellence
+                    </span>
+                  </h1>
+                  
+                  <div className="w-24 h-0.5 bg-gradient-to-r from-brand-black to-brand-gray"></div>
+                </motion.div>
+                
+                {/* Sophisticated subtitle */}
+                <motion.div variants={slideUpVariants} className="space-y-8">
+                  <h2 className="text-2xl md:text-3xl font-extralight text-brand-gray leading-relaxed max-w-2xl">
+                    Where precision meets innovation in pharmaceutical manufacturing
+                  </h2>
+                  
+                  <p className="text-lg md:text-xl text-brand-gray leading-relaxed max-w-2xl font-light">
+                    We are architects of the future in pharmaceutical excellence. Through decades of expertise 
+                    and relentless innovation, we transform complex challenges into breakthrough solutions that 
+                    impact millions of lives globally.
+                  </p>
+                </motion.div>
+                
+                {/* Premium action buttons */}
+                <motion.div variants={slideUpVariants} className="flex flex-col sm:flex-row gap-6 pt-8">
+                  <motion.button
+                    onClick={handleCTAClick}
+                    className="group relative bg-brand-black text-brand-white px-8 py-4 overflow-hidden"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-brand-black to-brand-red transition-opacity duration-300 group-hover:opacity-90"></div>
+                    <div className="relative flex items-center justify-center space-x-3">
+                      <span className="text-lg font-medium">Discover Our Story</span>
+                      <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                    </div>
+                  </motion.button>
+                  
+                  <motion.button
+                    onClick={handleExploreClick}
+                    className="group text-brand-black px-8 py-4 border border-brand-gray hover:border-brand-red transition-all duration-300 relative overflow-hidden"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="absolute inset-0 bg-brand-red -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                    <div className="relative flex items-center justify-center space-x-3 group-hover:text-brand-white transition-colors duration-500">
+                      <span className="text-lg font-medium">Our Capabilities</span>
+                      <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                    </div>
+                  </motion.button>
+                </motion.div>
+              </motion.div>
+
+              {/* Right Content - 5 columns */}
+              <motion.div
+                variants={scaleInVariants}
+                initial="hidden"
+                animate="visible"
+                className="lg:col-span-5 relative"
+              >
+                {/* Main hero image */}
+                <div className="relative h-[600px] lg:h-[700px]">
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-black/20 via-transparent to-transparent z-10 rounded-2xl"></div>
+                  <Image
+                    src="/pharma1.jpg"
+                    alt="State-of-the-art pharmaceutical manufacturing facility"
+                    fill
+                    className="object-cover rounded-2xl shadow-2xl"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+                    priority
+                  />
+                  
+                  {/* Floating achievement cards */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1, delay: 1.2 }}
+                    className="absolute top-8 -left-8 bg-brand-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-brand-gray/20"
+                  >
+                    <div className="flex items-center space-x-4">
+                      <Award className="w-8 h-8 text-brand-red" />
+                      <div>
+                        <div className="text-2xl font-bold text-brand-black">ISO 9001</div>
+                        <div className="text-sm text-brand-gray">Certified</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1, delay: 1.4 }}
+                    className="absolute bottom-8 -right-8 bg-brand-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-brand-gray/20"
+                  >
+                    <div className="flex items-center space-x-4">
+                      <Users className="w-8 h-8 text-brand-gray" />
+                      <div>
+                        <div className="text-2xl font-bold text-brand-black">500+</div>
+                        <div className="text-sm text-brand-gray">Global Team</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+          
+          {/* Bottom metrics bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.6 }}
+            className="border-t border-brand-gray/20 bg-brand-white/80 backdrop-blur-sm"
+          >
+            <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div className="text-center group">
+                  <div className="text-4xl font-extralight text-brand-black mb-2 group-hover:scale-110 transition-transform duration-300">
+                    {yearsCount}+
+                  </div>
+                  <div className="text-sm font-medium text-brand-gray tracking-wider uppercase">Years Excellence</div>
+                </div>
+                <div className="text-center group">
+                  <div className="text-4xl font-extralight text-brand-black mb-2 group-hover:scale-110 transition-transform duration-300">
+                    {marketsCount}+
+                  </div>
+                  <div className="text-sm font-medium text-brand-gray tracking-wider uppercase">Global Markets</div>
+                </div>
+                <div className="text-center group">
+                  <div className="text-4xl font-extralight text-brand-black mb-2 group-hover:scale-110 transition-transform duration-300">
+                    {(productsCount / 1000000).toFixed(1)}M+
+                  </div>
+                  <div className="text-sm font-medium text-brand-gray tracking-wider uppercase">Products Delivered</div>
+                </div>
+                <div className="text-center group">
+                  <div className="text-4xl font-extralight text-brand-black mb-2 group-hover:scale-110 transition-transform duration-300">
+                    {qualityCount}%
+                  </div>
+                  <div className="text-sm font-medium text-brand-gray tracking-wider uppercase">Quality Standard</div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </>
+  )
+}
