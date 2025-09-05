@@ -65,7 +65,7 @@ export default function PharmapackServices() {
   }
 
   return (
-    <section className="py-12 md:py-20" style={style}>
+    <section className="py-12 md:py-10 bg-brand-white" style={style}>
       <style jsx>{`
         .text-brand-red { color: var(--color-brand-red); }
         .text-brand-gray { color: var(--color-brand-gray); }
@@ -88,10 +88,10 @@ export default function PharmapackServices() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-black mb-4 md:mb-6">
-            Our <span className="text-brand-red">Services</span>
+            Our <span>Services</span>
           </h2>
           <p className="text-lg md:text-xl text-brand-gray max-w-3xl mx-auto leading-relaxed">
             We help companies build their own brands from scratch. Whether you come with just an idea or a complete concept, our experts guide you through R&D, formulation, production, and packaging, ensuring your brand stands out with quality and innovation.
