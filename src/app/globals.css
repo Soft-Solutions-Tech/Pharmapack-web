@@ -74,14 +74,13 @@
    Backgrounds
    =============================== */
 html {
-  background: linear-gradient(135deg, #5F6062 0%, #ffffff 100%);
+  background: white;
 }
 
 body {
-  background: linear-gradient(135deg, #5F6062 0%, #ffffff 100%);
+  background: white;
   color: var(--color-foreground);
   font-family: var(--font-sans, sans-serif);
-  /* Default to Urbanist */
   margin: 0;
   padding: 0;
 }
