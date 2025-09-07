@@ -66,7 +66,7 @@ export default function VisionMissionSection() {
   };
 
   return (
-    <section className="py-32 px-6 bg-brand-white">
+    <section className="py-32 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -119,7 +119,7 @@ export default function VisionMissionSection() {
 
                   {/* Icon */}
                   <div className="relative z-10 mb-8">
-                    <div className="w-16 h-16 bg-brand-white rounded-2xl flex items-center justify-center group-hover:bg-brand-gray/10 transition-all duration-300">
+                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center group-hover:bg-brand-gray/10 transition-all duration-300">
                       <IconComponent className="w-8 h-8 text-brand-red group-hover:text-brand-gray transition-colors duration-300" />
                     </div>
                   </div>

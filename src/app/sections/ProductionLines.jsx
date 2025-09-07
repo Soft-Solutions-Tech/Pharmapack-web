@@ -47,7 +47,7 @@ const ProductionLines = () => {
   };
 
   return (
-    <section className="py-20 px-6 bg-brand-white relative overflow-hidden">
+    <section className="py-20 px-6 bg-white relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
@@ -98,12 +98,12 @@ const ProductionLines = () => {
                 key={line.id}
                 variants={cardVariants}
                 onClick={() => handleCardClick(line.website)}
-                className="group bg-brand-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-brand-gray/20 flex flex-col"
+                className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-brand-gray/20 flex flex-col"
               >
                 {/* Card Header */}
                 <div className="p-8 pb-6 flex-grow">
                   <div className="flex items-start justify-between mb-6">
-                    <div className="p-3 bg-brand-white/80 rounded-xl group-hover:bg-brand-red transition-colors duration-300">
+                    <div className="p-3 bg-white/80 rounded-xl group-hover:bg-brand-red transition-colors duration-300">
                       <IconComponent className="w-6 h-6 text-brand-gray group-hover:text-brand-white transition-colors duration-300" />
                     </div>
                     <ArrowUpRight className="w-5 h-5 text-brand-gray group-hover:text-brand-black group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />

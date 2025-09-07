@@ -107,7 +107,7 @@ export default function IntroSection() {
   const qualityCount = useCountUp(introContent.metrics[3].value, 2000);
 
   return (
-    <section className="relative min-h-screen bg-brand-white overflow-hidden">
+    <section className="relative min-h-screen bg-white overflow-hidden">
       {/* Premium background with subtle patterns */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-brand-white via-brand-white to-gray-100/10"></div>
@@ -230,7 +230,7 @@ export default function IntroSection() {
                       transition={{ duration: 1, delay: 1.2 + index * 0.2 }}
                       className={`absolute ${
                         index === 0 ? "top-8 -left-8" : "bottom-8 -right-8"
-                      } bg-brand-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-gray-200/20`}
+                      } bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-gray-200/20`}
                     >
                       <div className="flex items-center space-x-4">
                         <IconComponent className="w-8 h-8 text-brand-red" />
@@ -256,7 +256,7 @@ export default function IntroSection() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.6 }}
-          className="border-t border-gray-200/20 bg-brand-white/80 backdrop-blur-sm"
+          className="border-t border-gray-200/20 bg-white/80 backdrop-blur-sm"
         >
           <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">

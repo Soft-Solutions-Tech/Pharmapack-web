@@ -56,7 +56,7 @@ export default function WhoWeAreSection() {
   };
 
   return (
-    <section className="py-20 px-6 bg-white">
+    <section className="py-28 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div

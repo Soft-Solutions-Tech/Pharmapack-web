@@ -53,7 +53,7 @@ export default function PharmapackServices() {
   };
 
   return (
-    <section className="min-h-screen flex flex-col px-6 bg-brand-white">
+    <section className="min-h-screen flex flex-col px-6 bg-white">
       <div className="max-w-7xl mx-auto flex-1 flex flex-col mb-20">
         {/* Header Section */}
         <motion.div

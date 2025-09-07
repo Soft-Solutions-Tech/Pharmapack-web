@@ -112,7 +112,7 @@ export default function ClientsSection() {
   };
 
   return (
-    <section className="py-20 px-6 bg-brand-white">
+    <section className="py-20 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <motion.div
