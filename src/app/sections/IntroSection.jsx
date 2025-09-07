@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowUpRight, Globe, Award, Users } from "lucide-react";
+import { introContent } from "@/data/intro-data";
 
-// Brand colors defined as CSS custom properties (assumed global, or add to global.css)
 const brandStyles = `
   :root {
     --color-brand-red: #6E0D0F;
@@ -90,18 +90,30 @@ const useCountUp = (end, duration = 2000) => {
 
 export default function IntroSection() {
   const handleCTAClick = () => {
-    console.log("Navigate to about page");
+    if (introContent.ctaPrimary.website) {
+      window.open(
+        introContent.ctaPrimary.website,
+        "_blank",
+        "noopener,noreferrer"
+      );
+    }
   };
 
   const handleExploreClick = () => {
-    console.log("Navigate to capabilities");
+    if (introContent.ctaSecondary.website) {
+      window.open(
+        introContent.ctaSecondary.website,
+        "_blank",
+        "noopener,noreferrer"
+      );
+    }
   };
 
   // Count-up values for metrics
-  const yearsCount = useCountUp(25, 2000);
-  const marketsCount = useCountUp(60, 2000);
-  const productsCount = useCountUp(5000000, 2500);
-  const qualityCount = useCountUp(99.9, 2000);
+  const yearsCount = useCountUp(introContent.metrics[0].value, 2000);
+  const marketsCount = useCountUp(introContent.metrics[1].value, 2000);
+  const productsCount = useCountUp(introContent.metrics[2].value, 2500);
+  const qualityCount = useCountUp(introContent.metrics[3].value, 2000);
 
   return (
     <>
@@ -133,37 +145,30 @@ export default function IntroSection() {
                     <div className="w-12 h-px bg-gradient-to-r from-brand-gray to-transparent"></div>
                     <Globe className="w-5 h-5 text-brand-gray" />
                     <span className="text-sm font-medium text-brand-gray tracking-[0.2em] uppercase">
-                      Global Leader
+                      {introContent.headerLabel}
                     </span>
                   </div>
                 </motion.div>
 
                 {/* Hero headline */}
                 <motion.div variants={slideUpVariants} className="space-y-6">
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-extralight text-brand-black leading-[0.9] tracking-tight">
-                    Redefining
-                    <br />
-                    <span className="bg-gradient-to-r from-brand-black via-brand-gray to-brand-red bg-clip-text text-transparent font-light">
-                      Excellence
-                    </span>
-                  </h1>
-
+                  <h1
+                    className="text-5xl md:text-6xl lg:text-7xl font-extralight text-brand-black leading-[0.9] tracking-tight"
+                    dangerouslySetInnerHTML={{
+                      __html: `${introContent.headline}<br /><span className="bg-gradient-to-r from-brand-black via-brand-gray to-brand-red bg-clip-text text-transparent font-light">${introContent.headlineHighlight}</span>`,
+                    }}
+                  />
                   <div className="w-24 h-0.5 bg-gradient-to-r from-brand-black to-brand-gray"></div>
                 </motion.div>
 
                 {/* Sophisticated subtitle */}
                 <motion.div variants={slideUpVariants} className="space-y-8">
                   <h2 className="text-2xl md:text-3xl font-extralight text-brand-gray leading-relaxed max-w-2xl">
-                    Where precision meets innovation in pharmaceutical
-                    manufacturing
+                    {introContent.subtitle}
                   </h2>
 
                   <p className="text-lg md:text-xl text-brand-gray leading-relaxed max-w-2xl font-light">
-                    We are architects of the future in pharmaceutical
-                    excellence. Through decades of expertise and relentless
-                    innovation, we transform complex challenges into
-                    breakthrough solutions that impact millions of lives
-                    globally.
+                    {introContent.description}
                   </p>
                 </motion.div>
 
@@ -177,11 +182,12 @@ export default function IntroSection() {
                     className="group relative bg-brand-black text-brand-white px-8 py-4 overflow-hidden"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
+                    aria-label={introContent.ctaPrimary.text}
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-brand-black to-brand-red transition-opacity duration-300 group-hover:opacity-90"></div>
                     <div className="relative flex items-center justify-center space-x-3">
                       <span className="text-lg font-medium">
-                        Discover Our Story
+                        {introContent.ctaPrimary.text}
                       </span>
                       <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                     </div>
@@ -192,11 +198,12 @@ export default function IntroSection() {
                     className="group text-brand-black px-8 py-4 border border-brand-gray hover:border-brand-red transition-all duration-300 relative overflow-hidden"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
+                    aria-label={introContent.ctaSecondary.text}
                   >
                     <div className="absolute inset-0 bg-brand-red -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
                     <div className="relative flex items-center justify-center space-x-3 group-hover:text-brand-white transition-colors duration-500">
                       <span className="text-lg font-medium">
-                        Our Capabilities
+                        {introContent.ctaSecondary.text}
                       </span>
                       <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                     </div>
@@ -224,41 +231,34 @@ export default function IntroSection() {
                   />
 
                   {/* Floating achievement cards */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1, delay: 1.2 }}
-                    className="absolute top-8 -left-8 bg-brand-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-brand-gray/20"
-                  >
-                    <div className="flex items-center space-x-4">
-                      <Award className="w-8 h-8 text-brand-red" />
-                      <div>
-                        <div className="text-2xl font-bold text-brand-black">
-                          ISO 9001
-                        </div>
-                        <div className="text-sm text-brand-gray">Certified</div>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1, delay: 1.4 }}
-                    className="absolute bottom-8 -right-8 bg-brand-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-brand-gray/20"
-                  >
-                    <div className="flex items-center space-x-4">
-                      <Users className="w-8 h-8 text-brand-gray" />
-                      <div>
-                        <div className="text-2xl font-bold text-brand-black">
-                          500+
-                        </div>
-                        <div className="text-sm text-brand-gray">
-                          Global Team
+                  {introContent.achievements.map((achievement, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: index === 0 ? -50 : 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 1, delay: 1.2 + index * 0.2 }}
+                      className={`absolute ${
+                        index === 0 ? "top-8 -left-8" : "bottom-8 -right-8"
+                      } bg-brand-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-brand-gray/20`}
+                    >
+                      <div className="flex items-center space-x-4">
+                        {achievement.icon === "Award" && (
+                          <Award className="w-8 h-8 text-brand-red" />
+                        )}
+                        {achievement.icon === "Users" && (
+                          <Users className="w-8 h-8 text-brand-gray" />
+                        )}
+                        <div>
+                          <div className="text-2xl font-bold text-brand-black">
+                            {achievement.title}
+                          </div>
+                          <div className="text-sm text-brand-gray">
+                            {achievement.subtitle}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  ))}
                 </div>
               </motion.div>
             </div>
@@ -273,38 +273,22 @@ export default function IntroSection() {
           >
             <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div className="text-center group">
-                  <div className="text-4xl font-extralight text-brand-black mb-2 group-hover:scale-110 transition-transform duration-300">
-                    {yearsCount}+
+                {introContent.metrics.map((metric, index) => (
+                  <div key={index} className="text-center group">
+                    <div className="text-4xl font-extralight text-brand-black mb-2 group-hover:scale-110 transition-transform duration-300">
+                      {index === 2
+                        ? (introContent.metrics[index].value / 1000000).toFixed(
+                            1
+                          ) + "M+"
+                        : index === 3
+                        ? introContent.metrics[index].value + "%"
+                        : [introContent.metrics[index].value] + "+"}
+                    </div>
+                    <div className="text-sm font-medium text-brand-gray tracking-wider uppercase">
+                      {metric.label}
+                    </div>
                   </div>
-                  <div className="text-sm font-medium text-brand-gray tracking-wider uppercase">
-                    Years Excellence
-                  </div>
-                </div>
-                <div className="text-center group">
-                  <div className="text-4xl font-extralight text-brand-black mb-2 group-hover:scale-110 transition-transform duration-300">
-                    {marketsCount}+
-                  </div>
-                  <div className="text-sm font-medium text-brand-gray tracking-wider uppercase">
-                    Global Markets
-                  </div>
-                </div>
-                <div className="text-center group">
-                  <div className="text-4xl font-extralight text-brand-black mb-2 group-hover:scale-110 transition-transform duration-300">
-                    {(productsCount / 1000000).toFixed(1)}M+
-                  </div>
-                  <div className="text-sm font-medium text-brand-gray tracking-wider uppercase">
-                    Products Delivered
-                  </div>
-                </div>
-                <div className="text-center group">
-                  <div className="text-4xl font-extralight text-brand-black mb-2 group-hover:scale-110 transition-transform duration-300">
-                    {qualityCount}%
-                  </div>
-                  <div className="text-sm font-medium text-brand-gray tracking-wider uppercase">
-                    Quality Standard
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </motion.div>

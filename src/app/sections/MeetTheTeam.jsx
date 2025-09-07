@@ -4,46 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Linkedin } from "lucide-react";
-
-// Team members data
-const teamMembers = [
-  {
-    id: 1,
-    name: "Sarah Chen",
-    position: "Chief Executive Officer",
-    bio: "Leading with 20+ years of pharmaceutical expertise and strategic vision.",
-    image:
-      "https://images.unsplash.com/photo-1494790108755-2616b332c671?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    linkedin: "https://linkedin.com/in/sarahchen",
-  },
-  {
-    id: 2,
-    name: "Michael Rodriguez",
-    position: "Chief Technology Officer",
-    bio: "Driving innovation through advanced manufacturing technology solutions.",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    linkedin: "https://linkedin.com/in/michaelrodriguez",
-  },
-  {
-    id: 3,
-    name: "Dr. Emily Watson",
-    position: "Head of Research & Development",
-    bio: "Pioneering breakthrough formulations and product development initiatives.",
-    image:
-      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    linkedin: "https://linkedin.com/in/emilywatson",
-  },
-  {
-    id: 4,
-    name: "James Thompson",
-    position: "VP Manufacturing Operations",
-    bio: "Ensuring world-class production quality across global facilities.",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    linkedin: "https://linkedin.com/in/jamesthompson",
-  },
-];
+import { teamContent } from "@/data/team-data";
 
 // Animation variants
 const containerVariants = {
@@ -89,18 +50,20 @@ export default function MeetTheTeam() {
           <div className="inline-flex items-center gap-3 mb-6">
             <div className="h-px w-12 bg-gray-300"></div>
             <span className="text-sm font-medium text-gray-500 tracking-wider uppercase">
-              Leadership Team
+              {teamContent.headerLabel}
             </span>
             <div className="h-px w-12 bg-gray-300"></div>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-extralight text-gray-900 mb-6 tracking-tight">
-            Meet <span className="font-light text-gray-700">Our Team</span>
-          </h2>
+          <h2
+            className="text-4xl md:text-5xl font-extralight text-gray-900 mb-6 tracking-tight"
+            dangerouslySetInnerHTML={{
+              __html: `Meet <span className="font-light text-gray-700">${teamContent.headlineHighlight}</span>`,
+            }}
+          />
 
           <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto font-light">
-            The experienced professionals who drive our mission of excellence in
-            pharmaceutical manufacturing.
+            {teamContent.subheadline}
           </p>
         </motion.div>
 
@@ -111,7 +74,7 @@ export default function MeetTheTeam() {
           animate="visible"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12"
         >
-          {teamMembers.map((member) => (
+          {teamContent.teamMembers.map((member) => (
             <motion.div
               key={member.id}
               variants={cardVariants}

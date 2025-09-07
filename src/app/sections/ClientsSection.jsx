@@ -3,83 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Building2 } from "lucide-react";
-
-// Sample client data with Flaticon logo
-// Note: Flaticon images may require attribution or a license for commercial use. Check https://www.flaticon.com/
-const clients = [
-  {
-    id: 1,
-    name: "TechCorp Solutions",
-    logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://techcorp.com",
-  },
-  {
-    id: 2,
-    name: "Global Healthcare Inc",
-    logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://globalhealthcare.com",
-  },
-  {
-    id: 3,
-    name: "Innovation Labs",
-    logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://innovationlabs.com",
-  },
-  {
-    id: 4,
-    name: "MedTech Partners",
-    logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://medtechpartners.com",
-  },
-  {
-    id: 5,
-    name: "Pharma Excellence",
-    logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://pharmaexcellence.com",
-  },
-  {
-    id: 6,
-    name: "BioScience Corp",
-    logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://bioscience.com",
-  },
-  {
-    id: 7,
-    name: "Advanced Medical",
-    logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://advancedmedical.com",
-  },
-  {
-    id: 8,
-    name: "Health Innovations",
-    logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://healthinnovations.com",
-  },
-  {
-    id: 9,
-    name: "Research Partners",
-    logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://researchpartners.com",
-  },
-  {
-    id: 10,
-    name: "Global Pharmaceuticals",
-    logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://globalpharm.com",
-  },
-  {
-    id: 11,
-    name: "Medical Systems",
-    logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://medicalsystems.com",
-  },
-  {
-    id: 12,
-    name: "Life Sciences Ltd",
-    logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://lifesciences.com",
-  },
-];
+import { clients, sectionContent } from "@/data/clients-data";
 
 // Animation variants
 const containerVariants = {
@@ -161,7 +85,7 @@ const ClientsPlaceholder = () => (
         transition={{ duration: 0.6, delay: 0.4 }}
         className="text-2xl font-light text-brand-black mb-4"
       >
-        Building Partnerships
+        {sectionContent.placeholder.title}
       </motion.h3>
 
       <motion.p
@@ -170,8 +94,7 @@ const ClientsPlaceholder = () => (
         transition={{ duration: 0.6, delay: 0.6 }}
         className="text-lg text-brand-gray leading-relaxed"
       >
-        We&apos;re proud to have worked with industry-leading partners. Check
-        back soon to see our client showcase.
+        {sectionContent.placeholder.description}
       </motion.p>
     </div>
   </motion.div>
@@ -204,7 +127,7 @@ export default function ClientsSection() {
           >
             <div className="h-px w-12 bg-brand-gray/30"></div>
             <span className="text-sm font-medium text-brand-gray tracking-wider uppercase">
-              Our Partners
+              {sectionContent.headerLabel}
             </span>
             <div className="h-px w-12 bg-brand-gray/30"></div>
           </motion.div>
@@ -221,8 +144,7 @@ export default function ClientsSection() {
             variants={itemVariants}
             className="text-lg md:text-xl text-brand-gray leading-relaxed max-w-3xl mx-auto font-light"
           >
-            We&apos;re privileged to partner with forward-thinking organizations
-            that share our commitment to excellence and innovation.
+            {sectionContent.description}
           </motion.p>
         </motion.div>
 
@@ -244,6 +166,7 @@ export default function ClientsSection() {
                 animate="visible"
                 whileHover="hover"
                 whileTap={{ scale: 0.98 }}
+                onClick={() => handleClientClick(client.website)}
                 className="group relative bg-white/50 rounded-2xl p-6 flex flex-col items-center justify-center hover:bg-white border border-brand-gray/10 hover:border-brand-gray/20 transition-all duration-300 cursor-pointer hover:shadow-lg"
               >
                 <div className="relative w-full h-20">
@@ -283,7 +206,7 @@ export default function ClientsSection() {
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2 }}
             >
-              Ready to join our growing network of successful partnerships?
+              {sectionContent.ctaText}
             </motion.p>
           </motion.div>
         )}

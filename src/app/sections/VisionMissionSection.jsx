@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Eye, Target } from "lucide-react";
+import { visionMissionContent, iconMap } from "@/data/vision-mission-data";
 
 // Animation variants
 const containerVariants = {
@@ -59,6 +59,12 @@ const accentLineVariants = {
 };
 
 export default function VisionMissionSection() {
+  const handleCardClick = (website) => {
+    if (website) {
+      window.open(website, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <section className="py-32 px-6 bg-brand-white">
       <div className="max-w-6xl mx-auto">
@@ -72,17 +78,20 @@ export default function VisionMissionSection() {
           <div className="inline-flex items-center gap-3 mb-8">
             <div className="h-px w-20 bg-brand-gray/30"></div>
             <span className="text-sm font-medium text-brand-gray tracking-wider uppercase">
-              Our Foundation
+              {visionMissionContent.headerLabel}
             </span>
             <div className="h-px w-20 bg-brand-gray/30"></div>
           </div>
 
-          <h2 className="text-5xl md:text-6xl font-light text-brand-black mb-8 tracking-tight">
-            Vision & <span className="font-light text-brand-gray">Mission</span>
-          </h2>
+          <h2
+            className="text-5xl md:text-6xl font-light text-brand-black mb-8 tracking-tight"
+            dangerouslySetInnerHTML={{
+              __html: `Vision & <span className="font-light text-brand-gray">${visionMissionContent.headlineHighlight}</span>`,
+            }}
+          />
 
           <p className="text-xl md:text-2xl text-brand-gray font-light max-w-3xl mx-auto leading-relaxed">
-            Driving innovation with integrity and excellence
+            {visionMissionContent.subtitle}
           </p>
         </motion.div>
 
@@ -93,88 +102,50 @@ export default function VisionMissionSection() {
           animate="visible"
           className="grid lg:grid-cols-2 gap-12 lg:gap-16"
         >
-          {/* Vision Card */}
-          <motion.div
-            variants={cardVariants}
-            whileHover="hover"
-            className="group"
-          >
-            <div className="bg-white rounded-3xl p-12 shadow-md border border-brand-gray/10 h-full flex flex-col relative overflow-hidden">
-              {/* Subtle hover overlay */}
-              <div className="absolute inset-0 bg-brand-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          {visionMissionContent.cards.map((card) => {
+            const IconComponent = iconMap[card.icon];
 
-              {/* Icon */}
-              <div className="relative z-10 mb-8">
-                <div className="w-16 h-16 bg-brand-white rounded-2xl flex items-center justify-center group-hover:bg-brand-gray/10 transition-all duration-300">
-                  <Eye className="w-8 h-8 text-brand-red group-hover:text-brand-gray transition-colors duration-300" />
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="relative z-10 flex-grow">
-                <h3 className="text-3xl font-light text-brand-black mb-6 tracking-tight">
-                  Our Vision
-                </h3>
-
-                <p className="text-brand-gray leading-[1.8] text-lg font-light">
-                  To be the global leader in pharmaceutical manufacturing
-                  excellence, setting new standards for innovation, quality, and
-                  sustainability while transforming healthcare outcomes
-                  worldwide through our cutting-edge solutions.
-                </p>
-              </div>
-
-              {/* Accent line */}
+            return (
               <motion.div
-                variants={accentLineVariants}
-                initial="hidden"
-                animate="visible"
-                className="absolute bottom-0 left-0 w-full h-1 bg-brand-red"
-              />
-            </div>
-          </motion.div>
+                key={card.id}
+                variants={cardVariants}
+                whileHover="hover"
+                onClick={() => handleCardClick(card.website)}
+                className="group cursor-pointer"
+              >
+                <div className="bg-white rounded-3xl p-12 shadow-md border border-brand-gray/10 h-full flex flex-col relative overflow-hidden">
+                  {/* Subtle hover overlay */}
+                  <div className="absolute inset-0 bg-brand-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-          {/* Mission Card */}
-          <motion.div
-            variants={cardVariants}
-            whileHover="hover"
-            className="group"
-          >
-            <div className="bg-white rounded-3xl p-12 shadow-md border border-brand-gray/10 h-full flex flex-col relative overflow-hidden">
-              {/* Subtle hover overlay */}
-              <div className="absolute inset-0 bg-brand-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  {/* Icon */}
+                  <div className="relative z-10 mb-8">
+                    <div className="w-16 h-16 bg-brand-white rounded-2xl flex items-center justify-center group-hover:bg-brand-gray/10 transition-all duration-300">
+                      <IconComponent className="w-8 h-8 text-brand-red group-hover:text-brand-gray transition-colors duration-300" />
+                    </div>
+                  </div>
 
-              {/* Icon */}
-              <div className="relative z-10 mb-8">
-                <div className="w-16 h-16 bg-brand-white rounded-2xl flex items-center justify-center group-hover:bg-brand-gray/10 transition-all duration-300">
-                  <Target className="w-8 h-8 text-brand-red group-hover:text-brand-gray transition-colors duration-300" />
+                  {/* Content */}
+                  <div className="relative z-10 flex-grow">
+                    <h3 className="text-3xl font-light text-brand-black mb-6 tracking-tight">
+                      {card.title}
+                    </h3>
+
+                    <p className="text-brand-gray leading-[1.8] text-lg font-light">
+                      {card.description}
+                    </p>
+                  </div>
+
+                  {/* Accent line */}
+                  <motion.div
+                    variants={accentLineVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="absolute bottom-0 left-0 w-full h-1 bg-brand-red"
+                  />
                 </div>
-              </div>
-
-              {/* Content */}
-              <div className="relative z-10 flex-grow">
-                <h3 className="text-3xl font-light text-brand-black mb-6 tracking-tight">
-                  Our Mission
-                </h3>
-
-                <p className="text-brand-gray leading-[1.8] text-lg font-light">
-                  We deliver exceptional pharmaceutical manufacturing services
-                  through strategic partnerships, advanced technology, and
-                  unwavering commitment to safety and quality, empowering our
-                  clients to bring life-changing products to market with
-                  confidence and speed.
-                </p>
-              </div>
-
-              {/* Accent line */}
-              <motion.div
-                variants={accentLineVariants}
-                initial="hidden"
-                animate="visible"
-                className="absolute bottom-0 left-0 w-full h-1 bg-brand-red"
-              />
-            </div>
-          </motion.div>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         {/* Bottom Statement */}
@@ -185,8 +156,7 @@ export default function VisionMissionSection() {
           className="text-center mt-20 pt-16 border-t border-brand-gray/10"
         >
           <p className="text-lg text-brand-gray font-light max-w-2xl mx-auto leading-relaxed">
-            These principles guide every decision we make and every relationship
-            we build, ensuring sustainable value creation for all stakeholders.
+            {visionMissionContent.bottomStatement}
           </p>
         </motion.div>
       </div>

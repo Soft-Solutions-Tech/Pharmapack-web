@@ -1,122 +1,104 @@
 "use client";
-import React from "react";
-import {
-  Droplets,
-  Package,
-  Heart,
-  User,
-  TestTube,
-  Waves,
-  ArrowUpRight,
-} from "lucide-react";
 
-// Production lines data
-const productionLines = [
-  {
-    id: 1,
-    title: "Purified Water Production Line",
-    description:
-      "Pharmaceutical-grade purified water used for antibiotic dissolution and baby formulations.",
-    icon: Droplets,
-    features: ["Pharmaceutical Grade", "Baby Safe", "99.9% Pure"],
-    href: "/production/purified-water",
+import React from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { productionContent, iconMap } from "@/data/production-data";
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
   },
-  {
-    id: 2,
-    title: "Wet Wipes Production Line",
-    description:
-      "Wide range of wipes in multiple sizes (single to 160 wipes) and specialized formulations, such as: Makeup remover, Anti-acne, Anti-aging, Mosquito repellent, Nail polish remover, Alcohol wipes, and more.",
-    icon: Package,
-    features: ["160+ Wipes", "Multi-Purpose", "Specialized Formula"],
-    href: "/production/wet-wipes",
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
   },
-  {
-    id: 3,
-    title: "Hydrogel Patches Production Line",
-    description:
-      "Specialized healthcare and skincare patches: Baby fever cooling patches, Pain-relieving patches (cold & hot), Period pain-relieving patches, Under-eye patches with targeted skin benefits.",
-    icon: Heart,
-    features: ["Healthcare Grade", "Pain Relief", "Targeted Care"],
-    href: "/production/hydrogel-patches",
-  },
-  {
-    id: 4,
-    title: "Face Sheet Mask Production Line",
-    description:
-      "High-quality sheet masks infused with various formulations for: Hydration, Brightening, Anti-aging, Soothing & calming care, Customized solutions for skincare brands.",
-    icon: User,
-    features: ["Anti-Aging", "Custom Solutions", "Premium Quality"],
-    href: "/production/face-masks",
-  },
-  {
-    id: 5,
-    title: "Lubricant Gel Production Line",
-    description:
-      "Multi-purpose gels for: Medical use – ultrasound examination lubrication, Personal care – intimate lubrication.",
-    icon: TestTube,
-    features: ["Medical Grade", "Multi-Purpose", "Safe Formula"],
-    href: "/production/lubricant-gel",
-  },
-  {
-    id: 6,
-    title: "Sea Salt Water Production Line",
-    description:
-      "Natural sea salt water designed for medical and cosmetic applications.",
-    icon: Waves,
-    features: ["Natural Source", "Medical Use", "Cosmetic Grade"],
-    href: "/production/sea-salt-water",
-  },
-];
+};
 
 const ProductionLines = () => {
-  const handleCardClick = (href) => {
-    // In a real Next.js app, this would use router.push(href) or Link component
-    console.log(`Navigating to: ${href}`);
+  const handleCardClick = (website) => {
+    if (website) {
+      window.open(website, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const handleCtaClick = () => {
+    if (productionContent.ctaWebsite) {
+      window.open(
+        productionContent.ctaWebsite,
+        "_blank",
+        "noopener,noreferrer"
+      );
+    }
   };
 
   return (
     <section className="py-20 px-6 bg-brand-white relative overflow-hidden">
       {/* Subtle background pattern */}
-
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 mb-6">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+          className="text-center mb-10"
+        >
+          <motion.div
+            variants={cardVariants}
+            className="inline-flex items-center gap-2 mb-6"
+          >
             <div className="h-px w-12 bg-brand-gray"></div>
             <span className="text-sm font-medium text-brand-gray tracking-wider uppercase">
-              Manufacturing Excellence
+              {productionContent.badge}
             </span>
             <div className="h-px w-12 bg-brand-gray"></div>
-          </div>
+          </motion.div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-brand-black mb-6 tracking-tight">
-            Production{" "}
-            <span className="font-normal text-brand-gray">Capabilities</span>
-          </h2>
+          <motion.h2
+            className="text-4xl md:text-5xl lg:text-6xl font-light text-brand-black mb-6 tracking-tight"
+            variants={cardVariants}
+            dangerouslySetInnerHTML={{
+              __html: `${productionContent.titlePart1} <span className="font-normal text-brand-gray">${productionContent.titlePart2}</span>`,
+            }}
+          />
 
-          <div className="max-w-2xl mx-auto">
+          <motion.div variants={cardVariants} className="max-w-2xl mx-auto">
             <p className="text-lg md:text-xl text-brand-gray leading-relaxed font-light">
-              Six specialized production lines delivering pharmaceutical-grade
-              solutions with precision engineering and uncompromising quality
-              standards.
+              {productionContent.subtitle}
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Production Lines Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {productionLines.map((line, index) => {
-            const IconComponent = line.icon;
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {productionContent.productionLines.map((line, index) => {
+            const IconComponent = iconMap[line.icon];
 
             return (
-              <div
+              <motion.div
                 key={line.id}
-                onClick={() => handleCardClick(line.href)}
+                variants={cardVariants}
+                onClick={() => handleCardClick(line.website)}
                 className="group bg-brand-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-brand-gray/20 flex flex-col"
-                style={{
-                  transform: "translateY(0)",
-                  animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
-                }}
               >
                 {/* Card Header */}
                 <div className="p-8 pb-6 flex-grow">
@@ -152,20 +134,23 @@ const ProductionLines = () => {
 
                 {/* Hover indicator */}
                 <div className="h-1 bg-brand-gray/20 group-hover:bg-brand-red transition-colors duration-300 mt-auto"></div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Bottom CTA Section */}
-        <div className="text-center mt-16">
-          <div className="inline-flex items-center gap-3 text-brand-gray hover:text-brand-black transition-colors duration-300 cursor-pointer">
+        <motion.div variants={cardVariants} className="text-center mt-16">
+          <div
+            onClick={handleCtaClick}
+            className="inline-flex items-center gap-3 text-brand-gray hover:text-brand-black transition-colors duration-300 cursor-pointer"
+          >
             <span className="text-sm font-medium tracking-wide">
-              Explore All Capabilities
+              {productionContent.cta}
             </span>
             <ArrowUpRight className="w-4 h-4" />
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <style jsx>{`

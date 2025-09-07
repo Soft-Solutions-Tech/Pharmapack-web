@@ -3,42 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Search, Compass, Cog, CheckCircle } from "lucide-react";
-
-// Process steps data
-const processSteps = [
-  {
-    id: 1,
-    title: "Discovery",
-    description:
-      "Comprehensive analysis of requirements, market conditions, and strategic objectives to establish project foundation.",
-    icon: Search,
-    number: "01",
-  },
-  {
-    id: 2,
-    title: "Strategy",
-    description:
-      "Development of detailed roadmaps, architectural frameworks, and implementation methodologies tailored to your vision.",
-    icon: Compass,
-    number: "02",
-  },
-  {
-    id: 3,
-    title: "Implementation",
-    description:
-      "Precision execution through systematic development cycles, rigorous testing, and continuous quality validation.",
-    icon: Cog,
-    number: "03",
-  },
-  {
-    id: 4,
-    title: "Excellence",
-    description:
-      "Seamless delivery with comprehensive documentation, knowledge transfer, and ongoing optimization protocols.",
-    icon: CheckCircle,
-    number: "04",
-  },
-];
+import { processContent } from "@/data/process-data";
 
 // Animation variants
 const containerVariants = {
@@ -65,6 +30,20 @@ const stepVariants = {
 };
 
 export default function OurProcess() {
+  const handleStepClick = (website) => {
+    if (website) {
+      window.open(website, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  // Map icon names to components
+  const iconMap = {
+    Search,
+    Compass,
+    Cog,
+    CheckCircle,
+  };
+
   return (
     <section className="py-32 px-8 bg-white relative">
       {/* Minimal background gradient */}
@@ -81,18 +60,17 @@ export default function OurProcess() {
           <div className="mb-12">
             <div className="inline-block h-px w-24 bg-black/20 mb-8"></div>
             <span className="block text-xs font-medium text-gray-500 tracking-[0.3em] uppercase mb-8">
-              Methodology
+              {processContent.headerLabel}
             </span>
           </div>
 
           <h2 className="text-6xl md:text-7xl lg:text-8xl font-thin text-black mb-12 tracking-tight leading-[0.85]">
-            Our Process
+            {processContent.headline}
           </h2>
 
           <div className="max-w-2xl mx-auto">
             <p className="text-xl md:text-2xl text-gray-600 leading-[1.6] font-light">
-              A disciplined methodology that transforms complexity into clarity,
-              ensuring exceptional outcomes through systematic excellence.
+              {processContent.subheadline}
             </p>
           </div>
         </motion.div>
@@ -108,14 +86,15 @@ export default function OurProcess() {
           <div className="hidden lg:block absolute top-16 left-0 right-0"></div>
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-20 lg:gap-16">
-            {processSteps.map((step) => {
-              const IconComponent = step.icon;
+            {processContent.processSteps.map((step) => {
+              const IconComponent = iconMap[step.icon];
 
               return (
                 <motion.div
                   key={step.id}
                   variants={stepVariants}
-                  className="group relative text-center"
+                  className="group relative text-center cursor-pointer"
+                  onClick={() => handleStepClick(step.website)}
                 >
                   {/* Icon */}
                   <div className="mb-10">
@@ -151,8 +130,7 @@ export default function OurProcess() {
           className="text-center mt-32 pt-20 border-t border-gray-100"
         >
           <p className="text-lg text-gray-400 font-light tracking-wide max-w-xl mx-auto leading-relaxed">
-            Every project follows this refined methodology, ensuring consistent
-            excellence and strategic value delivery.
+            {processContent.closingStatement}
           </p>
         </motion.div>
       </div>

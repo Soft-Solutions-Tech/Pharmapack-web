@@ -3,8 +3,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { heroContent } from "@/data/hero-data";
 
-// Brand colors defined as CSS custom properties (assumed global, or add to global.css)
+// Brand styles
 const brandStyles = `
   :root {
     --color-brand-red: #6E0D0F;
@@ -70,6 +71,12 @@ const buttonVariants = {
 };
 
 export default function HeroBanner() {
+  const handleCtaClick = () => {
+    if (heroContent.ctaWebsite) {
+      window.open(heroContent.ctaWebsite, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <>
       <style>{brandStyles}</style>
@@ -106,11 +113,10 @@ export default function HeroBanner() {
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light mb-6 tracking-tight leading-tight text-left"
             style={{ color: "#FBFEF9" }}
             variants={itemVariants}
-          >
-            Transforming Business
-            <br />
-            <span className="font-normal">Through Innovation</span>
-          </motion.h1>
+            dangerouslySetInnerHTML={{
+              __html: `${heroContent.headline}<br /><span className="font-normal">${heroContent.headlineHighlight}</span>`,
+            }}
+          />
 
           {/* Subheadline */}
           <motion.p
@@ -118,23 +124,23 @@ export default function HeroBanner() {
             style={{ color: "#D1D5DB" }}
             variants={itemVariants}
           >
-            We deliver strategic solutions that drive sustainable growth and
-            create lasting value for organizations worldwide.
+            {heroContent.subheadline}
           </motion.p>
 
-          {/* CTA Button (matches Discover Our Story from IntroSection) */}
+          {/* CTA Button */}
           <motion.div variants={buttonVariants}>
             <motion.button
               className="group relative bg-brand-black text-brand-white px-8 py-4 overflow-hidden"
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
-              aria-label="Discover our solutions"
+              aria-label={heroContent.ctaText}
+              onClick={handleCtaClick}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-brand-black to-brand-red transition-opacity duration-300 group-hover:opacity-90"></div>
               <div className="relative flex items-center justify-center space-x-3">
                 <span className="text-lg font-medium">
-                  Discover Our Solutions
+                  {heroContent.ctaText}
                 </span>
                 <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </div>

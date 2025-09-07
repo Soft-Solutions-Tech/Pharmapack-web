@@ -4,84 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, CheckCircle } from "lucide-react";
-
-const services = [
-  {
-    id: 1,
-    title: "Research & Development",
-    shortTitle: "R&D",
-    description:
-      "Understanding client needs & market trends, creating unique formulations tailored to the brand's vision, and conducting comprehensive stability & safety testing.",
-    image: "/pharma1.jpg",
-    features: [
-      "Client Needs Analysis",
-      "Market Trends Research",
-      "Custom Formulations",
-      "Stability & Safety Testing",
-    ],
-    link: "/services/research-development",
-  },
-  {
-    id: 2,
-    title: "Formulation",
-    shortTitle: "Formulation",
-    description:
-      "Developing the right product base with active ingredients, ensuring efficacy, safety, and compliance with international standards.",
-    image: "/pharma1.jpg",
-    features: [
-      "Active Ingredients",
-      "Product Base Development",
-      "Efficacy Testing",
-      "International Compliance",
-    ],
-    link: "/services/formulation",
-  },
-  {
-    id: 3,
-    title: "Production & Manufacturing",
-    shortTitle: "Manufacturing",
-    description:
-      "Using advanced machinery across multiple production lines, maintaining strict quality assurance and GMP compliance with scalable solutions from small batches to mass production.",
-    image: "/pharma1.jpg",
-    features: [
-      "Advanced Machinery",
-      "GMP Compliance",
-      "Quality Assurance",
-      "Scalable Solutions",
-    ],
-    link: "/services/production-manufacturing",
-  },
-  {
-    id: 4,
-    title: "Packaging Solutions",
-    shortTitle: "Packaging",
-    description:
-      "Custom packaging design that reflects your brand identity with a wide range of options including sachets, bottles, jars, wipes packs, patches, and masks, ensuring durability, safety, and consumer appeal.",
-    image: "/pharma1.jpg",
-    features: [
-      "Custom Design",
-      "Brand Identity",
-      "Multiple Options",
-      "Consumer Appeal",
-    ],
-    link: "/services/packaging-solutions",
-  },
-  {
-    id: 5,
-    title: "Private Label & Branding",
-    shortTitle: "Branding",
-    description:
-      "Helping you build and launch your own brand successfully with guidance on compliance, certifications, market entry, and long-term partnership to scale and grow your product portfolio.",
-    image: "/pharma1.jpg",
-    features: [
-      "Brand Launch",
-      "Compliance Guidance",
-      "Market Entry",
-      "Long-term Partnership",
-    ],
-    link: "/services/private-label-branding",
-  },
-];
+import { servicesContent } from "@/data/services-data";
 
 // Animation Variants
 const containerVariants = {
@@ -119,14 +42,18 @@ const contentVariants = {
 };
 
 export default function PharmapackServices() {
-  const [activeService, setActiveService] = useState(services[0]);
+  const [activeService, setActiveService] = useState(
+    servicesContent.services[0]
+  );
 
   const handleServiceClick = (service) => {
-    console.log("Navigate to:", service.link);
+    if (service.link) {
+      window.open(service.link, "_blank", "noopener,noreferrer");
+    }
   };
 
   return (
-    <section className="min-h-screen flex flex-col px-6 bg-brand-white ">
+    <section className="min-h-screen flex flex-col px-6 bg-brand-white">
       <div className="max-w-7xl mx-auto flex-1 flex flex-col mb-20">
         {/* Header Section */}
         <motion.div
@@ -141,24 +68,22 @@ export default function PharmapackServices() {
           >
             <div className="h-px w-16 bg-brand-gray/40"></div>
             <span className="text-sm font-medium text-brand-gray tracking-widest uppercase">
-              Comprehensive Services
+              {servicesContent.headerLabel}
             </span>
             <div className="h-px w-16 bg-brand-gray/40"></div>
           </motion.div>
 
           <motion.h2
-            variants={itemVariants}
             className="text-3xl md:text-4xl lg:text-5xl font-light text-brand-black mb-6 tracking-tight"
-          >
-            Manufacturing{" "}
-            <span className="font-normal text-brand-gray">Excellence</span>
-          </motion.h2>
+            variants={itemVariants}
+            dangerouslySetInnerHTML={{
+              __html: `Manufacturing <span className="font-normal text-brand-gray">${servicesContent.headlineHighlight}</span>`,
+            }}
+          />
 
           <motion.div variants={itemVariants} className="max-w-3xl mx-auto">
             <p className="text-base md:text-lg text-brand-gray leading-relaxed font-light">
-              From concept to market, we provide end-to-end pharmaceutical
-              manufacturing solutions. Our integrated approach ensures quality,
-              compliance, and innovation at every stage of your product journey.
+              {servicesContent.subheadline}
             </p>
           </motion.div>
         </motion.div>
@@ -170,21 +95,21 @@ export default function PharmapackServices() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="bg-white rounded-3xl shadow-2xl border border-brand-gray/10 overflow-hidden flex-1 flex flex-col"
         >
-          {/* 🔹 FIXED HEIGHT WRAPPER */}
+          {/* Fixed Height Wrapper */}
           <div className="grid lg:grid-cols-5 h-full min-h-[700px]">
             {/* Services Navigation */}
             <div className="lg:col-span-2 bg-gradient-to-br from-brand-white to-gray-50 p-6">
               <div className="mb-6">
                 <h3 className="text-xl font-medium text-brand-black mb-2">
-                  Service Portfolio
+                  {servicesContent.portfolioTitle}
                 </h3>
                 <p className="text-brand-gray text-sm font-light">
-                  Integrated manufacturing solutions
+                  {servicesContent.portfolioSubtitle}
                 </p>
               </div>
 
               <nav className="space-y-3" role="tablist">
-                {services.map((service, index) => (
+                {servicesContent.services.map((service, index) => (
                   <motion.button
                     key={service.id}
                     initial={{ opacity: 0, x: -20 }}
