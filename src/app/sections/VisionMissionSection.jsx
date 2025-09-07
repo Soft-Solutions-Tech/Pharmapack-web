@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import { Eye, Target } from 'lucide-react'
+import React from "react";
+import { motion } from "framer-motion";
+import { Eye, Target } from "lucide-react";
 
 // Animation variants
 const containerVariants = {
@@ -11,10 +11,10 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.3,
-      delayChildren: 0.2
-    }
-  }
-}
+      delayChildren: 0.2,
+    },
+  },
+};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -23,10 +23,10 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: [0.25, 0.1, 0.25, 1]
-    }
-  }
-}
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+};
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -35,17 +35,17 @@ const cardVariants = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: "easeOut"
-    }
+      ease: "easeOut",
+    },
   },
   hover: {
     y: -5,
     transition: {
       duration: 0.3,
-      ease: "easeInOut"
-    }
-  }
-}
+      ease: "easeInOut",
+    },
+  },
+};
 
 const accentLineVariants = {
   hidden: { scaleX: 0 },
@@ -53,10 +53,10 @@ const accentLineVariants = {
     scaleX: 1,
     transition: {
       duration: 0.3,
-      ease: "easeInOut"
-    }
-  }
-}
+      ease: "easeInOut",
+    },
+  },
+};
 
 export default function VisionMissionSection() {
   return (
@@ -76,11 +76,11 @@ export default function VisionMissionSection() {
             </span>
             <div className="h-px w-20 bg-brand-gray/30"></div>
           </div>
-          
+
           <h2 className="text-5xl md:text-6xl font-light text-brand-black mb-8 tracking-tight">
             Vision & <span className="font-light text-brand-gray">Mission</span>
           </h2>
-          
+
           <p className="text-xl md:text-2xl text-brand-gray font-light max-w-3xl mx-auto leading-relaxed">
             Driving innovation with integrity and excellence
           </p>
@@ -102,27 +102,28 @@ export default function VisionMissionSection() {
             <div className="bg-white rounded-3xl p-12 shadow-md border border-brand-gray/10 h-full flex flex-col relative overflow-hidden">
               {/* Subtle hover overlay */}
               <div className="absolute inset-0 bg-brand-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
+
               {/* Icon */}
               <div className="relative z-10 mb-8">
                 <div className="w-16 h-16 bg-brand-white rounded-2xl flex items-center justify-center group-hover:bg-brand-gray/10 transition-all duration-300">
                   <Eye className="w-8 h-8 text-brand-red group-hover:text-brand-gray transition-colors duration-300" />
                 </div>
               </div>
-              
+
               {/* Content */}
               <div className="relative z-10 flex-grow">
                 <h3 className="text-3xl font-light text-brand-black mb-6 tracking-tight">
                   Our Vision
                 </h3>
-                
+
                 <p className="text-brand-gray leading-[1.8] text-lg font-light">
-                  To be the global leader in pharmaceutical manufacturing excellence, 
-                  setting new standards for innovation, quality, and sustainability while 
-                  transforming healthcare outcomes worldwide through our cutting-edge solutions.
+                  To be the global leader in pharmaceutical manufacturing
+                  excellence, setting new standards for innovation, quality, and
+                  sustainability while transforming healthcare outcomes
+                  worldwide through our cutting-edge solutions.
                 </p>
               </div>
-              
+
               {/* Accent line */}
               <motion.div
                 variants={accentLineVariants}
@@ -142,28 +143,29 @@ export default function VisionMissionSection() {
             <div className="bg-white rounded-3xl p-12 shadow-md border border-brand-gray/10 h-full flex flex-col relative overflow-hidden">
               {/* Subtle hover overlay */}
               <div className="absolute inset-0 bg-brand-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
+
               {/* Icon */}
               <div className="relative z-10 mb-8">
                 <div className="w-16 h-16 bg-brand-white rounded-2xl flex items-center justify-center group-hover:bg-brand-gray/10 transition-all duration-300">
                   <Target className="w-8 h-8 text-brand-red group-hover:text-brand-gray transition-colors duration-300" />
                 </div>
               </div>
-              
+
               {/* Content */}
               <div className="relative z-10 flex-grow">
                 <h3 className="text-3xl font-light text-brand-black mb-6 tracking-tight">
                   Our Mission
                 </h3>
-                
+
                 <p className="text-brand-gray leading-[1.8] text-lg font-light">
-                  We deliver exceptional pharmaceutical manufacturing services through 
-                  strategic partnerships, advanced technology, and unwavering commitment 
-                  to safety and quality, empowering our clients to bring life-changing 
-                  products to market with confidence and speed.
+                  We deliver exceptional pharmaceutical manufacturing services
+                  through strategic partnerships, advanced technology, and
+                  unwavering commitment to safety and quality, empowering our
+                  clients to bring life-changing products to market with
+                  confidence and speed.
                 </p>
               </div>
-              
+
               {/* Accent line */}
               <motion.div
                 variants={accentLineVariants}
@@ -183,11 +185,11 @@ export default function VisionMissionSection() {
           className="text-center mt-20 pt-16 border-t border-brand-gray/10"
         >
           <p className="text-lg text-brand-gray font-light max-w-2xl mx-auto leading-relaxed">
-            These principles guide every decision we make and every relationship we build, 
-            ensuring sustainable value creation for all stakeholders.
+            These principles guide every decision we make and every relationship
+            we build, ensuring sustainable value creation for all stakeholders.
           </p>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

@@ -18,8 +18,10 @@
   --color-brand-black: #000000;
 
   /* Fonts */
-  --font-sans: var(--font-body); /* Urbanist for body text */
-  --font-heading: var(--font-heading); /* Merriweather for headings */
+  --font-sans: var(--font-body);
+  /* Urbanist for body text */
+  --font-heading: var(--font-heading);
+  /* Merriweather for headings */
   --font-mono: var(--font-geist-mono);
 
   /* Color System */
@@ -78,7 +80,8 @@ html {
 body {
   background: linear-gradient(135deg, #5F6062 0%, #ffffff 100%);
   color: var(--color-foreground);
-  font-family: var(--font-sans, sans-serif); /* Default to Urbanist */
+  font-family: var(--font-sans, sans-serif);
+  /* Default to Urbanist */
   margin: 0;
   padding: 0;
 }
@@ -198,12 +201,22 @@ body {
   }
 
   /* Headings use Merriweather */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
   }
 
   /* Paragraphs, spans, etc. use Urbanist */
-  p, span, a, li, input, button {
+  p,
+  span,
+  a,
+  li,
+  input,
+  button {
     font-family: var(--font-sans);
   }
 }

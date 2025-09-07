@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+import React from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 // Brand colors defined as CSS custom properties (assumed global, or add to global.css)
 const brandStyles = `
@@ -12,7 +12,7 @@ const brandStyles = `
     --color-brand-white: #FBFEF9;
     --color-brand-black: #000000;
   }
-`
+`;
 
 // Animation variants
 const containerVariants = {
@@ -21,31 +21,31 @@ const containerVariants = {
     opacity: 1,
     transition: {
       duration: 0.8,
-      staggerChildren: 0.3
-    }
-  }
-}
+      staggerChildren: 0.3,
+    },
+  },
+};
 
 const itemVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 30 
+  hidden: {
+    opacity: 0,
+    y: 30,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.8,
-      ease: "easeOut"
-    }
-  }
-}
+      ease: "easeOut",
+    },
+  },
+};
 
 const buttonVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: 20,
-    scale: 0.95
+    scale: 0.95,
   },
   visible: {
     opacity: 1,
@@ -54,26 +54,29 @@ const buttonVariants = {
     transition: {
       duration: 0.6,
       ease: "easeOut",
-      delay: 0.4
-    }
+      delay: 0.4,
+    },
   },
   hover: {
     scale: 1.02,
     transition: {
       duration: 0.2,
-      ease: "easeInOut"
-    }
+      ease: "easeInOut",
+    },
   },
   tap: {
-    scale: 0.98
-  }
-}
+    scale: 0.98,
+  },
+};
 
 export default function HeroBanner() {
   return (
     <>
       <style>{brandStyles}</style>
-      <div className="relative w-full h-[100vh] overflow-hidden" style={{ backgroundColor: '#000000' }}>
+      <div
+        className="relative w-full h-[100vh] overflow-hidden"
+        style={{ backgroundColor: "#000000" }}
+      >
         {/* Background Video */}
         <div className="absolute inset-0 w-full h-full">
           <video
@@ -86,7 +89,7 @@ export default function HeroBanner() {
             <source src="/pharma-video.mp4" type="video/mp4" />
             {/* Fallback background for when video doesn't load */}
           </video>
-          
+
           {/* Dark overlay for text readability */}
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
@@ -101,7 +104,7 @@ export default function HeroBanner() {
           {/* Headline */}
           <motion.h1
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light mb-6 tracking-tight leading-tight text-left"
-            style={{ color: '#FBFEF9' }}
+            style={{ color: "#FBFEF9" }}
             variants={itemVariants}
           >
             Transforming Business
@@ -112,10 +115,11 @@ export default function HeroBanner() {
           {/* Subheadline */}
           <motion.p
             className="text-lg sm:text-xl lg:text-2xl mb-12 max-w-2xl leading-relaxed font-light text-left"
-            style={{ color: '#D1D5DB' }}
+            style={{ color: "#D1D5DB" }}
             variants={itemVariants}
           >
-            We deliver strategic solutions that drive sustainable growth and create lasting value for organizations worldwide.
+            We deliver strategic solutions that drive sustainable growth and
+            create lasting value for organizations worldwide.
           </motion.p>
 
           {/* CTA Button (matches Discover Our Story from IntroSection) */}
@@ -129,7 +133,9 @@ export default function HeroBanner() {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-brand-black to-brand-red transition-opacity duration-300 group-hover:opacity-90"></div>
               <div className="relative flex items-center justify-center space-x-3">
-                <span className="text-lg font-medium">Discover Our Solutions</span>
+                <span className="text-lg font-medium">
+                  Discover Our Solutions
+                </span>
                 <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </div>
             </motion.button>
@@ -137,5 +143,5 @@ export default function HeroBanner() {
         </motion.div>
       </div>
     </>
-  )
+  );
 }

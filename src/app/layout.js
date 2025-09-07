@@ -31,9 +31,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${headingFont.variable} ${bodyFont.variable}`} // Make both fonts globally available
     >
-      <body className="bg-background text-foreground">
-        {children}
-      </body>
+      <body className="bg-background text-foreground">{children}</body>
     </html>
   );
 }

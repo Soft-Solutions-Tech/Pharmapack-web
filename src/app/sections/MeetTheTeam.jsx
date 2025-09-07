@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { Linkedin, Twitter } from 'lucide-react'
+import React from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Linkedin } from "lucide-react";
 
 // Team members data
 const teamMembers = [
@@ -12,34 +12,38 @@ const teamMembers = [
     name: "Sarah Chen",
     position: "Chief Executive Officer",
     bio: "Leading with 20+ years of pharmaceutical expertise and strategic vision.",
-    image: "https://images.unsplash.com/photo-1494790108755-2616b332c671?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    linkedin: "https://linkedin.com/in/sarahchen"
+    image:
+      "https://images.unsplash.com/photo-1494790108755-2616b332c671?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    linkedin: "https://linkedin.com/in/sarahchen",
   },
   {
     id: 2,
     name: "Michael Rodriguez",
     position: "Chief Technology Officer",
     bio: "Driving innovation through advanced manufacturing technology solutions.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    linkedin: "https://linkedin.com/in/michaelrodriguez"
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    linkedin: "https://linkedin.com/in/michaelrodriguez",
   },
   {
     id: 3,
     name: "Dr. Emily Watson",
     position: "Head of Research & Development",
     bio: "Pioneering breakthrough formulations and product development initiatives.",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    linkedin: "https://linkedin.com/in/emilywatson"
+    image:
+      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    linkedin: "https://linkedin.com/in/emilywatson",
   },
   {
     id: 4,
     name: "James Thompson",
     position: "VP Manufacturing Operations",
     bio: "Ensuring world-class production quality across global facilities.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    linkedin: "https://linkedin.com/in/jamesthompson"
-  }
-]
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    linkedin: "https://linkedin.com/in/jamesthompson",
+  },
+];
 
 // Animation variants
 const containerVariants = {
@@ -48,10 +52,10 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.2
-    }
-  }
-}
+      delayChildren: 0.2,
+    },
+  },
+};
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -60,22 +64,21 @@ const cardVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: "easeOut"
-    }
-  }
-}
+      ease: "easeOut",
+    },
+  },
+};
 
 export default function MeetTheTeam() {
   const handleSocialClick = (url) => {
     if (url) {
-      window.open(url, '_blank', 'noopener,noreferrer')
+      window.open(url, "_blank", "noopener,noreferrer");
     }
-  }
+  };
 
   return (
     <section className="py-20 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
-        
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -90,13 +93,14 @@ export default function MeetTheTeam() {
             </span>
             <div className="h-px w-12 bg-gray-300"></div>
           </div>
-          
+
           <h2 className="text-4xl md:text-5xl font-extralight text-gray-900 mb-6 tracking-tight">
             Meet <span className="font-light text-gray-700">Our Team</span>
           </h2>
-          
+
           <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto font-light">
-            The experienced professionals who drive our mission of excellence in pharmaceutical manufacturing.
+            The experienced professionals who drive our mission of excellence in
+            pharmaceutical manufacturing.
           </p>
         </motion.div>
 
@@ -123,7 +127,7 @@ export default function MeetTheTeam() {
                   sizes="128px"
                 />
               </div>
-              
+
               {/* Content */}
               <div className="space-y-3">
                 <div>
@@ -134,11 +138,11 @@ export default function MeetTheTeam() {
                     {member.position}
                   </p>
                 </div>
-                
+
                 <p className="text-gray-600 text-sm leading-relaxed">
                   {member.bio}
                 </p>
-                
+
                 {/* Social Link */}
                 {member.linkedin && (
                   <div className="pt-2">
@@ -157,5 +161,5 @@ export default function MeetTheTeam() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

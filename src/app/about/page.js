@@ -7,12 +7,12 @@ import VisionMissionSection from "../sections/VisionMissionSection";
 export default function AboutPage() {
   return (
     <>
-        <Header />
-        <WhoWeAreSection />
-        <MeetTheTeam />
-        <OurProcess />
-        <VisionMissionSection />
-        <Footer />
+      <Header />
+      <WhoWeAreSection />
+      <MeetTheTeam />
+      <OurProcess />
+      <VisionMissionSection />
+      <Footer />
     </>
   );
 }

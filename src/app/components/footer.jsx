@@ -1,13 +1,19 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
-import { Facebook, Instagram, Linkedin, ChevronDown, ChevronUp } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 import footerData from "@/data/footer-data";
 
 export const Footer = () => {
   const { home, aboutUs, products, contactUs, social, production, copyright } =
     footerData;
-  
+
   const [showAllProducts, setShowAllProducts] = useState(false);
   const [showAllAbout, setShowAllAbout] = useState(false);
 
@@ -18,9 +24,13 @@ export const Footer = () => {
   };
 
   // Show only first 3 products initially
-  const displayedProducts = showAllProducts ? products.links : products.links.slice(0, 3);
-  // Show only first 3 about links initially  
-  const displayedAbout = showAllAbout ? aboutUs.links : aboutUs.links.slice(0, 3);
+  const displayedProducts = showAllProducts
+    ? products.links
+    : products.links.slice(0, 3);
+  // Show only first 3 about links initially
+  const displayedAbout = showAllAbout
+    ? aboutUs.links
+    : aboutUs.links.slice(0, 3);
 
   return (
     <footer className="bg-transparent pt-12 pb-6">
@@ -75,8 +85,16 @@ export const Footer = () => {
                     onClick={() => setShowAllAbout(!showAllAbout)}
                     className="flex items-center justify-center space-x-1 text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 text-sm font-medium mx-auto mt-2"
                   >
-                    <span>{showAllAbout ? 'Show Less' : `+${aboutUs.links.length - 3} More`}</span>
-                    {showAllAbout ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                    <span>
+                      {showAllAbout
+                        ? "Show Less"
+                        : `+${aboutUs.links.length - 3} More`}
+                    </span>
+                    {showAllAbout ? (
+                      <ChevronUp size={16} />
+                    ) : (
+                      <ChevronDown size={16} />
+                    )}
                   </button>
                 )}
               </div>
@@ -102,8 +120,16 @@ export const Footer = () => {
                     onClick={() => setShowAllProducts(!showAllProducts)}
                     className="flex items-center justify-center space-x-1 text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 text-sm font-medium mx-auto mt-2"
                   >
-                    <span>{showAllProducts ? 'Show Less' : `+${products.links.length - 3} More`}</span>
-                    {showAllProducts ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                    <span>
+                      {showAllProducts
+                        ? "Show Less"
+                        : `+${products.links.length - 3} More`}
+                    </span>
+                    {showAllProducts ? (
+                      <ChevronUp size={16} />
+                    ) : (
+                      <ChevronDown size={16} />
+                    )}
                   </button>
                 )}
               </div>
@@ -198,8 +224,14 @@ export const Footer = () => {
                     onClick={() => setShowAllAbout(!showAllAbout)}
                     className="flex items-center justify-center space-x-1 text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 text-xs font-medium mx-auto mt-2"
                   >
-                    <span>{showAllAbout ? 'Less' : `+${aboutUs.links.length - 3}`}</span>
-                    {showAllAbout ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                    <span>
+                      {showAllAbout ? "Less" : `+${aboutUs.links.length - 3}`}
+                    </span>
+                    {showAllAbout ? (
+                      <ChevronUp size={14} />
+                    ) : (
+                      <ChevronDown size={14} />
+                    )}
                   </button>
                 )}
               </div>
@@ -225,8 +257,16 @@ export const Footer = () => {
                     onClick={() => setShowAllProducts(!showAllProducts)}
                     className="flex items-center justify-center space-x-1 text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 text-xs font-medium mx-auto mt-2"
                   >
-                    <span>{showAllProducts ? 'Less' : `+${products.links.length - 3}`}</span>
-                    {showAllProducts ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                    <span>
+                      {showAllProducts
+                        ? "Less"
+                        : `+${products.links.length - 3}`}
+                    </span>
+                    {showAllProducts ? (
+                      <ChevronUp size={14} />
+                    ) : (
+                      <ChevronDown size={14} />
+                    )}
                   </button>
                 )}
               </div>

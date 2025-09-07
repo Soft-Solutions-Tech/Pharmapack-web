@@ -1,57 +1,87 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
-import { ArrowRight, CheckCircle } from 'lucide-react'
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { ArrowRight, CheckCircle } from "lucide-react";
 
 const services = [
   {
     id: 1,
     title: "Research & Development",
     shortTitle: "R&D",
-    description: "Understanding client needs & market trends, creating unique formulations tailored to the brand's vision, and conducting comprehensive stability & safety testing.",
+    description:
+      "Understanding client needs & market trends, creating unique formulations tailored to the brand's vision, and conducting comprehensive stability & safety testing.",
     image: "/pharma1.jpg",
-    features: ["Client Needs Analysis", "Market Trends Research", "Custom Formulations", "Stability & Safety Testing"],
-    link: "/services/research-development"
+    features: [
+      "Client Needs Analysis",
+      "Market Trends Research",
+      "Custom Formulations",
+      "Stability & Safety Testing",
+    ],
+    link: "/services/research-development",
   },
   {
     id: 2,
     title: "Formulation",
     shortTitle: "Formulation",
-    description: "Developing the right product base with active ingredients, ensuring efficacy, safety, and compliance with international standards.",
+    description:
+      "Developing the right product base with active ingredients, ensuring efficacy, safety, and compliance with international standards.",
     image: "/pharma1.jpg",
-    features: ["Active Ingredients", "Product Base Development", "Efficacy Testing", "International Compliance"],
-    link: "/services/formulation"
+    features: [
+      "Active Ingredients",
+      "Product Base Development",
+      "Efficacy Testing",
+      "International Compliance",
+    ],
+    link: "/services/formulation",
   },
   {
     id: 3,
     title: "Production & Manufacturing",
     shortTitle: "Manufacturing",
-    description: "Using advanced machinery across multiple production lines, maintaining strict quality assurance and GMP compliance with scalable solutions from small batches to mass production.",
+    description:
+      "Using advanced machinery across multiple production lines, maintaining strict quality assurance and GMP compliance with scalable solutions from small batches to mass production.",
     image: "/pharma1.jpg",
-    features: ["Advanced Machinery", "GMP Compliance", "Quality Assurance", "Scalable Solutions"],
-    link: "/services/production-manufacturing"
+    features: [
+      "Advanced Machinery",
+      "GMP Compliance",
+      "Quality Assurance",
+      "Scalable Solutions",
+    ],
+    link: "/services/production-manufacturing",
   },
   {
     id: 4,
     title: "Packaging Solutions",
     shortTitle: "Packaging",
-    description: "Custom packaging design that reflects your brand identity with a wide range of options including sachets, bottles, jars, wipes packs, patches, and masks, ensuring durability, safety, and consumer appeal.",
+    description:
+      "Custom packaging design that reflects your brand identity with a wide range of options including sachets, bottles, jars, wipes packs, patches, and masks, ensuring durability, safety, and consumer appeal.",
     image: "/pharma1.jpg",
-    features: ["Custom Design", "Brand Identity", "Multiple Options", "Consumer Appeal"],
-    link: "/services/packaging-solutions"
+    features: [
+      "Custom Design",
+      "Brand Identity",
+      "Multiple Options",
+      "Consumer Appeal",
+    ],
+    link: "/services/packaging-solutions",
   },
   {
     id: 5,
     title: "Private Label & Branding",
     shortTitle: "Branding",
-    description: "Helping you build and launch your own brand successfully with guidance on compliance, certifications, market entry, and long-term partnership to scale and grow your product portfolio.",
+    description:
+      "Helping you build and launch your own brand successfully with guidance on compliance, certifications, market entry, and long-term partnership to scale and grow your product portfolio.",
     image: "/pharma1.jpg",
-    features: ["Brand Launch", "Compliance Guidance", "Market Entry", "Long-term Partnership"],
-    link: "/services/private-label-branding"
-  }
-]
+    features: [
+      "Brand Launch",
+      "Compliance Guidance",
+      "Market Entry",
+      "Long-term Partnership",
+    ],
+    link: "/services/private-label-branding",
+  },
+];
 
 // Animation Variants
 const containerVariants = {
@@ -60,40 +90,40 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.2
-    }
-  }
-}
+      delayChildren: 0.2,
+    },
+  },
+};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
-  }
-}
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
 
 const contentVariants = {
   hidden: { opacity: 0, x: 20 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.6, ease: "easeOut" },
   },
   exit: {
     opacity: 0,
     x: -20,
-    transition: { duration: 0.3, ease: "easeIn" }
-  }
-}
+    transition: { duration: 0.3, ease: "easeIn" },
+  },
+};
 
 export default function PharmapackServices() {
-  const [activeService, setActiveService] = useState(services[0])
+  const [activeService, setActiveService] = useState(services[0]);
 
   const handleServiceClick = (service) => {
-    console.log('Navigate to:', service.link)
-  }
+    console.log("Navigate to:", service.link);
+  };
 
   return (
     <section className="min-h-screen flex flex-col px-6 bg-brand-white ">
@@ -105,7 +135,10 @@ export default function PharmapackServices() {
           variants={containerVariants}
           className="text-center mb-12"
         >
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-3 mb-6">
+          <motion.div
+            variants={itemVariants}
+            className="inline-flex items-center gap-3 mb-6"
+          >
             <div className="h-px w-16 bg-brand-gray/40"></div>
             <span className="text-sm font-medium text-brand-gray tracking-widest uppercase">
               Comprehensive Services
@@ -117,13 +150,15 @@ export default function PharmapackServices() {
             variants={itemVariants}
             className="text-3xl md:text-4xl lg:text-5xl font-light text-brand-black mb-6 tracking-tight"
           >
-            Manufacturing <span className="font-normal text-brand-gray">Excellence</span>
+            Manufacturing{" "}
+            <span className="font-normal text-brand-gray">Excellence</span>
           </motion.h2>
 
           <motion.div variants={itemVariants} className="max-w-3xl mx-auto">
             <p className="text-base md:text-lg text-brand-gray leading-relaxed font-light">
-              From concept to market, we provide end-to-end pharmaceutical manufacturing solutions. 
-              Our integrated approach ensures quality, compliance, and innovation at every stage of your product journey.
+              From concept to market, we provide end-to-end pharmaceutical
+              manufacturing solutions. Our integrated approach ensures quality,
+              compliance, and innovation at every stage of your product journey.
             </p>
           </motion.div>
         </motion.div>
@@ -161,8 +196,8 @@ export default function PharmapackServices() {
                     aria-controls={`service-panel-${service.id}`}
                     className={`group relative w-full text-left p-4 rounded-2xl transition-all duration-500 ease-out ${
                       activeService.id === service.id
-                        ? 'bg-brand-red text-white shadow-lg transform translate-x-2'
-                        : 'bg-white text-brand-gray hover:bg-brand-red/5 hover:translate-x-1 shadow-sm border border-brand-gray/20 hover:border-brand-red/30'
+                        ? "bg-brand-red text-white shadow-lg transform translate-x-2"
+                        : "bg-white text-brand-gray hover:bg-brand-red/5 hover:translate-x-1 shadow-sm border border-brand-gray/20 hover:border-brand-red/30"
                     }`}
                   >
                     <div className="flex items-center justify-between">
@@ -170,7 +205,9 @@ export default function PharmapackServices() {
                         <div className="flex items-center gap-3 mb-2">
                           <div
                             className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                              activeService.id === service.id ? 'bg-white' : 'bg-brand-red'
+                              activeService.id === service.id
+                                ? "bg-white"
+                                : "bg-brand-red"
                             }`}
                           />
                           <span className="text-xs font-medium tracking-wider uppercase opacity-70">
@@ -185,8 +222,8 @@ export default function PharmapackServices() {
                       <ArrowRight
                         className={`w-4 h-4 transition-all duration-300 ${
                           activeService.id === service.id
-                            ? 'text-white translate-x-1'
-                            : 'text-brand-gray group-hover:text-brand-red group-hover:translate-x-1'
+                            ? "text-white translate-x-1"
+                            : "text-brand-gray group-hover:text-brand-red group-hover:translate-x-1"
                         }`}
                       />
                     </div>
@@ -195,7 +232,11 @@ export default function PharmapackServices() {
                       <motion.div
                         layoutId="activeIndicator"
                         className="absolute left-0 top-0 bottom-0 w-1 bg-white/30 rounded-r-full"
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 30,
+                        }}
                       />
                     )}
                   </motion.button>
@@ -284,5 +325,5 @@ export default function PharmapackServices() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

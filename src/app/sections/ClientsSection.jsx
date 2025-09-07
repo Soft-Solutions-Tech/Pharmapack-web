@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { Building2 } from 'lucide-react'
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Building2 } from "lucide-react";
 
 // Sample client data with Flaticon logo
 // Note: Flaticon images may require attribution or a license for commercial use. Check https://www.flaticon.com/
@@ -11,75 +11,75 @@ const clients = [
     id: 1,
     name: "TechCorp Solutions",
     logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://techcorp.com"
+    website: "https://techcorp.com",
   },
   {
     id: 2,
     name: "Global Healthcare Inc",
     logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://globalhealthcare.com"
+    website: "https://globalhealthcare.com",
   },
   {
     id: 3,
     name: "Innovation Labs",
     logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://innovationlabs.com"
+    website: "https://innovationlabs.com",
   },
   {
     id: 4,
     name: "MedTech Partners",
     logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://medtechpartners.com"
+    website: "https://medtechpartners.com",
   },
   {
     id: 5,
     name: "Pharma Excellence",
     logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://pharmaexcellence.com"
+    website: "https://pharmaexcellence.com",
   },
   {
     id: 6,
     name: "BioScience Corp",
     logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://bioscience.com"
+    website: "https://bioscience.com",
   },
   {
     id: 7,
     name: "Advanced Medical",
     logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://advancedmedical.com"
+    website: "https://advancedmedical.com",
   },
   {
     id: 8,
     name: "Health Innovations",
     logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://healthinnovations.com"
+    website: "https://healthinnovations.com",
   },
   {
     id: 9,
     name: "Research Partners",
     logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://researchpartners.com"
+    website: "https://researchpartners.com",
   },
   {
     id: 10,
     name: "Global Pharmaceuticals",
     logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://globalpharm.com"
+    website: "https://globalpharm.com",
   },
   {
     id: 11,
     name: "Medical Systems",
     logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://medicalsystems.com"
+    website: "https://medicalsystems.com",
   },
   {
     id: 12,
     name: "Life Sciences Ltd",
     logo: "https://cdn-icons-png.flaticon.com/512/732/732217.png",
-    website: "https://lifesciences.com"
-  }
-]
+    website: "https://lifesciences.com",
+  },
+];
 
 // Animation variants
 const containerVariants = {
@@ -88,10 +88,10 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.3
-    }
-  }
-}
+      delayChildren: 0.3,
+    },
+  },
+};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -100,10 +100,10 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: "easeOut"
-    }
-  }
-}
+      ease: "easeOut",
+    },
+  },
+};
 
 const logoVariants = {
   hidden: { opacity: 0, scale: 0.9 },
@@ -112,18 +112,18 @@ const logoVariants = {
     scale: 1,
     transition: {
       duration: 0.5,
-      ease: "easeOut"
-    }
+      ease: "easeOut",
+    },
   },
   hover: {
     scale: 1.05,
     opacity: 1,
     transition: {
       duration: 0.3,
-      ease: "easeInOut"
-    }
-  }
-}
+      ease: "easeInOut",
+    },
+  },
+};
 
 const nameVariants = {
   hidden: { opacity: 0, y: 10 },
@@ -132,10 +132,10 @@ const nameVariants = {
     y: 0,
     transition: {
       duration: 0.3,
-      ease: "easeInOut"
-    }
-  }
-}
+      ease: "easeInOut",
+    },
+  },
+};
 
 // Placeholder component for when no clients are available
 const ClientsPlaceholder = () => (
@@ -154,7 +154,7 @@ const ClientsPlaceholder = () => (
       >
         <Building2 className="w-10 h-10 text-brand-gray" />
       </motion.div>
-      
+
       <motion.h3
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -163,30 +163,30 @@ const ClientsPlaceholder = () => (
       >
         Building Partnerships
       </motion.h3>
-      
+
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.6 }}
         className="text-lg text-brand-gray leading-relaxed"
       >
-        We&apos;re proud to have worked with industry-leading partners. 
-        Check back soon to see our client showcase.
+        We&apos;re proud to have worked with industry-leading partners. Check
+        back soon to see our client showcase.
       </motion.p>
     </div>
   </motion.div>
-)
+);
 
 export default function ClientsSection() {
   // Set to true to show placeholder, false to show actual clients
-  const showPlaceholder = false
-  const hasClients = clients && clients.length > 0
+  const showPlaceholder = false;
+  const hasClients = clients && clients.length > 0;
 
   const handleClientClick = (website) => {
     if (website) {
-      window.open(website, '_blank', 'noopener,noreferrer')
+      window.open(website, "_blank", "noopener,noreferrer");
     }
-  }
+  };
 
   return (
     <section className="py-20 px-6 bg-brand-white">
@@ -198,26 +198,30 @@ export default function ClientsSection() {
           animate="visible"
           className="text-center mb-16"
         >
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-3 mb-6">
+          <motion.div
+            variants={itemVariants}
+            className="inline-flex items-center gap-3 mb-6"
+          >
             <div className="h-px w-12 bg-brand-gray/30"></div>
             <span className="text-sm font-medium text-brand-gray tracking-wider uppercase">
               Our Partners
             </span>
             <div className="h-px w-12 bg-brand-gray/30"></div>
           </motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             variants={itemVariants}
             className="text-4xl md:text-5xl lg:text-6xl font-extralight text-brand-black mb-6 tracking-tight"
           >
-            Trusted by <span className="font-light text-brand-gray">Industry Leaders</span>
+            Trusted by{" "}
+            <span className="font-light text-brand-gray">Industry Leaders</span>
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             variants={itemVariants}
             className="text-lg md:text-xl text-brand-gray leading-relaxed max-w-3xl mx-auto font-light"
           >
-            We&apos;re privileged to partner with forward-thinking organizations 
+            We&apos;re privileged to partner with forward-thinking organizations
             that share our commitment to excellence and innovation.
           </motion.p>
         </motion.div>
@@ -272,8 +276,8 @@ export default function ClientsSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
             className="text-center mt-20 pt-12 border-t border-brand-gray/10"
-          > 
-            <motion.p 
+          >
+            <motion.p
               className="text-brand-gray mt-8 font-light text-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -285,5 +289,5 @@ export default function ClientsSection() {
         )}
       </div>
     </section>
-  )
+  );
 }
