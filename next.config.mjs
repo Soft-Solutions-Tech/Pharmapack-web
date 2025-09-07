@@ -1,8 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["cdn-icons-png.flaticon.com", "images.unsplash.com"], // Allow Flaticon images
-    formats: ["image/avif", "image/webp"], // Optimize for modern formats
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn-icons-png.flaticon.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
+    formats: ["image/avif", "image/webp"],
   },
   reactStrictMode: true,
 };
