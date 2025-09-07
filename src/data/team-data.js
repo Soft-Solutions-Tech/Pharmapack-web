@@ -11,7 +11,7 @@ export const teamContent = {
       position: "Chief Executive Officer",
       bio: "Leading with 20+ years of pharmaceutical expertise and strategic vision.",
       image:
-        "https://images.unsplash.com/photo-1494790108755-2616b332c671?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
       linkedin: "https://linkedin.com/in/sarahchen",
     },
     {
