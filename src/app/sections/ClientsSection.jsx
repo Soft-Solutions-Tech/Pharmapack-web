@@ -210,13 +210,13 @@ export default function ClientsSection() {
       onClick={handleCtaClick}
       className="group inline-flex flex-col items-center gap-2 text-brand-gray hover:text-brand-black transition-colors duration-300 cursor-pointer"
     >
-      <span className="text-sm font-medium tracking-wide">
-        Contact Us
-            <ArrowUpRight className="w-4 h-4 inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+      <div >
 
-      </span>
-      <span className="text-xs font-light text-brand-gray/70 hover:text-brand-black/70">
-        Discuss custom toll manufacturing and private label solutions
+        {sectionContent.placeholder.button}{" "}
+            <ArrowUpRight className="w-4 h-4 inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+      </div>
+      <span className="text-sm font-medium tracking-wide">
+        {sectionContent.ctaText}
       </span>
     </div>
   </motion.div>

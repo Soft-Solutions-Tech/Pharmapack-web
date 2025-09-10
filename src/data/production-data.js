@@ -8,6 +8,8 @@ import {
   Zap,
   Shield,
   Clock,
+  Hand,
+  Droplet
 } from "lucide-react";
 
 export const productionContent = {
@@ -75,21 +77,30 @@ export const productionContent = {
     },
     {
       id: 5,
-      title: "Lubricant Gel Production Line",
+      title: "Semi Solid Production Line",
       description:
-        "Multi-purpose gels for: Medical use – ultrasound examination lubrication, Personal care – intimate lubrication.",
+        "Advanced production of semi-solid formulations, including: Lubricant gels (medical & personal care uses) Creams and ointments (cosmetic & healthcare applications)",
       icon: "TestTube",
-      features: ["Medical Grade", "Multi-Purpose", "Safe Formula"],
+      features: ["Precision Blending", "Uniform Mixing", "Safe Formula"],
       website: "https://example.com/lubricant-gel",
     },
     {
       id: 6,
-      title: "Sea Salt Water Production Line",
+      title: "Sea Water Production Line",
       description:
         "Natural sea salt water designed for medical and cosmetic applications.",
       icon: "Waves",
       features: ["Natural Source", "Medical Use", "Cosmetic Grade"],
       website: "https://example.com/sea-salt-water",
+    },
+    {
+      id: 7,
+      title: "Paraffin Gauze Dressing Production Line",
+      description:
+        "Sterile paraffin gauze dressings designed for: Wound care and burn treatment Maintaining a moist healing environment Easy removal with minimal pain or tissue damage",
+      icon: "Hand",
+      features: ["Moist Healing", "Pain-Free Removal", "Burn & Wound Care"],
+      website: "https://example.com/paraffin-gauze-dressing",
     },
   ],
 };
@@ -105,4 +116,6 @@ export const iconMap = {
   Zap,
   Shield,
   Clock,
+  Hand,
+  Droplet
 };

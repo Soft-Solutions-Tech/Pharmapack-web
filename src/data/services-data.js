@@ -37,8 +37,23 @@ export const servicesContent = {
       ],
       link: "/services/formulation",
     },
-    {
+      {
       id: 3,
+      title: "Product Registration",
+      shortTitle: "Product Registration",
+      description:
+        "Preparing all required documentation Supporting clients in registering products with relevant authorities Ensuring smooth regulatory approval for market launch",
+      image: "/Product-Registration.jpg",
+      features: [
+        "Documentation Prepared",
+        "Client Support",
+        "Regulatory Approval",
+        "Market Launch",
+      ],
+      link: "/services/product-registration",
+    },
+    {
+      id: 4,
       title: "Production & Manufacturing",
       shortTitle: "Manufacturing",
       description:
@@ -53,7 +68,7 @@ export const servicesContent = {
       link: "/services/production-manufacturing",
     },
     {
-      id: 4,
+      id: 5,
       title: "Packaging Solutions",
       shortTitle: "Packaging",
       description:
@@ -68,7 +83,7 @@ export const servicesContent = {
       link: "/services/packaging-solutions",
     },
     {
-      id: 5,
+      id: 6,
       title: "Private Label & Branding",
       shortTitle: "Branding",
       description:
