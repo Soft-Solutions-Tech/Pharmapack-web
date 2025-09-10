@@ -16,9 +16,9 @@ export const introContent = {
     website: "https://example.com/services",
   },
   metrics: [
-    { value: 25, label: "Years in Industry" },
-    { value: 60, label: "Global Markets" },
-    { value: 5000000, label: "Products Delivered" },
+    { value: 20, label: "Years of Experience" },
+    { value: 5000000, label: "patches / masks produced per year" },
+    { value: 20000000, label: "wipes manufactured annually." },
     { value: 99.9, label: "Quality Assurance" },
   ],
   achievements: [
