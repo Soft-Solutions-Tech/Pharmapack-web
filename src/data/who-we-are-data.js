@@ -7,13 +7,13 @@ export const whoWeAreContent = {
   descriptionTitle: "Transforming Ideas into Market Success",
   descriptionTitleHighlight: "Market Success",
   descriptionParagraphs: [
-    "For over <strong>20 years</strong>, Pharmapack has been a trusted leader in toll manufacturing and private label solutions, specializing in pharmaceutical and cosmetic product development.",
-    "We partner with over <strong>100 leading brands</strong> across the Middle East, Africa, and beyond, transforming innovative concepts into market-ready products through our expertise in R&D, formulation, manufacturing, and packaging.",
-    "Our <strong>100% GMP-compliant production lines</strong> and commitment to ISO, GMP, and CE certifications ensure we deliver safe, effective, and high-quality products to global markets.",
+    "Established in 2003 in the 1st Industrial Zone, 6th of October City, Giza, Egypt, Pharmapack Pharmaceutical Industries has been a trusted leader in toll manufacturing and private label solutions for over 22 years, specializing in pharmaceutical, cosmeceutical, and healthcare product development.",
+    "We partner with over <strong>100 leading brands</strong> across the Middle East, Africa, and beyond, transforming innovative concepts into market-ready products through our expertise in R&D, formulation, manufacturing, and packaging. Our products are distributed through key partners like Multi Pharma, UCP, and local stores in Delta, Alexandria, and Upper Egypt.",
+    "Our <strong>100% GMP-compliant production lines</strong> and certifications (ISO 9001:2015, ISO 45001:2018, GMP, CE) ensure we deliver safe, effective, and high-quality products to global markets. With a 10,800 m² factory and 7 production lines, we aim to expand to over 10 lines by 2027.",
   ],
   stats: [
     {
-      number: "20+",
+      number: "22+",
       label: "Years of Experience",
     },
     {
@@ -24,6 +24,18 @@ export const whoWeAreContent = {
       number: "100+",
       label: "Trusted Brands",
     },
+    {
+      number: "20M+",
+      label: "Wipes Produced Annually",
+    },
+    {
+      number: "5M+",
+      label: "Hydrogel Patches Annually",
+    },
+    {
+      number: "5M+",
+      label: "Liters of Purified Water Annually",
+    },
   ],
   coreValues: [
     {
@@ -32,7 +44,6 @@ export const whoWeAreContent = {
       description:
         "Pioneering over 3,000 unique formulations to create market-leading products",
       icon: "Award",
-      website: "https://pharmapack.com/innovation",
     },
     {
       id: 2,
@@ -40,7 +51,6 @@ export const whoWeAreContent = {
       description:
         "Ensuring pharmaceutical-grade excellence with 100% GMP-compliant production",
       icon: "Shield",
-      website: "https://pharmapack.com/quality",
     },
     {
       id: 3,
@@ -48,7 +58,6 @@ export const whoWeAreContent = {
       description:
         "Building trusted relationships with over 100 brands through collaboration",
       icon: "Users",
-      website: "https://pharmapack.com/partnership",
     },
     {
       id: 4,
@@ -56,7 +65,6 @@ export const whoWeAreContent = {
       description:
         "Supplying high-quality products to more than 10 countries worldwide",
       icon: "Globe",
-      website: "https://pharmapack.com/global-reach",
     },
   ],
 };
