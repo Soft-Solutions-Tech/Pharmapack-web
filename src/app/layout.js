@@ -1,10 +1,12 @@
 import "./globals.css";
 import { Merriweather, Urbanist } from "next/font/google";
+import { Header } from "./components/header";
+import { Footer } from "./components/footer";
 
 // Load Merriweather for Headings
 const headingFont = Merriweather({
   subsets: ["latin"],
-  weight: ["400", "700"], // Regular + Bold
+  weight: ["400", "700"],
   variable: "--font-heading",
   display: "swap",
 });
@@ -27,11 +29,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${headingFont.variable} ${bodyFont.variable}`} // Make both fonts globally available
-    >
-      <body className="bg-background text-foreground">{children}</body>
+    <html lang="en" className={`${headingFont.variable} ${bodyFont.variable}`}>
+      <body className="bg-background text-foreground">
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
