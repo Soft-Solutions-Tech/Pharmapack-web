@@ -244,35 +244,33 @@ export default function IntroSection() {
             </motion.div>
           </div>
         </div>
-
-        {/* Bottom metrics bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.6 }}
-          className="border-t border-gray-200/20 bg-white/80 backdrop-blur-sm"
-        >
-          <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {introContent.metrics.map((metric, index) => (
-                <div key={index} className="text-center group">
-                  <div className="text-4xl font-extralight text-brand-black mb-2 group-hover:scale-110 transition-transform duration-300">
-                    {index === 0
-                      ? `${yearsCount}+`
-                      : index === 1
-                      ? `${marketsCount}+`
-                      : index === 2
-                      ? `${(productsCount / 1000000).toFixed(1)}M+`
-                      : `${qualityCount}%`}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.6 }}
+            className="border-t border-gray-200/20 bg-white/80 backdrop-blur-sm"
+          >
+            <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                {introContent.metrics.map((metric, index) => (
+                  <div key={index} className="text-center group">
+                    <div className="text-4xl font-extralight text-brand-black mb-2 group-hover:scale-110 transition-transform duration-300">
+                      {index === 0
+                        ? `${yearsCount}+`
+                        : index === 1
+                        ? `${(marketsCount / 1000000).toFixed(1)}M+`
+                        : index === 2
+                        ? `${(productsCount / 1000000).toFixed(1)}M+`
+                        : `${qualityCount}%`}
+                    </div>
+                    <div className="text-sm font-medium text-gray-500 tracking-wider uppercase">
+                      {metric.label}
+                    </div>
                   </div>
-                  <div className="text-sm font-medium text-gray-500 tracking-wider uppercase">
-                    {metric.label}
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
       </div>
     </section>
   );

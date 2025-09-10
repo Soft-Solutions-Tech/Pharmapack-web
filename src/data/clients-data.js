@@ -77,10 +77,11 @@ export const clients = [
 export const sectionContent = {
   headerLabel: "Our Partners",
   description:
-    "We're privileged to partner with forward-thinking organizations that share our commitment to excellence and innovation.",
+    "Trusted by over 100 leading brands across the Middle East, Africa, and beyond.",
   ctaText: "Ready to join our growing network of successful partnerships?",
   placeholder: {
     title: "Building Partnerships",
+    button: "Contact Us",
     description:
       "We're proud to have worked with industry-leading partners. Check back soon to see our client showcase.",
   },
