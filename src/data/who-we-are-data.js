@@ -7,22 +7,22 @@ export const whoWeAreContent = {
   descriptionTitle: "Transforming Ideas into Market Success",
   descriptionTitleHighlight: "Market Success",
   descriptionParagraphs: [
-    "For over <strong>25 years</strong>, Pharmapack has been a trusted leader in toll manufacturing and private label solutions, specializing in pharmaceutical-grade product development.",
-    "We partner with companies worldwide, transforming innovative concepts into successful market-ready products through our expertise in R&D, formulation, manufacturing, and packaging.",
-    "Our commitment to excellence and regulatory compliance has made us the preferred manufacturing partner for businesses bringing high-quality products to global markets.",
+    "For over <strong>20 years</strong>, Pharmapack has been a trusted leader in toll manufacturing and private label solutions, specializing in pharmaceutical and cosmetic product development.",
+    "We partner with over <strong>100 leading brands</strong> across the Middle East, Africa, and beyond, transforming innovative concepts into market-ready products through our expertise in R&D, formulation, manufacturing, and packaging.",
+    "Our <strong>100% GMP-compliant production lines</strong> and commitment to ISO, GMP, and CE certifications ensure we deliver safe, effective, and high-quality products to global markets.",
   ],
   stats: [
     {
-      number: "25+",
-      label: "Years",
+      number: "20+",
+      label: "Years of Experience",
     },
     {
-      number: "60+",
-      label: "Markets",
+      number: "10+",
+      label: "Countries Served",
     },
     {
-      number: "5M+",
-      label: "Products",
+      number: "100+",
+      label: "Trusted Brands",
     },
   ],
   coreValues: [
@@ -30,33 +30,33 @@ export const whoWeAreContent = {
       id: 1,
       title: "Innovation",
       description:
-        "Pioneering solutions that transform ideas into market-leading products",
+        "Pioneering over 3,000 unique formulations to create market-leading products",
       icon: "Award",
-      website: "https://example.com/innovation",
+      website: "https://pharmapack.com/innovation",
     },
     {
       id: 2,
       title: "Quality",
       description:
-        "Pharmaceutical-grade excellence in every product we manufacture",
+        "Ensuring pharmaceutical-grade excellence with 100% GMP-compliant production",
       icon: "Shield",
-      website: "https://example.com/quality",
+      website: "https://pharmapack.com/quality",
     },
     {
       id: 3,
       title: "Partnership",
       description:
-        "Building lasting relationships through trust and collaboration",
+        "Building trusted relationships with over 100 brands through collaboration",
       icon: "Users",
-      website: "https://example.com/partnership",
+      website: "https://pharmapack.com/partnership",
     },
     {
       id: 4,
       title: "Global Reach",
       description:
-        "Delivering world-class solutions across international markets",
+        "Supplying high-quality products to more than 10 countries worldwide",
       icon: "Globe",
-      website: "https://example.com/global-reach",
+      website: "https://pharmapack.com/global-reach",
     },
   ],
 };

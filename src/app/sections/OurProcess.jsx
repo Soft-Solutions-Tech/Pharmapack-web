@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Search, Compass, Cog, CheckCircle } from "lucide-react";
+import { Search, Compass, FileText, Cog, CheckCircle } from "lucide-react";
 import { processContent } from "@/data/process-data";
 
 // Animation variants
@@ -40,6 +40,7 @@ export default function OurProcess() {
   const iconMap = {
     Search,
     Compass,
+    FileText,
     Cog,
     CheckCircle,
   };
@@ -85,7 +86,7 @@ export default function OurProcess() {
           {/* Minimal connection line */}
           <div className="hidden lg:block absolute top-16 left-0 right-0"></div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-20 lg:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-20 lg:gap-8">
             {processContent.processSteps.map((step) => {
               const IconComponent = iconMap[step.icon];
 

@@ -6,23 +6,23 @@ export const visionMissionContent = {
   headlineHighlight: "Mission",
   subtitle: "Driving innovation with integrity and excellence",
   bottomStatement:
-    "These principles guide every decision we make and every relationship we build, ensuring sustainable value creation for all stakeholders.",
+    "These principles guide every decision we make, ensuring sustainable value creation for our partners and stakeholders.",
   cards: [
     {
       id: 1,
       title: "Our Vision",
       description:
-        "To be the global leader in pharmaceutical manufacturing excellence, setting new standards for innovation, quality, and sustainability while transforming healthcare outcomes worldwide through our cutting-edge solutions.",
+        "To be the global leader in pharmaceutical and cosmetic manufacturing, setting new standards for innovation, quality, and sustainability while delivering transformative solutions worldwide.",
       icon: "Eye",
-      website: "https://example.com/vision",
+      website: "https://pharmapack.com/vision",
     },
     {
       id: 2,
       title: "Our Mission",
       description:
-        "We deliver exceptional pharmaceutical manufacturing services through strategic partnerships, advanced technology, and unwavering commitment to safety and quality, empowering our clients to bring life-changing products to market with confidence and speed.",
+        "To deliver exceptional toll manufacturing and private label services through strategic partnerships, advanced technology, and unwavering commitment to safety, quality, and compliance, empowering our clients to bring innovative products to market.",
       icon: "Target",
-      website: "https://example.com/mission",
+      website: "https://pharmapack.com/mission",
     },
   ],
 };
