@@ -20,16 +20,16 @@ export async function POST(request) {
     // Parse JSON body
     const body = await request.json();
 
-    const { firstName, lastName, email, phone, message } = body;
+    const { firstName, lastName, email, phone, message, inquiryType } = body;
 
     // Validate required fields
-    if (!firstName || !lastName || !email || !phone || !message) {
+    if (!firstName || !lastName || !email || !phone || !message || !inquiryType) {
       return new Response(
         JSON.stringify({
           message: 'All fields are required.',
           error: true,
           success: false,
-          fieldValues: { firstName, lastName, email, phone, message },
+          fieldValues: { firstName, lastName, email, phone, message, inquiryType },
         }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
@@ -48,8 +48,9 @@ export async function POST(request) {
     const mailOptions = {
       from: gmailUser,
       to: toEmail,
-      subject: `New Contact Form Submission from ${firstName} ${lastName}`,
-      text: `Name: ${firstName} ${lastName}
+      subject: `New Contact Form Submission: ${inquiryType} from ${firstName} ${lastName}`,
+      text: `Inquiry Type: ${inquiryType}
+Name: ${firstName} ${lastName}
 Email: ${email}
 Phone: ${phone}
 
@@ -57,6 +58,7 @@ Message:
 ${message}`,
       html: `
         <h3>New Contact Form Submission</h3>
+        <p><strong>Inquiry Type:</strong> ${inquiryType}</p>
         <p><strong>Name:</strong> ${firstName} ${lastName}</p>
         <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
         <p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a></p>
