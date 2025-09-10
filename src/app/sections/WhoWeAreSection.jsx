@@ -97,47 +97,59 @@ export default function WhoWeAreSection() {
 function HeaderSection() {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="text-center mb-16 sm:mb-20 lg:mb-24"
+      initial="hidden"
+      animate="visible"
+      className="text-center mb-20 sm:mb-24 lg:mb-32"
     >
-      <div className="inline-flex items-center gap-4 mb-6 sm:mb-8">
-        <motion.div
-          className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent via-brand-gray to-transparent"
-          initial={{ width: 0 }}
-          animate={{ width: "3rem" }}
-          transition={{ duration: 0.8 }}
-        />
-        <span className="text-xs sm:text-sm font-medium text-brand-gray tracking-[0.2em] uppercase">
-          {whoWeAreContent.headerLabel}
-        </span>
-        <motion.div
-          className="h-px w-8 sm:w-12 bg-gradient-to-r from-brand-gray via-transparent to-transparent"
-          initial={{ width: 0 }}
-          animate={{ width: "3rem" }}
-          transition={{ duration: 0.8 }}
-        />
-      </div>
-
-      <motion.h2
-        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-brand-black tracking-tight leading-[1.1] px-4"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        Who{" "}
-        <span className="font-normal text-brand-gray relative">
-          {whoWeAreContent.headlineHighlight}
-          <motion.div
-            className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-brand-red/60 to-transparent"
-            initial={{ width: 0 }}
-            animate={{ width: "100%" }}
-            transition={{ duration: 1 }}
-          />
-        </span>
-      </motion.h2>
+      <HeaderLabel />
+      <HeaderTitle />
     </motion.div>
+  );
+}
+
+// Header Label Component
+function HeaderLabel() {
+  return (
+    <div className="inline-flex items-center gap-4 mb-6 sm:mb-8">
+      <motion.div
+        className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent via-brand-gray to-transparent"
+        initial={{ width: 0 }}
+        animate={{ width: "3rem" }}
+        transition={{ duration: 0.8 }}
+      />
+      <span className="text-xs sm:text-sm font-medium text-brand-gray tracking-[0.2em] uppercase">
+        {whoWeAreContent.headerLabel}
+      </span>
+      <motion.div
+        className="h-px w-8 sm:w-12 bg-gradient-to-r from-brand-gray via-transparent to-transparent"
+        initial={{ width: 0 }}
+        animate={{ width: "3rem" }}
+        transition={{ duration: 0.8 }}
+      />
+    </div>
+  );
+}
+
+// Header Title Component
+function HeaderTitle() {
+  return (
+    <motion.h2
+      className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-brand-black tracking-tight leading-[1.1] mb-8 lg:mb-12"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      Who{" "}
+      <span className="font-normal text-brand-red relative">
+        {whoWeAreContent.headlineHighlight}
+        <motion.div
+          className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-brand-red/60 to-transparent"
+          initial={{ width: 0 }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 1 }}
+        />
+      </span>
+    </motion.h2>
   );
 }
 
@@ -272,7 +284,6 @@ function CoreValuesSection() {
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-6 xl:gap-8"
     >
       {whoWeAreContent.coreValues.map((value) => {
@@ -331,14 +342,6 @@ function CoreValueCard({ value, IconComponent }) {
           {value.description}
         </p>
       </div>
-
-      {/* Bottom accent */}
-      <motion.div
-        className="h-1 bg-gradient-to-r from-gray-200/40 via-gray-300/60 to-gray-200/40 group-hover:from-brand-red/60 group-hover:via-brand-red group-hover:to-brand-red/60 transition-all duration-200"
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        transition={{ duration: 0.8 }}
-      />
 
       {/* Hover overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none" />

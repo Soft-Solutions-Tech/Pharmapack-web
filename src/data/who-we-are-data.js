@@ -2,7 +2,7 @@ import { Award, Shield, Users, Globe } from "lucide-react";
 
 export const whoWeAreContent = {
   headerLabel: "About Us",
-  headline: "Who We Are",
+  headline: "Who Are We",
   headlineHighlight: "We Are",
   descriptionTitle: "Transforming Ideas into Market Success",
   descriptionTitleHighlight: "Market Success",

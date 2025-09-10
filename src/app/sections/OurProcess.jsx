@@ -39,7 +39,7 @@ const animations = {
 
 export default function OurProcess() {
   return (
-    <section className="relative pt-32 pb-20 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+    <section className="relative py-10 px-4 bg-white overflow-hidden">
       <div className="relative max-w-7xl mx-auto">
         <ProcessHeader />
         <ProcessSteps />
@@ -180,7 +180,6 @@ function StepCard({ step, index, IconComponent }) {
     <div className="bg-white rounded-2xl lg:rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-brand-red/20 p-10 sm:p-12 relative overflow-hidden w-full h-full flex flex-col">
       <CardBackground />
       <CardContent step={step} index={index} IconComponent={IconComponent} />
-      <CardAccent index={index} />
       <CardOverlay />
     </div>
   );
@@ -222,18 +221,6 @@ function CardContent({ step, index, IconComponent }) {
         transition={{ duration: 0.6, delay: index * 0.1 }}
       />
     </div>
-  );
-}
-
-// Card Accent Component
-function CardAccent({ index }) {
-  return (
-    <motion.div
-      className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-200/40 via-gray-300/60 to-gray-200/40 group-hover:from-brand-red/60 group-hover:via-brand-red group-hover:to-brand-red/60 transition-all duration-300 rounded-b-2xl lg:rounded-b-3xl"
-      initial={{ scaleX: 0 }}
-      whileInView={{ scaleX: 1 }}
-      transition={{ duration: 0.8, delay: index * 0.1 }}
-    />
   );
 }
 
