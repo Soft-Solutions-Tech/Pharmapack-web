@@ -62,8 +62,9 @@ const buttonVariants = {
 
 export default function HeroBanner() {
   const handleCtaClick = () => {
-    if (heroContent.ctaWebsite) {
-      window.open(heroContent.ctaWebsite, "_blank", "noopener,noreferrer");
+    const section = document.getElementById("production-lines");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -112,7 +113,7 @@ export default function HeroBanner() {
         {/* CTA Button */}
         <motion.div variants={buttonVariants}>
           <motion.button
-            className="group relative bg-brand-black text-brand-white px-8 py-4 rounded-lg overflow-hidden"
+            className="group relative bg-brand-black text-brand-white px-8 py-4 rounded-lg overflow-hidden cursor-pointer"
             variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"

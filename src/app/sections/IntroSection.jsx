@@ -81,38 +81,32 @@ const useCountUp = (end, duration = 2000) => {
 
 export default function IntroSection() {
   const handleCTAClick = () => {
-    if (introContent.ctaPrimary.website) {
-      window.open(
-        introContent.ctaPrimary.website,
-        "_blank",
-        "noopener,noreferrer"
-      );
+    const section = document.getElementById("ClientsSection");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const handleExploreClick = () => {
-    if (introContent.ctaSecondary.website) {
-      window.open(
-        introContent.ctaSecondary.website,
-        "_blank",
-        "noopener,noreferrer"
-      );
+    const section = document.getElementById("PharmaPackServices");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   // Count-up values for metrics
-  const yearsCount = useCountUp(introContent.metrics[0].value, 2000);
-  const marketsCount = useCountUp(introContent.metrics[1].value, 2000);
-  const productsCount = useCountUp(introContent.metrics[2].value, 2500);
-  const qualityCount = useCountUp(introContent.metrics[3].value, 2000);
+  const yearsCount = useCountUp(introContent.metrics[0].value, 10000);
+  const marketsCount = useCountUp(introContent.metrics[1].value, 10000);
+  const productsCount = useCountUp(introContent.metrics[2].value, 10000);
+  const qualityCount = useCountUp(introContent.metrics[3].value, 10000);
 
   return (
     <section className="relative min-h-screen bg-white overflow-hidden">
       {/* Premium background with subtle patterns */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-white via-brand-white to-gray-100/10"></div>
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-gray-200/20 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-gray-100/10 to-transparent"></div>
+        <div className="absolute inset-0 "></div>
+        <div className="absolute top-0 right-0 w-1/2 h-full"></div>
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/3"></div>
       </div>
 
       <div className="relative z-10">
@@ -131,7 +125,7 @@ export default function IntroSection() {
                 className="flex items-center space-x-4"
               >
                 <div className="flex items-center space-x-3">
-                  <div className="w-12 h-px bg-gradient-to-r from-gray-500 to-transparent"></div>
+                  <div className="w-12 h-px"></div>
                   <iconMap.Globe className="w-5 h-5 text-gray-500" />
                   <span className="text-sm font-medium text-gray-500 tracking-[0.2em] uppercase">
                     {introContent.headerLabel}
@@ -168,7 +162,7 @@ export default function IntroSection() {
               >
                 <motion.button
                   onClick={handleCTAClick}
-                  className="group relative bg-brand-black text-brand-white px-8 py-4 rounded-lg overflow-hidden"
+                  className="group relative bg-brand-black text-brand-white px-8 py-4 rounded-lg overflow-hidden cursor-pointer"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   aria-label={introContent.ctaPrimary.text}
@@ -184,7 +178,7 @@ export default function IntroSection() {
 
                 <motion.button
                   onClick={handleExploreClick}
-                  className="group text-brand-black px-8 py-4 border border-gray-500 hover:border-brand-red transition-all duration-300 relative overflow-hidden rounded-lg"
+                  className="group text-brand-black px-8 py-4 border border-gray-500 hover:border-brand-red transition-all duration-300 relative overflow-hidden rounded-lg cursor-pointer"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   aria-label={introContent.ctaSecondary.text}
@@ -211,7 +205,7 @@ export default function IntroSection() {
               <div className="relative h-[600px] lg:h-[700px]">
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-black/20 via-transparent to-transparent z-10 rounded-2xl"></div>
                 <Image
-                  src="/pharma1.jpg"
+                  src="/medicine.jpg"
                   alt="State-of-the-art pharmaceutical manufacturing facility"
                   fill
                   className="object-cover rounded-2xl shadow-2xl"

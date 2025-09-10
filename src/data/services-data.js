@@ -13,7 +13,7 @@ export const servicesContent = {
       shortTitle: "R&D",
       description:
         "Understanding client needs & market trends, creating unique formulations tailored to the brand's vision, and conducting comprehensive stability & safety testing.",
-      image: "/pharma1.jpg",
+      image: "/R-and-D.jpg",
       features: [
         "Client Needs Analysis",
         "Market Trends Research",
@@ -28,7 +28,7 @@ export const servicesContent = {
       shortTitle: "Formulation",
       description:
         "Developing the right product base with active ingredients, ensuring efficacy, safety, and compliance with international standards.",
-      image: "/pharma1.jpg",
+      image: "/formulation.jpg",
       features: [
         "Active Ingredients",
         "Product Base Development",
@@ -43,7 +43,7 @@ export const servicesContent = {
       shortTitle: "Manufacturing",
       description:
         "Using advanced machinery across multiple production lines, maintaining strict quality assurance and GMP compliance with scalable solutions from small batches to mass production.",
-      image: "/pharma1.jpg",
+      image: "/manfactuor.jpg",
       features: [
         "Advanced Machinery",
         "GMP Compliance",
@@ -58,7 +58,7 @@ export const servicesContent = {
       shortTitle: "Packaging",
       description:
         "Custom packaging design that reflects your brand identity with a wide range of options including sachets, bottles, jars, wipes packs, patches, and masks, ensuring durability, safety, and consumer appeal.",
-      image: "/pharma1.jpg",
+      image: "/packaging.jpg",
       features: [
         "Custom Design",
         "Brand Identity",
@@ -73,7 +73,7 @@ export const servicesContent = {
       shortTitle: "Branding",
       description:
         "Helping you build and launch your own brand successfully with guidance on compliance, certifications, market entry, and long-term partnership to scale and grow your product portfolio.",
-      image: "/pharma1.jpg",
+      image: "/branding.jpg",
       features: [
         "Brand Launch",
         "Compliance Guidance",

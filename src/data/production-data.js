@@ -36,9 +36,6 @@ export const productionContent = {
       suffix: "/7",
     },
   ],
-  cta: "Contact Us",
-  ctaSubtitle: "Discuss custom toll manufacturing and private label solutions",
-  ctaWebsite: "https://example.com/contact",
   productionLines: [
     {
       id: 1,

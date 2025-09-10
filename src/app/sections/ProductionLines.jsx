@@ -47,7 +47,7 @@ const ProductionLines = () => {
   };
 
   return (
-    <section className="py-20 px-6 bg-white relative overflow-hidden">
+    <section id="production-lines" className="py-20 px-6 bg-white relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
@@ -98,7 +98,7 @@ const ProductionLines = () => {
                 key={line.id}
                 variants={cardVariants}
                 onClick={() => handleCardClick(line.website)}
-                className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-brand-gray/20 flex flex-col"
+                className="group bg-white  shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-brand-gray/20 flex flex-col"
               >
                 {/* Card Header */}
                 <div className="p-8 pb-6 flex-grow">
@@ -131,25 +131,12 @@ const ProductionLines = () => {
                     ))}
                   </div>
                 </div>
+                <div className="h-1 bg-brand-gray/20 group-hover:bg-brand-red transition-colors duration-300 mt-auto "></div>
 
                 {/* Hover indicator */}
-                <div className="h-1 bg-brand-gray/20 group-hover:bg-brand-red transition-colors duration-300 mt-auto"></div>
               </motion.div>
             );
           })}
-        </motion.div>
-
-        {/* Bottom CTA Section */}
-        <motion.div variants={cardVariants} className="text-center mt-16">
-          <div
-            onClick={handleCtaClick}
-            className="inline-flex items-center gap-3 text-brand-gray hover:text-brand-black transition-colors duration-300 cursor-pointer"
-          >
-            <span className="text-sm font-medium tracking-wide">
-              {productionContent.cta}
-            </span>
-            <ArrowUpRight className="w-4 h-4" />
-          </div>
         </motion.div>
       </div>
 

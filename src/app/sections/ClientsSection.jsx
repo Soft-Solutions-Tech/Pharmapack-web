@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Building2 } from "lucide-react";
+import { Building2, ArrowUpRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { clients, sectionContent } from "@/data/clients-data";
 
 // Animation variants
@@ -101,6 +102,7 @@ const ClientsPlaceholder = () => (
 );
 
 export default function ClientsSection() {
+  const router = useRouter();
   // Set to true to show placeholder, false to show actual clients
   const showPlaceholder = false;
   const hasClients = clients && clients.length > 0;
@@ -111,8 +113,12 @@ export default function ClientsSection() {
     }
   };
 
+  const handleCtaClick = () => {
+    router.push("/contact");
+  };
+
   return (
-    <section className="py-20 px-6 bg-white">
+    <section id="ClientsSection" className="py-20 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <motion.div
@@ -192,24 +198,29 @@ export default function ClientsSection() {
           </motion.div>
         )}
 
-        {/* Bottom CTA and Stats */}
-        {hasClients && !showPlaceholder && (
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="text-center mt-20 pt-12 border-t border-brand-gray/10"
-          >
-            <motion.p
-              className="text-brand-gray mt-8 font-light text-lg"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2 }}
-            >
-              {sectionContent.ctaText}
-            </motion.p>
-          </motion.div>
-        )}
+        {/* Bottom CTA Section */}
+{hasClients && !showPlaceholder && (
+  <motion.div
+    variants={itemVariants}
+    initial="hidden"
+    animate="visible"
+    className="text-center mt-20 pt-12 border-t border-brand-gray/10"
+  >
+    <div
+      onClick={handleCtaClick}
+      className="group inline-flex flex-col items-center gap-2 text-brand-gray hover:text-brand-black transition-colors duration-300 cursor-pointer"
+    >
+      <span className="text-sm font-medium tracking-wide">
+        Contact Us
+            <ArrowUpRight className="w-4 h-4 inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+
+      </span>
+      <span className="text-xs font-light text-brand-gray/70 hover:text-brand-black/70">
+        Discuss custom toll manufacturing and private label solutions
+      </span>
+    </div>
+  </motion.div>
+)}
       </div>
     </section>
   );

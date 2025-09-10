@@ -53,7 +53,7 @@ export default function PharmapackServices() {
   };
 
   return (
-    <section className="min-h-screen flex flex-col px-6 bg-white">
+    <section id="PharmaPackServices" className="min-h-screen flex flex-col px-6 bg-white">
       <div className="max-w-7xl mx-auto flex-1 flex flex-col mb-20">
         {/* Header Section */}
         <motion.div
@@ -119,7 +119,7 @@ export default function PharmapackServices() {
                     role="tab"
                     aria-selected={activeService.id === service.id}
                     aria-controls={`service-panel-${service.id}`}
-                    className={`group relative w-full text-left p-4 rounded-2xl transition-all duration-500 ease-out ${
+                    className={`group relative w-full text-left p-4 rounded-2xl transition-all duration-500 ease-out cursor-pointer ${
                       activeService.id === service.id
                         ? "bg-brand-red text-white shadow-lg transform translate-x-2"
                         : "bg-white text-brand-gray hover:bg-brand-red/5 hover:translate-x-1 shadow-sm border border-brand-gray/20 hover:border-brand-red/30"
@@ -183,7 +183,7 @@ export default function PharmapackServices() {
                   className="flex flex-col h-full"
                 >
                   {/* Service Image */}
-                  <div className="relative h-48 md:h-56 mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-brand-gray/5 to-brand-gray/10">
+                  <div className="relative h-full mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-brand-gray/5 to-brand-gray/10">
                     <Image
                       src={activeService.image}
                       alt={`${activeService.title} service`}
@@ -234,7 +234,7 @@ export default function PharmapackServices() {
                     {/* CTA Button */}
                     <motion.button
                       onClick={() => handleServiceClick(activeService)}
-                      className="group bg-brand-red hover:bg-brand-black text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+                      className="group bg-brand-red hover:bg-brand-black text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl cursor-pointer"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       aria-label={`Learn more about ${activeService.title}`}
