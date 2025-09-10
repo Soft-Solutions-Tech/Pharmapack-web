@@ -11,6 +11,7 @@ export default function ContactForm() {
     email: '',
     phone: '',
     message: '',
+    inquiryType: 'General Question', // Default value for dropdown
   });
   const [status, setStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -45,7 +46,14 @@ export default function ContactForm() {
       });
       if (response.ok) {
         setStatus('success');
-        setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '' });
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          message: '',
+          inquiryType: 'General Question',
+        });
       } else {
         setStatus('error');
       }
@@ -218,6 +226,26 @@ export default function ContactForm() {
                     className="w-full px-4 py-2.5 text-base font-light bg-brand-white border border-brand-gray/20 rounded-lg focus:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30 transition-all duration-300 placeholder-brand-gray/50"
                     placeholder="+1 (555) 000-0000"
                   />
+                </div>
+
+                <div className="group flex flex-col">
+                  <label className="flex items-center space-x-3 mb-2">
+                    <span className="text-sm font-medium text-brand-gray tracking-wider uppercase">
+                      Inquiry Type
+                    </span>
+                  </label>
+                  <select
+                    name="inquiryType"
+                    value={formData.inquiryType}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-2.5 text-base font-light bg-brand-white border border-brand-gray/20 rounded-lg focus:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30 transition-all duration-300"
+                  >
+                    <option value="General Question">General Question</option>
+                    <option value="Become a Partner">Become a Partner</option>
+                    <option value="Support Request">Support Request</option>
+                    <option value="Business Inquiry">Business Inquiry</option>
+                  </select>
                 </div>
 
                 <div className="group flex flex-col">
