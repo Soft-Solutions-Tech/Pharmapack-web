@@ -76,8 +76,6 @@ const statVariants = {
 export default function WhoWeAreSection() {
   return (
     <section className="relative py-28 sm:py-28 lg:py-32 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
-      {/* Background Elements */}
-
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
         <HeaderSection />

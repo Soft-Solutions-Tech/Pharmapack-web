@@ -2,7 +2,7 @@ import { Search, Compass, FileText, Cog, CheckCircle } from "lucide-react";
 
 export const processContent = {
   headerLabel: "Methodology",
-  headline: "Our Process",
+  headline: "Process",
   subheadline:
     "A disciplined methodology that transforms ideas into market-ready products through systematic excellence.",
   closingStatement:
