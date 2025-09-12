@@ -5,16 +5,13 @@ import {
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuItem,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
-  NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
   { name: "About Us", href: "/about" },
@@ -25,30 +22,21 @@ const NAV_ITEMS = [
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [clientPathname, setClientPathname] = React.useState("");
-  const [mobileDropdownOpen, setMobileDropdownOpen] = React.useState(false);
   const pathname = usePathname();
-  const router = useRouter();
 
   const toggleMobileMenu = React.useCallback(() => {
     setIsMobileMenuOpen((prev) => !prev);
-    setMobileDropdownOpen(false);
-  }, []);
-
-  const toggleMobileDropdown = React.useCallback(() => {
-    setMobileDropdownOpen((prev) => !prev);
   }, []);
 
   React.useEffect(() => {
     setClientPathname(pathname || "");
     setIsMobileMenuOpen(false);
-    setMobileDropdownOpen(false);
   }, [pathname]);
 
   React.useEffect(() => {
     const handleClickOutside = (event) => {
       if (isMobileMenuOpen && !event.target.closest(".mobile-menu")) {
         setIsMobileMenuOpen(false);
-        setMobileDropdownOpen(false);
       }
     };
 
@@ -82,55 +70,20 @@ export function Header() {
         <div className="hidden md:flex items-center justify-end flex-1">
           <NavigationMenu>
             <NavigationMenuList className="gap-3">
-              {NAV_ITEMS.map((item) =>
-                item.dropdown ? (
-                  <NavigationMenuItem key={item.name}>
-                    <NavigationMenuTrigger
-                      className={cn(
-                        "relative bg-transparent hover:bg-[var(--color-brand-red)/10] text-[var(--color-brand-gray)] hover:text-[var(--color-brand-red)] px-4 py-2 font-medium rounded-lg border-2 border-transparent hover:border-[var(--color-brand-red)/20] transition-all duration-300",
-                        pathname.startsWith("/projects") &&
-                          "text-[var(--color-brand-red)] font-semibold bg-[var(--color-brand-red)/10] border-[var(--color-brand-red)/30]"
-                      )}
-                      onClick={() => router.push(item.href)}
-                    >
-                      {item.name}
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <div className="grid w-[280px] gap-1 p-3 bg-[var(--color-background)] border border-border/20 rounded-xl shadow-lg backdrop-blur-sm">
-                        {item.items.map((subItem) => (
-                          <NavigationMenuLink key={subItem.href} asChild>
-                            <Link
-                              href={subItem.href}
-                              replace
-                              className={cn(
-                                "block px-4 py-3 text-sm rounded-lg border border-transparent text-[var(--color-brand-gray)] hover:text-[var(--color-brand-red)] hover:bg-[var(--color-brand-red)/10] hover:border-[var(--color-brand-red)/20] transition-all duration-300",
-                                pathname.startsWith("/projects") &&
-                                  currentType === subItem.type &&
-                                  "text-[var(--color-brand-red)] font-semibold bg-[var(--color-brand-red)/10] border-[var(--color-brand-red)/30]"
-                              )}
-                            >
-                              {subItem.name}
-                            </Link>
-                          </NavigationMenuLink>
-                        ))}
-                      </div>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                ) : (
-                  <NavigationMenuItem key={item.href}>
-                    <Link
-                      href={item.href}
-                      className={cn(
-                        "px-4 py-2 text-sm rounded-lg font-medium text-[var(--color-brand-gray)] hover:text-[var(--color-brand-red)] hover:bg-[var(--color-brand-red)/10] border-2 border-transparent hover:border-[var(--color-brand-red)/20] transition-all duration-300",
-                        pathname === item.href &&
-                          "text-[var(--color-brand-red)] font-semibold bg-[var(--color-brand-red)/10] border-[var(--color-brand-red)/30]"
-                      )}
-                    >
-                      {item.name}
-                    </Link>
-                  </NavigationMenuItem>
-                )
-              )}
+              {NAV_ITEMS.map((item) => (
+                <NavigationMenuItem key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "px-4 py-2 text-sm rounded-lg font-medium text-[var(--color-brand-gray)] hover:text-[var(--color-brand-red)] hover:bg-[var(--color-brand-red)/10] border-2 border-transparent hover:border-[var(--color-brand-red)/20] transition-all duration-300",
+                      pathname === item.href &&
+                        "text-[var(--color-brand-red)] font-semibold bg-[var(--color-brand-red)/10] border-[var(--color-brand-red)/30]"
+                    )}
+                  >
+                    {item.name}
+                  </Link>
+                </NavigationMenuItem>
+              ))}
             </NavigationMenuList>
           </NavigationMenu>
         </div>
@@ -158,9 +111,6 @@ export function Header() {
             <MobileMenu
               onClose={toggleMobileMenu}
               pathname={clientPathname}
-              currentType={currentType}
-              mobileDropdownOpen={mobileDropdownOpen}
-              toggleMobileDropdown={toggleMobileDropdown}
             />
           )}
         </AnimatePresence>
@@ -169,13 +119,7 @@ export function Header() {
   );
 }
 
-function MobileMenu({
-  onClose,
-  pathname,
-  currentType,
-  mobileDropdownOpen,
-  toggleMobileDropdown,
-}) {
+function MobileMenu({ onClose, pathname }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: -20, scale: 0.95 }}
@@ -197,89 +141,27 @@ function MobileMenu({
       </Button>
 
       <nav className="flex flex-col items-center space-y-6 w-full max-w-sm px-8">
-        {NAV_ITEMS.map((item, index) =>
-          item.dropdown ? (
-            <motion.div
-              key={item.name}
-              eaa
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 + 0.2 }}
-              className="w-full text-center"
+        {NAV_ITEMS.map((item, index) => (
+          <motion.div
+            key={item.href}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 + 0.2 }}
+            className="w-full text-center"
+          >
+            <Link
+              href={item.href}
+              onClick={onClose}
+              className={cn(
+                "w-full inline-block py-4 px-6 text-lg font-medium rounded-xl border-2 border-transparent text-[var(--color-brand-gray)] hover:text-[var(--color-brand-red)] hover:bg-[var(--color-brand-red)/10] hover:border-[var(--color-brand-red)/20] transition-all duration-300",
+                pathname === item.href &&
+                  "text-[var(--color-brand-red)] font-semibold bg-[var(--color-brand-red)/10] border-[var(--color-brand-red)/30]"
+              )}
             >
-              <Button
-                variant="ghost"
-                onClick={toggleMobileDropdown}
-                className="w-full justify-center items-center text-lg font-medium text-[var(--color-brand-gray)] hover:text-[var(--color-brand-red)] hover:bg-[var(--color-brand-red)/10] py-4 px-6 transition-all duration-300 border-2 border-transparent hover:border-[var(--color-brand-red)/20] rounded-xl"
-              >
-                {item.name}
-                <motion.div
-                  animate={{ rotate: mobileDropdownOpen ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="ml-2"
-                >
-                  <ChevronDown size={20} />
-                </motion.div>
-              </Button>
-              <AnimatePresence>
-                {mobileDropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="flex flex-col gap-2 mt-4 p-4 bg-[var(--color-brand-red)/5] rounded-xl border border-[var(--color-brand-red)/20]">
-                      {item.items.map((subItem, subIndex) => (
-                        <motion.div
-                          key={subItem.href}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: subIndex * 0.05 + 0.1 }}
-                        >
-                          <Link
-                            href={subItem.href}
-                            replace
-                            onClick={onClose}
-                            className={cn(
-                              "block px-4 py-3 text-sm rounded-lg border border-transparent text-[var(--color-brand-gray)] hover:text-[var(--color-brand-red)] hover:bg-[var(--color-brand-red)/10] hover:border-[var(--color-brand-red)/20] transition-all duration-300",
-                              pathname.startsWith("/projects") &&
-                                currentType === subItem.type &&
-                                "text-[var(--color-brand-red)] font-semibold bg-[var(--color-brand-red)/10] border-[var(--color-brand-red)/30]"
-                            )}
-                          >
-                            {subItem.name}
-                          </Link>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ) : (
-            <motion.div
-              key={item.href}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 + 0.2 }}
-              className="w-full text-center"
-            >
-              <Link
-                href={item.href}
-                onClick={onClose}
-                className={cn(
-                  "w-full inline-block py-4 px-6 text-lg font-medium rounded-xl border-2 border-transparent text-[var(--color-brand-gray)] hover:text-[var(--color-brand-red)] hover:bg-[var(--color-brand-red)/10] hover:border-[var(--color-brand-red)/20] transition-all duration-300",
-                  pathname === item.href &&
-                    "text-[var(--color-brand-red)] font-semibold bg-[var(--color-brand-red)/10] border-[var(--color-brand-red)/30]"
-                )}
-              >
-                {item.name}
-              </Link>
-            </motion.div>
-          )
-        )}
+              {item.name}
+            </Link>
+          </motion.div>
+        ))}
       </nav>
 
       {/* Background blur circles */}

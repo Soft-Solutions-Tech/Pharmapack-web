@@ -23,14 +23,12 @@ export const Footer = () => {
     Linkedin: Linkedin,
   };
 
-  // Show only first 3 products initially
-  const displayedProducts = showAllProducts
-    ? products.links
-    : products.links.slice(0, 3);
-  // Show only first 3 about links initially
-  const displayedAbout = showAllAbout
-    ? aboutUs.links
-    : aboutUs.links.slice(0, 3);
+  // Always show first 3 products, additional ones are toggled
+  const initialProducts = products.links.slice(0, 3);
+  const additionalProducts = products.links.slice(3);
+  // Always show first 3 about links, additional ones are toggled
+  const initialAbout = aboutUs.links.slice(0, 3);
+  const additionalAbout = aboutUs.links.slice(3);
 
   return (
     <footer className="bg-transparent pt-12 pb-6">
@@ -71,7 +69,7 @@ export const Footer = () => {
                 {aboutUs.title}
               </h4>
               <div className="space-y-3 text-sm text-center">
-                {displayedAbout.map((link, index) => (
+                {initialAbout.map((link, index) => (
                   <a
                     key={index}
                     href={link.href}
@@ -80,10 +78,25 @@ export const Footer = () => {
                     {link.name}
                   </a>
                 ))}
+                <div
+                  className={`transition-all duration-500 ease-in-out ${
+                    showAllAbout ? "opacity-100 max-h-96" : "opacity-0 max-h-0"
+                  } overflow-hidden`}
+                >
+                  {additionalAbout.map((link, index) => (
+                    <a
+                      key={index}
+                      href={link.href}
+                      className="text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 block py-1"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
+                </div>
                 {aboutUs.links.length > 3 && (
                   <button
                     onClick={() => setShowAllAbout(!showAllAbout)}
-                    className="flex items-center justify-center space-x-1 text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 text-sm font-medium mx-auto mt-2"
+                    className="flex items-center justify-center space-x-1 text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 text-sm font-medium mx-auto mt-2 cursor-pointer"
                   >
                     <span>
                       {showAllAbout
@@ -106,7 +119,7 @@ export const Footer = () => {
                 {products.title}
               </h4>
               <div className="space-y-3 text-sm text-center">
-                {displayedProducts.map((link, index) => (
+                {initialProducts.map((link, index) => (
                   <a
                     key={index}
                     href={link.href}
@@ -115,10 +128,25 @@ export const Footer = () => {
                     {link.name}
                   </a>
                 ))}
+                <div
+                  className={`transition-all duration-500 ease-in-out ${
+                    showAllProducts ? "opacity-100 max-h-96" : "opacity-0 max-h-0"
+                  } overflow-hidden`}
+                >
+                  {additionalProducts.map((link, index) => (
+                    <a
+                      key={index}
+                      href={link.href}
+                      className="text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 block py-1"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
+                </div>
                 {products.links.length > 3 && (
                   <button
                     onClick={() => setShowAllProducts(!showAllProducts)}
-                    className="flex items-center justify-center space-x-1 text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 text-sm font-medium mx-auto mt-2"
+                    className="flex items-center justify-center space-x-1 text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 text-sm font-medium mx-auto mt-2 cursor-pointer"
                   >
                     <span>
                       {showAllProducts
@@ -210,7 +238,7 @@ export const Footer = () => {
                 {aboutUs.title}
               </h4>
               <div className="space-y-3 text-sm text-center">
-                {displayedAbout.map((link, index) => (
+                {initialAbout.map((link, index) => (
                   <a
                     key={index}
                     href={link.href}
@@ -219,10 +247,25 @@ export const Footer = () => {
                     {link.name}
                   </a>
                 ))}
+                <div
+                  className={`transition-all duration-500 ease-in-out ${
+                    showAllAbout ? "opacity-100 max-h-96" : "opacity-0 max-h-0"
+                  } overflow-hidden`}
+                >
+                  {additionalAbout.map((link, index) => (
+                    <a
+                      key={index}
+                      href={link.href}
+                      className="text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 block py-1"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
+                </div>
                 {aboutUs.links.length > 3 && (
                   <button
                     onClick={() => setShowAllAbout(!showAllAbout)}
-                    className="flex items-center justify-center space-x-1 text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 text-xs font-medium mx-auto mt-2"
+                    className="flex items-center justify-center space-x-1 text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 text-xs font-medium mx-auto mt-2 cursor-pointer"
                   >
                     <span>
                       {showAllAbout ? "Less" : `+${aboutUs.links.length - 3}`}
@@ -243,7 +286,7 @@ export const Footer = () => {
                 {products.title}
               </h4>
               <div className="space-y-3 text-sm text-center">
-                {displayedProducts.map((link, index) => (
+                {initialProducts.map((link, index) => (
                   <a
                     key={index}
                     href={link.href}
@@ -252,10 +295,25 @@ export const Footer = () => {
                     {link.name}
                   </a>
                 ))}
+                <div
+                  className={`transition-all duration-500 ease-in-out ${
+                    showAllProducts ? "opacity-100 max-h-96" : "opacity-0 max-h-0"
+                  } overflow-hidden`}
+                >
+                  {additionalProducts.map((link, index) => (
+                    <a
+                      key={index}
+                      href={link.href}
+                      className="text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 block py-1"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
+                </div>
                 {products.links.length > 3 && (
                   <button
                     onClick={() => setShowAllProducts(!showAllProducts)}
-                    className="flex items-center justify-center space-x-1 text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 text-xs font-medium mx-auto mt-2"
+                    className="flex items-center justify-center space-x-1 text-[var(--color-brand-red)] hover:text-[#d5191d] transition-colors duration-300 text-xs font-medium mx-auto mt-2 cursor-pointer"
                   >
                     <span>
                       {showAllProducts

@@ -283,50 +283,6 @@ export const collectionsData = [
           shelfLife: "3 years",
         },
       },
-      {
-        id: 13,
-        title: "Make Up Remover Wipes",
-        description:
-          "Convenient wipes for effortless makeup removal and skin cleansing.",
-        image: "/products/makeup-remover-wipes.jpg",
-        slug: "make-up-remover-wipes",
-        detailedDescription:
-          "These makeup remover wipes effectively remove makeup, dirt, and oil while keeping skin hydrated and refreshed.",
-        features: [
-          "Micellar water infused",
-          "Suitable for all skin types",
-          "Gentle and non-irritating",
-          "Biodegradable material",
-        ],
-        specifications: {
-          quantity: "25 wipes per pack",
-          material: "Biodegradable fabric",
-          size: "6x6 inches",
-          shelfLife: "2 years",
-        },
-      },
-      {
-        id: 14,
-        title: "Massage Cream",
-        description:
-          "Relaxing massage cream to alleviate muscle tension and promote recovery.",
-        image: "/products/massage-cream.jpg",
-        slug: "massage-cream",
-        detailedDescription:
-          "This massage cream combines soothing ingredients to relieve muscle tension and enhance relaxation during massages.",
-        features: [
-          "Arnica and eucalyptus infused",
-          "Non-greasy formula",
-          "Promotes muscle recovery",
-          "Suitable for professional use",
-        ],
-        specifications: {
-          volume: "200ml",
-          activeIngredients: "Arnica, Eucalyptus",
-          packaging: "Tube",
-          shelfLife: "2 years",
-        },
-      },
     ],
   },
 ];
