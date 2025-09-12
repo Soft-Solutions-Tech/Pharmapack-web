@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { Building2, ArrowUpRight } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { clients, sectionContent } from "@/data/clients-data";
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { Building2, ArrowUpRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { clients, sectionContent } from '@/data/clients-data';
 
 // Animation variants
 const containerVariants = {
@@ -25,7 +25,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: "easeOut",
+      ease: 'easeOut',
     },
   },
 };
@@ -37,7 +37,7 @@ const logoVariants = {
     scale: 1,
     transition: {
       duration: 0.5,
-      ease: "easeOut",
+      ease: 'easeOut',
     },
   },
   hover: {
@@ -45,7 +45,7 @@ const logoVariants = {
     opacity: 1,
     transition: {
       duration: 0.3,
-      ease: "easeInOut",
+      ease: 'easeInOut',
     },
   },
 };
@@ -57,7 +57,7 @@ const nameVariants = {
     y: 0,
     transition: {
       duration: 0.3,
-      ease: "easeInOut",
+      ease: 'easeInOut',
     },
   },
 };
@@ -109,12 +109,12 @@ export default function ClientsSection() {
 
   const handleClientClick = (website) => {
     if (website) {
-      window.open(website, "_blank", "noopener,noreferrer");
+      window.open(website, '_blank', 'noopener,noreferrer');
     }
   };
 
   const handleCtaClick = () => {
-    router.push("/contact");
+    router.push('/contact');
   };
 
   return (
@@ -138,12 +138,23 @@ export default function ClientsSection() {
             <div className="h-px w-12 bg-brand-gray/30"></div>
           </motion.div>
 
+          {/* Updated Title */}
           <motion.h2
-            variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-6xl font-extralight text-brand-black mb-6 tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-brand-black tracking-tight leading-[1.1] mb-8 lg:mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            Trusted by{" "}
-            <span className="font-light text-brand-gray">Industry Leaders</span>
+            Trusted by{' '}
+            <span className="font-normal text-brand-red relative">
+              Industry Leaders
+              <motion.div
+                className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-brand-red/60 to-transparent"
+                initial={{ width: 0 }}
+                animate={{ width: '100%' }}
+                transition={{ duration: 1 }}
+              />
+            </span>
           </motion.h2>
 
           <motion.p
@@ -199,28 +210,27 @@ export default function ClientsSection() {
         )}
 
         {/* Bottom CTA Section */}
-{hasClients && !showPlaceholder && (
-  <motion.div
-    variants={itemVariants}
-    initial="hidden"
-    animate="visible"
-    className="text-center mt-20 pt-12 border-t border-brand-gray/10"
-  >
-    <div
-      onClick={handleCtaClick}
-      className="group inline-flex flex-col items-center gap-2 text-brand-gray hover:text-brand-black transition-colors duration-300 cursor-pointer"
-    >
-      <div >
-
-        {sectionContent.placeholder.button}{" "}
-            <ArrowUpRight className="w-4 h-4 inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-      </div>
-      <span className="text-sm font-medium tracking-wide">
-        {sectionContent.ctaText}
-      </span>
-    </div>
-  </motion.div>
-)}
+        {hasClients && !showPlaceholder && (
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-center mt-20 pt-12 border-t border-brand-gray/10"
+          >
+            <div
+              onClick={handleCtaClick}
+              className="group inline-flex flex-col items-center gap-2 text-brand-gray hover:text-brand-black transition-colors duration-300 cursor-pointer"
+            >
+              <div>
+                {sectionContent.placeholder.button}{' '}
+                <ArrowUpRight className="w-4 h-4 inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </div>
+              <span className="text-sm font-medium tracking-wide">
+                {sectionContent.ctaText}
+              </span>
+            </div>
+          </motion.div>
+        )}
       </div>
     </section>
   );

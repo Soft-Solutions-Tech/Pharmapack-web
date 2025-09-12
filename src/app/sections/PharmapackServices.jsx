@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-import { ArrowRight, CheckCircle } from "lucide-react";
-import { servicesContent } from "@/data/services-data";
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import { ArrowRight, CheckCircle } from 'lucide-react';
+import { servicesContent } from '@/data/services-data';
 
 // Animation Variants
 const containerVariants = {
@@ -23,7 +23,7 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: 0.5, ease: 'easeOut' },
   },
 };
 
@@ -32,23 +32,21 @@ const contentVariants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.6, ease: 'easeOut' },
   },
   exit: {
     opacity: 0,
     x: -20,
-    transition: { duration: 0.3, ease: "easeIn" },
+    transition: { duration: 0.3, ease: 'easeIn' },
   },
 };
 
 export default function PharmapackServices() {
-  const [activeService, setActiveService] = useState(
-    servicesContent.services[0]
-  );
+  const [activeService, setActiveService] = useState(servicesContent.services[0]);
 
   const handleServiceClick = (service) => {
     if (service.link) {
-      window.open(service.link, "_blank", "noopener,noreferrer");
+      window.open(service.link, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -73,13 +71,24 @@ export default function PharmapackServices() {
             <div className="h-px w-16 bg-brand-gray/40"></div>
           </motion.div>
 
+          {/* Updated Title */}
           <motion.h2
-            className="text-3xl md:text-4xl lg:text-5xl font-light text-brand-black mb-6 tracking-tight"
-            variants={itemVariants}
-            dangerouslySetInnerHTML={{
-              __html: `Manufacturing <span className="font-normal text-brand-gray">${servicesContent.headlineHighlight}</span>`,
-            }}
-          />
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-brand-black tracking-tight leading-[1.1] mb-8 lg:mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Manufacturing{' '}
+            <span className="font-normal text-brand-red relative">
+              {servicesContent.headlineHighlight}
+              <motion.div
+                className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-brand-red/60 to-transparent"
+                initial={{ width: 0 }}
+                animate={{ width: '100%' }}
+                transition={{ duration: 1 }}
+              />
+            </span>
+          </motion.h2>
 
           <motion.div variants={itemVariants} className="max-w-3xl mx-auto">
             <p className="text-base md:text-lg text-brand-gray leading-relaxed font-light">
@@ -121,8 +130,8 @@ export default function PharmapackServices() {
                     aria-controls={`service-panel-${service.id}`}
                     className={`group relative w-full text-left p-4 rounded-2xl transition-all duration-500 ease-out cursor-pointer ${
                       activeService.id === service.id
-                        ? "bg-brand-red text-white shadow-lg transform translate-x-2"
-                        : "bg-white text-brand-gray hover:bg-brand-red/5 hover:translate-x-1 shadow-sm border border-brand-gray/20 hover:border-brand-red/30"
+                        ? 'bg-brand-red text-white shadow-lg transform translate-x-2'
+                        : 'bg-white text-brand-gray hover:bg-brand-red/5 hover:translate-x-1 shadow-sm border border-brand-gray/20 hover:border-brand-red/30'
                     }`}
                   >
                     <div className="flex items-center justify-between">
@@ -131,8 +140,8 @@ export default function PharmapackServices() {
                           <div
                             className={`w-2 h-2 rounded-full transition-colors duration-300 ${
                               activeService.id === service.id
-                                ? "bg-white"
-                                : "bg-brand-red"
+                                ? 'bg-white'
+                                : 'bg-brand-red'
                             }`}
                           />
                           <span className="text-xs font-medium tracking-wider uppercase opacity-70">
@@ -147,8 +156,8 @@ export default function PharmapackServices() {
                       <ArrowRight
                         className={`w-4 h-4 transition-all duration-300 ${
                           activeService.id === service.id
-                            ? "text-white translate-x-1"
-                            : "text-brand-gray group-hover:text-brand-red group-hover:translate-x-1"
+                            ? 'text-white translate-x-1'
+                            : 'text-brand-gray group-hover:text-brand-red group-hover:translate-x-1'
                         }`}
                       />
                     </div>
@@ -158,7 +167,7 @@ export default function PharmapackServices() {
                         layoutId="activeIndicator"
                         className="absolute left-0 top-0 bottom-0 w-1 bg-white/30 rounded-r-full"
                         transition={{
-                          type: "spring",
+                          type: 'spring',
                           stiffness: 300,
                           damping: 30,
                         }}

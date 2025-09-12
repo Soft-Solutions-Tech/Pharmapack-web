@@ -98,7 +98,7 @@ export default function HeroBanner() {
           className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light mb-6 tracking-tight leading-tight text-left text-brand-white"
           variants={itemVariants}
           dangerouslySetInnerHTML={{
-            __html: `${heroContent.headline}<br /><span className="font-normal">${heroContent.headlineHighlight}</span>`,
+            __html: `${heroContent.headline}<br />${heroContent.headlineHighlight}`,
           }}
         />
 

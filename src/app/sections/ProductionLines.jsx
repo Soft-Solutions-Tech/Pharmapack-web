@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React from "react";
-import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import { productionContent, iconMap } from "@/data/production-data";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+import { productionContent, iconMap } from '@/data/production-data';
 
 // Animation variants
 const containerVariants = {
@@ -24,7 +24,7 @@ const cardVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: "easeOut",
+      ease: 'easeOut',
     },
   },
 };
@@ -32,17 +32,13 @@ const cardVariants = {
 const ProductionLines = () => {
   const handleCardClick = (website) => {
     if (website) {
-      window.open(website, "_blank", "noopener,noreferrer");
+      window.open(website, '_blank', 'noopener,noreferrer');
     }
   };
 
   const handleCtaClick = () => {
     if (productionContent.ctaWebsite) {
-      window.open(
-        productionContent.ctaWebsite,
-        "_blank",
-        "noopener,noreferrer"
-      );
+      window.open(productionContent.ctaWebsite, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -68,13 +64,24 @@ const ProductionLines = () => {
             <div className="h-px w-12 bg-brand-gray"></div>
           </motion.div>
 
+          {/* Updated Title */}
           <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-light text-brand-black mb-6 tracking-tight"
-            variants={cardVariants}
-            dangerouslySetInnerHTML={{
-              __html: `${productionContent.titlePart1} <span className="font-normal text-brand-gray">${productionContent.titlePart2}</span>`,
-            }}
-          />
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-brand-black tracking-tight leading-[1.1] mb-8 lg:mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            {productionContent.titlePart1}{' '}
+            <span className="font-normal text-brand-red relative">
+              {productionContent.titlePart2}
+              <motion.div
+                className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-brand-red/60 to-transparent"
+                initial={{ width: 0 }}
+                animate={{ width: '100%' }}
+                transition={{ duration: 1 }}
+              />
+            </span>
+          </motion.h2>
 
           <motion.div variants={cardVariants} className="max-w-2xl mx-auto">
             <p className="text-lg md:text-xl text-brand-gray leading-relaxed font-light">
@@ -98,7 +105,7 @@ const ProductionLines = () => {
                 key={line.id}
                 variants={cardVariants}
                 onClick={() => handleCardClick(line.website)}
-                className="group bg-white  shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-brand-gray/20 flex flex-col"
+                className="group bg-white shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-brand-gray/20 flex flex-col"
               >
                 {/* Card Header */}
                 <div className="p-8 pb-6 flex-grow">
@@ -131,9 +138,7 @@ const ProductionLines = () => {
                     ))}
                   </div>
                 </div>
-                <div className="h-1 bg-brand-gray/20 group-hover:bg-brand-red transition-colors duration-300 mt-auto "></div>
-
-                {/* Hover indicator */}
+                <div className="h-1 bg-brand-gray/20 group-hover:bg-brand-red transition-colors duration-300 mt-auto"></div>
               </motion.div>
             );
           })}

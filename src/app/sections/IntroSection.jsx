@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
-import { introContent, iconMap } from "@/data/intro-data";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
+import { introContent, iconMap } from '@/data/intro-data';
 
 // Animation variants
 const containerVariants = {
@@ -36,7 +36,7 @@ const fadeInVariants = {
     opacity: 1,
     transition: {
       duration: 1.5,
-      ease: "easeOut",
+      ease: 'easeOut',
     },
   },
 };
@@ -81,16 +81,16 @@ const useCountUp = (end, duration = 2000) => {
 
 export default function IntroSection() {
   const handleCTAClick = () => {
-    const section = document.getElementById("ClientsSection");
+    const section = document.getElementById('ClientsSection');
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+      section.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const handleExploreClick = () => {
-    const section = document.getElementById("PharmaPackServices");
+    const section = document.getElementById('PharmaPackServices');
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+      section.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -104,7 +104,7 @@ export default function IntroSection() {
     <section className="relative min-h-screen bg-white overflow-hidden">
       {/* Premium background with subtle patterns */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 "></div>
+        <div className="absolute inset-0"></div>
         <div className="absolute top-0 right-0 w-1/2 h-full"></div>
         <div className="absolute bottom-0 left-0 w-1/3 h-1/3"></div>
       </div>
@@ -133,16 +133,24 @@ export default function IntroSection() {
                 </div>
               </motion.div>
 
-              {/* Hero headline */}
-              <motion.div variants={slideUpVariants} className="space-y-6">
-                <h1
-                  className="text-5xl md:text-6xl lg:text-7xl font-extralight text-brand-black leading-[0.9] tracking-tight"
-                  dangerouslySetInnerHTML={{
-                    __html: `${introContent.headline}<br /><span className="bg-gradient-to-r from-brand-black via-gray-500 to-brand-red bg-clip-text text-transparent font-light">${introContent.headlineHighlight}</span>`,
-                  }}
-                />
-                <div className="w-24 h-0.5 bg-gradient-to-r from-brand-black to-gray-500"></div>
-              </motion.div>
+              {/* Updated Hero headline */}
+              <motion.h1
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-brand-black tracking-tight leading-[1.1] mb-8 lg:mb-12"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                {introContent.headline}{' '}
+                <span className="font-normal text-brand-red relative">
+                  {introContent.headlineHighlight}
+                  <motion.div
+                    className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-brand-red/60 to-transparent"
+                    initial={{ width: 0 }}
+                    animate={{ width: '100%' }}
+                    transition={{ duration: 1 }}
+                  />
+                </span>
+              </motion.h1>
 
               {/* Sophisticated subtitle */}
               <motion.div variants={slideUpVariants} className="space-y-8">
@@ -223,7 +231,7 @@ export default function IntroSection() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 1, delay: 1.2 + index * 0.2 }}
                       className={`absolute ${
-                        index === 0 ? "top-8 -left-8" : "bottom-8 -right-8"
+                        index === 0 ? 'top-8 -left-8' : 'bottom-8 -right-8'
                       } bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-gray-200/20`}
                     >
                       <div className="flex items-center space-x-4">
@@ -244,33 +252,33 @@ export default function IntroSection() {
             </motion.div>
           </div>
         </div>
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.6 }}
-            className="border-t border-gray-200/20 bg-white/80 backdrop-blur-sm"
-          >
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                {introContent.metrics.map((metric, index) => (
-                  <div key={index} className="text-center group">
-                    <div className="text-4xl font-extralight text-brand-black mb-2 group-hover:scale-110 transition-transform duration-300">
-                      {index === 0
-                        ? `${yearsCount}+`
-                        : index === 1
-                        ? `${(marketsCount / 1000000).toFixed(1)}M+`
-                        : index === 2
-                        ? `${(productsCount / 1000000).toFixed(1)}M+`
-                        : `${qualityCount}%`}
-                    </div>
-                    <div className="text-sm font-medium text-gray-500 tracking-wider uppercase">
-                      {metric.label}
-                    </div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.6 }}
+          className="border-t border-gray-200/20 bg-white/80 backdrop-blur-sm"
+        >
+          <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {introContent.metrics.map((metric, index) => (
+                <div key={index} className="text-center group">
+                  <div className="text-4xl font-extralight text-brand-black mb-2 group-hover:scale-110 transition-transform duration-300">
+                    {index === 0
+                      ? `${yearsCount}+`
+                      : index === 1
+                      ? `${(marketsCount / 1000000).toFixed(1)}M+`
+                      : index === 2
+                      ? `${(productsCount / 1000000).toFixed(1)}M+`
+                      : `${qualityCount}%`}
                   </div>
-                ))}
-              </div>
+                  <div className="text-sm font-medium text-gray-500 tracking-wider uppercase">
+                    {metric.label}
+                  </div>
+                </div>
+              ))}
             </div>
-          </motion.div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
