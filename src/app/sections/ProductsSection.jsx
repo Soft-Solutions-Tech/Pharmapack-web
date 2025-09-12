@@ -199,7 +199,7 @@ function TabsSection({ tabs, activeTab, setActiveTab }) {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"></div>
         
         {/* Tabs Container */}
-        <div className="relative flex flex-nowrap gap-2 sm:gap-4 overflow-x-auto scrollbar-hide py-2 sm:py-0 px-2 sm:px-0 bg-white rounded-lg sm:bg-transparent sm:rounded-none">
+        <div className="relative flex flex-nowrap gap-2 sm:gap-4 overflow-x-auto scrollbar-hide py-2 sm:py-4 px-2 sm:px-0 bg-white rounded-lg sm:bg-transparent sm:rounded-none">
           {tabs.map((tab, index) => (
             <TabButton
               key={tab.id}

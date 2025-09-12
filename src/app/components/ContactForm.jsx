@@ -83,9 +83,24 @@ export default function ContactForm() {
               <div className="h-px w-12 bg-brand-gray"></div>
             </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-thin text-brand-black mb-4 tracking-tight leading-tight">
-              Get in Touch
-            </h1>
+            {/* Updated Title */}
+            <motion.h2
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-brand-black tracking-tight leading-[1.1] mb-8 lg:mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              Get in{' '}
+              <span className="font-normal text-brand-red relative">
+                Touch
+                <motion.div
+                  className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-brand-red/60 to-transparent"
+                  initial={{ width: 0 }}
+                  animate={{ width: '100%' }}
+                  transition={{ duration: 1 }}
+                />
+              </span>
+            </motion.h2>
 
             <p className="text-base sm:text-lg md:text-xl text-brand-gray leading-relaxed font-light max-w-2xl mx-auto">
               Connect with our team to explore possibilities and discuss your next strategic initiative.
