@@ -1,11 +1,10 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
+import React from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 import { collectionsData } from "@/data/products-data";
-
 
 // Animation variants
 const containerVariants = {
@@ -26,7 +25,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 };
@@ -38,7 +37,7 @@ const productVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 };
@@ -88,7 +87,7 @@ function HeaderLabel() {
       <motion.div
         className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent via-brand-gray to-transparent"
         initial={{ width: 0 }}
-        animate={{ width: '3rem' }}
+        animate={{ width: "3rem" }}
         transition={{ duration: 0.8 }}
       />
       <span className="text-xs sm:text-sm font-medium text-brand-gray tracking-[0.2em] uppercase">
@@ -97,7 +96,7 @@ function HeaderLabel() {
       <motion.div
         className="h-px w-8 sm:w-12 bg-gradient-to-r from-brand-gray via-transparent to-transparent"
         initial={{ width: 0 }}
-        animate={{ width: '3rem' }}
+        animate={{ width: "3rem" }}
         transition={{ duration: 0.8 }}
       />
     </div>
@@ -112,13 +111,13 @@ function HeaderTitle() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      Our{' '}
+      Our{" "}
       <span className="font-normal text-brand-red relative">
         Products
         <motion.div
           className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-brand-red/60 to-transparent"
           initial={{ width: 0 }}
-          animate={{ width: '100%' }}
+          animate={{ width: "100%" }}
           transition={{ duration: 1 }}
         />
       </span>
@@ -135,7 +134,7 @@ function CollectionsSection() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
+          viewport={{ once: true, margin: "-100px" }}
           className="border-b border-gray-100 last:border-b-0 pb-24 lg:pb-32 last:pb-0"
         >
           <CollectionHeader collection={collection} />
@@ -156,7 +155,7 @@ function CollectionHeader({ collection }) {
         <motion.div
           className="h-px flex-1 ml-8 bg-gradient-to-r from-gray-200 to-transparent"
           initial={{ width: 0 }}
-          whileInView={{ width: '100%' }}
+          whileInView={{ width: "100%" }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.3 }}
         />
@@ -182,18 +181,18 @@ function ProductRow({ product, index }) {
   const isReverse = index % 2 === 1;
 
   return (
-    <Link href={`/products/${product.slug}`} className="block group">
+    <Link href={`/products/${product.id}`} className="block group">
       <motion.div
         variants={productVariants}
         className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${
-          isReverse ? 'lg:grid-flow-col-dense' : ''
+          isReverse ? "lg:grid-flow-col-dense" : ""
         }`}
       >
         {/* Image */}
         <motion.div
           variants={imageVariants}
           className={`relative h-64 sm:h-80 lg:h-96 overflow-hidden ${
-            isReverse ? 'lg:col-start-2' : ''
+            isReverse ? "lg:col-start-2" : ""
           }`}
         >
           <Image
@@ -209,7 +208,7 @@ function ProductRow({ product, index }) {
         {/* Content */}
         <motion.div
           variants={productVariants}
-          className={`space-y-6 ${isReverse ? 'lg:col-start-1' : ''}`}
+          className={`space-y-6 ${isReverse ? "lg:col-start-1" : ""}`}
         >
           <div className="space-y-4">
             <h4 className="text-2xl sm:text-3xl lg:text-4xl font-light text-brand-black group-hover:text-brand-red transition-colors duration-300">
