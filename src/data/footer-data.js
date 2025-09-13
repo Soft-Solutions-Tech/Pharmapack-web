@@ -35,10 +35,10 @@ const footerData = {
   contactUs: {
     title: "Contact Us",
     links: [
-      { name: "Address", href: "/address" },
-      { name: "Employment Application", href: "/employment-application" },
-      { name: "Send Message", href: "/send-message" },
-      { name: "Our Location Map", href: "/location-map" },
+      { name: "Address", href: "/contact#address" },
+      //{ name: "Employment Application", href: "/employment-application" },
+      { name: "Send Message", href: "/contact" },
+      { name: "Our Location Map", href: "/contact#location-map" },
     ],
   },
   social: [
