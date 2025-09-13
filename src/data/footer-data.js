@@ -2,18 +2,17 @@ const footerData = {
   home: {
     title: "Home",
     links: [
-      { name: "Welcome", href: "/welcome" },
-      { name: "Certificates", href: "/certificates" },
+      { name: "Welcome", href: "/" },
+      { name: "Certificates", href: "/about#certificates" },
     ],
   },
   aboutUs: {
     title: "About Us",
     links: [
-      { name: "About Pharmapack", href: "/about-pharmapack" },
-      { name: "Our Vision", href: "/our-vision" },
-      { name: "Our Mission", href: "/our-mission" },
-      { name: "The Young GIANT", href: "/the-young-giant" },
-      { name: "Distribution Channels", href: "/distribution-channels" },
+      { name: "About Pharmapack", href: "/about" },
+      { name: "Vision & Mission", href: "/about#vision-mission" },
+      { name: "The Young GIANT", href: "/about#young-giant" },
+      { name: "Distribution Channels", href: "/about#distribution-channels" },
     ],
   },
   products: {

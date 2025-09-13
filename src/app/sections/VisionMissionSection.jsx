@@ -145,7 +145,7 @@ function HeaderSubtitle() {
 
 export default function VisionMissionSection() {
   return (
-    <section className="py-10 px-4 bg-white">
+    <section id="vision-mission" className="py-10 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <HeaderSection />

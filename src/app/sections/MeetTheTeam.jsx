@@ -185,7 +185,7 @@ export default function MeetTheTeam() {
                   <div className="pt-2">
                     <button
                       onClick={() => handleSocialClick(member.linkedin)}
-                      className="inline-flex items-center justify-center w-8 h-8 bg-gray-50 hover:bg-brand-red/10 text-brand-gray hover:text-brand-red rounded-full transition-all duration-300"
+                      className="inline-flex items-center justify-center w-8 h-8 bg-gray-50 hover:bg-brand-red/10 text-brand-gray hover:text-brand-red rounded-full transition-all duration-300 cursor-pointer"
                       aria-label={`${member.name} LinkedIn profile`}
                     >
                       <Linkedin className="w-4 h-4" />

@@ -1,4 +1,18 @@
-import { Award, Shield, Users, Globe } from "lucide-react";
+import {
+  Award,
+  Shield,
+  Users,
+  Globe,
+  Truck,
+  Store,
+  MapPin,
+  Building2,
+  TrendingUp,
+  Target,
+  FileCheck,
+  Award as AwardCert,
+  ShieldCheck,
+} from "lucide-react";
 
 export const whoWeAreContent = {
   headerLabel: "About Us",
@@ -67,6 +81,75 @@ export const whoWeAreContent = {
       icon: "Globe",
     },
   ],
+
+  // Distribution Channels Section Data
+  distributionChannels: [
+    {
+      name: "Multi Pharma",
+      description:
+        "Leading pharmaceutical distribution network serving major markets across Egypt and the MENA region with comprehensive logistics solutions.",
+      icon: Truck,
+      regions: ["Egypt", "MENA", "North Africa"],
+    },
+    {
+      name: "UCP Distribution",
+      description:
+        "Specialized healthcare product distribution focusing on pharmaceutical and cosmeceutical products with nationwide coverage.",
+      icon: Building2,
+      regions: ["Nationwide", "Urban Centers", "Healthcare Facilities"],
+    },
+    {
+      name: "Local Store Networks",
+      description:
+        "Extensive retail presence through local pharmacies and stores across Delta, Alexandria, and Upper Egypt regions.",
+      icon: Store,
+      regions: ["Delta", "Alexandria", "Upper Egypt", "Local Markets"],
+    },
+  ],
+
+  // Young Giant Section Data
+  youngGiant: {
+    paragraphs: [
+      "Though Pharmapack Pharmaceutical Industries is recently formed in its current structure, it stands as a testament to rapid growth and strategic vision in the pharmaceutical sector.",
+      "Our company is strategically affiliated with established industry leaders, leveraging decades of collective experience and market expertise to accelerate our development and establish professional excellence in pharmaceutical manufacturing.",
+      "This unique positioning allows us to combine the agility of a modern enterprise with the wisdom and stability of seasoned industry partnerships, creating a powerful foundation for sustainable growth and innovation.",
+    ],
+    affiliations: [
+      "Strategic Industry Partners",
+      "Established Manufacturing Networks",
+      "Professional Development Alliances",
+      "Market Expansion Collaborations",
+    ],
+  },
+
+  // Certificates Section Data
+  certificates: {
+    description:
+      "Our commitment to excellence is validated through internationally recognized quality certifications, positioning us as a leading pharmaceutical manufacturer in the region.",
+    certifications: [
+      {
+        name: "ISO 9001:2015",
+        description:
+          "International standard for Quality Management Systems, ensuring consistent product quality and customer satisfaction through systematic approach to quality control.",
+        icon: FileCheck,
+        year: "2015",
+      },
+      {
+        name: "ISO 45001:2018",
+        description:
+          "Occupational Health and Safety Management Systems certification, demonstrating our commitment to providing safe and healthy workplaces for all employees.",
+        icon: ShieldCheck,
+        year: "2018",
+      },
+      {
+        name: "GMP Certification",
+        description:
+          "Good Manufacturing Practice certification ensuring pharmaceutical products are consistently produced and controlled according to quality standards.",
+        icon: AwardCert,
+        year: "Current",
+      },
+    ],
+  },
 };
 
 // Map icon names to components
@@ -75,4 +158,13 @@ export const iconMap = {
   Shield,
   Users,
   Globe,
+  Truck,
+  Store,
+  MapPin,
+  Building2,
+  TrendingUp,
+  Target,
+  FileCheck,
+  AwardCert,
+  ShieldCheck,
 };
