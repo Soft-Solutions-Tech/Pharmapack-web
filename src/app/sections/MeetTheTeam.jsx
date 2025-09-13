@@ -149,13 +149,13 @@ export default function MeetTheTeam() {
               key={member.id}
               variants={animations.card}
               whileHover="hover"
-              className="text-center group relative bg-white rounded-2xl shadow-sm hover:shadow-md border border-gray-100 hover:border-brand-red/20 transition-all duration-300"
+              className="text-center group relative bg-white rounded-2xl shadow-sm hover:shadow-md border border-gray-100 hover:border-brand-red/20 transition-all duration-300 h-full flex flex-col"
             >
               {/* Subtle hover overlay */}
               <div className="absolute inset-0 bg-brand-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
 
               {/* Photo */}
-              <div className="relative w-32 h-32 mx-auto mt-2 mb-4">
+              <div className="relative w-32 h-32 mx-auto mt-6 mb-4 flex-shrink-0">
                 <Image
                   src={member.image}
                   alt={member.name}
@@ -165,42 +165,44 @@ export default function MeetTheTeam() {
                 />
               </div>
 
-              {/* Content */}
-              <div className="space-y-3 relative z-10 px-4 pb-6">
-                <div>
-                  <h3 className="text-xl font-medium text-brand-black">
-                    {member.name}
-                  </h3>
-                  <p className="text-brand-gray text-sm font-medium tracking-wide">
-                    {member.position}
+              {/* Content - grows to fill available space */}
+              <div className="flex-grow flex flex-col justify-between px-4 pb-4">
+                <div className="space-y-3 relative z-10">
+                  <div>
+                    <h3 className="text-xl font-medium text-brand-black">
+                      {member.name}
+                    </h3>
+                    <p className="text-brand-gray text-sm font-medium tracking-wide">
+                      {member.position}
+                    </p>
+                  </div>
+
+                  <p className="text-brand-gray text-sm leading-relaxed">
+                    {member.bio}
                   </p>
+
+                  {/* Social Link */}
+                  {member.linkedin && (
+                    <div className="pt-2">
+                      <button
+                        onClick={() => handleSocialClick(member.linkedin)}
+                        className="inline-flex items-center justify-center w-8 h-8 bg-gray-50 hover:bg-brand-red/10 text-brand-gray hover:text-brand-red rounded-full transition-all duration-300 cursor-pointer"
+                        aria-label={`${member.name} LinkedIn profile`}
+                      >
+                        <Linkedin className="w-4 h-4" />
+                      </button>
+                    </div>
+                  )}
                 </div>
 
-                <p className="text-brand-gray text-sm leading-relaxed">
-                  {member.bio}
-                </p>
-
-                {/* Social Link */}
-                {member.linkedin && (
-                  <div className="pt-2">
-                    <button
-                      onClick={() => handleSocialClick(member.linkedin)}
-                      className="inline-flex items-center justify-center w-8 h-8 bg-gray-50 hover:bg-brand-red/10 text-brand-gray hover:text-brand-red rounded-full transition-all duration-300 cursor-pointer"
-                      aria-label={`${member.name} LinkedIn profile`}
-                    >
-                      <Linkedin className="w-4 h-4" />
-                    </button>
-                  </div>
-                )}
+                {/* Accent line - positioned at the bottom of each card */}
+                <motion.div
+                  className="w-16 h-1 bg-gray-200 group-hover:bg-brand-red mx-auto transition-colors duration-200 rounded-full mt-6"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  transition={{ duration: 0.8 }}
+                />
               </div>
-
-              {/* Accent line */}
-              <motion.div
-                className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-red/60 via-brand-red to-brand-red/60"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ duration: 0.8 }}
-              />
             </motion.div>
           ))}
         </motion.div>

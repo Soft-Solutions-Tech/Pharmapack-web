@@ -388,16 +388,16 @@ function DistributionChannelsSection() {
         >
           <div className="inline-flex items-center gap-4 mb-6">
             <motion.div
-              className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent via-brand-red to-transparent"
+              className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent via-brand-gray to-transparent"
               initial={{ width: 0 }}
               animate={{ width: "3rem" }}
               transition={{ duration: 0.8 }}
             />
-            <span className="text-xs sm:text-sm font-medium text-brand-red tracking-[0.2em] uppercase">
+            <span className="text-xs sm:text-sm font-medium text-brand-gray tracking-[0.2em] uppercase">
               Distribution Network
             </span>
             <motion.div
-              className="h-px w-8 sm:w-12 bg-gradient-to-r from-brand-red via-transparent to-transparent"
+              className="h-px w-8 sm:w-12 bg-gradient-to-r from-brand-gray via-transparent to-transparent"
               initial={{ width: 0 }}
               animate={{ width: "3rem" }}
               transition={{ duration: 0.8 }}
@@ -482,12 +482,12 @@ function YoungGiantSection() {
         <motion.div variants={itemVariants} className="space-y-8 lg:space-y-10">
           <div className="inline-flex items-center gap-4 mb-6">
             <motion.div
-              className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent via-brand-red to-transparent"
+              className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent via-brand-gray to-transparent"
               initial={{ width: 0 }}
               animate={{ width: "3rem" }}
               transition={{ duration: 0.8 }}
             />
-            <span className="text-xs sm:text-sm font-medium text-brand-red tracking-[0.2em] uppercase">
+            <span className="text-xs sm:text-sm font-medium text-brand-gray tracking-[0.2em] uppercase">
               Our Journey
             </span>
           </div>
@@ -601,16 +601,16 @@ function CertificatesSection() {
         <motion.div variants={itemVariants}>
           <div className="inline-flex items-center gap-4 mb-6">
             <motion.div
-              className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent via-brand-red to-transparent"
+              className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent via-brand-gray to-transparent"
               initial={{ width: 0 }}
               animate={{ width: "3rem" }}
               transition={{ duration: 0.8 }}
             />
-            <span className="text-xs sm:text-sm font-medium text-brand-red tracking-[0.2em] uppercase">
+            <span className="text-xs sm:text-sm font-medium text-brand-gray tracking-[0.2em] uppercase">
               Quality Assurance
             </span>
             <motion.div
-              className="h-px w-8 sm:w-12 bg-gradient-to-r from-brand-red via-transparent to-transparent"
+              className="h-px w-8 sm:w-12 bg-gradient-to-r from-brand-gray via-transparent to-transparent"
               initial={{ width: 0 }}
               animate={{ width: "3rem" }}
               transition={{ duration: 0.8 }}
@@ -647,10 +647,6 @@ function CertificatesSection() {
             whileHover="hover"
             className="group relative bg-white rounded-3xl p-8 sm:p-10 shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-brand-red/20 cursor-default overflow-hidden"
           >
-            {/* Background decoration */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-brand-red/5 to-transparent rounded-full -translate-y-16 translate-x-16" />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-brand-red/3 to-transparent rounded-full translate-y-12 -translate-x-12" />
-
             <div className="relative">
               <motion.div
                 className="w-16 h-16 bg-brand-red/10 group-hover:bg-brand-red/20 rounded-2xl flex items-center justify-center mb-6 transition-all duration-200"
