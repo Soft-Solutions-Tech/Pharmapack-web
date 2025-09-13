@@ -114,12 +114,6 @@ export const whoWeAreContent = {
       "Our company is strategically affiliated with established industry leaders, leveraging decades of collective experience and market expertise to accelerate our development and establish professional excellence in pharmaceutical manufacturing.",
       "This unique positioning allows us to combine the agility of a modern enterprise with the wisdom and stability of seasoned industry partnerships, creating a powerful foundation for sustainable growth and innovation.",
     ],
-    affiliations: [
-      "Strategic Industry Partners",
-      "Established Manufacturing Networks",
-      "Professional Development Alliances",
-      "Market Expansion Collaborations",
-    ],
   },
 
   // Certificates Section Data

@@ -11,7 +11,7 @@ const footerData = {
     links: [
       { name: "About Pharmapack", href: "/about" },
       { name: "Vision & Mission", href: "/about#vision-mission" },
-      { name: "The Young GIANT", href: "/about#young-giant" },
+    //  { name: "The Young GIANT", href: "/about#young-giant" },
       { name: "Distribution Channels", href: "/about#distribution-channels" },
     ],
   },
