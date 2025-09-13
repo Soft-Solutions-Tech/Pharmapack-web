@@ -3,7 +3,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { ProductImage, ProductInfo, Breadcrumb } from "./page.jsx"; // Explicit .jsx extension
+import ProductImage from "./ProductImage.jsx";
+import ProductInfo from "./ProductInfo.jsx";
+import Breadcrumb from "./Breadcrumb.jsx";
 
 // Debug: Log imported components to verify they are defined
 console.log("Imported components:", { ProductImage, ProductInfo, Breadcrumb });
