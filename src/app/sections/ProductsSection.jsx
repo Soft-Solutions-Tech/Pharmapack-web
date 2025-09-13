@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { collectionsData } from "@/data/products-data";
 
-// Animation variants
+// Animation variants (unchanged)
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -77,26 +77,51 @@ const tabContentVariants = {
 };
 
 export default function ProductsSection() {
-  const [activeTab, setActiveTab] = useState('all');
+  const [activeCollection, setActiveCollection] = useState('all');
+  const [activeSubcategory, setActiveSubcategory] = useState('PharmaPack Products');
 
-  // Create tabs data
-  const tabs = [
-    { id: 'all', label: 'All Products', count: collectionsData.reduce((acc, col) => acc + col.products.length, 0) },
+  // Create collection tabs, including "All Products"
+  const totalProductsCount = collectionsData.reduce(
+    (acc, collection) => acc + collection.subcategories.reduce((subAcc, sub) => subAcc + sub.products.length, 0),
+    0
+  );
+  const collectionTabs = [
+    { id: 'all', label: 'All Products', count: totalProductsCount },
     ...collectionsData.map(collection => ({
       id: collection.title.toLowerCase().replace(/\s+/g, '-'),
       label: collection.title,
-      count: collection.products.length
+      count: collection.subcategories.reduce((acc, sub) => acc + sub.products.length, 0)
     }))
   ];
 
-  // Get filtered products based on active tab
+  // Get subcategory tabs for the active collection (not shown for "All Products")
+  const activeCollectionData = collectionsData.find(
+    collection => collection.title.toLowerCase().replace(/\s+/g, '-') === activeCollection
+  );
+  const subcategoryTabs = activeCollectionData
+    ? activeCollectionData.subcategories.map(subcategory => ({
+        id: subcategory.title.toLowerCase().replace(/\s+/g, '-'),
+        label: subcategory.title,
+        count: subcategory.products.length
+      }))
+    : [];
+
+  // Get filtered content based on active collection and subcategory
   const getFilteredContent = () => {
-    if (activeTab === 'all') {
-      return collectionsData;
+    if (activeCollection === 'all') {
+      return collectionsData.map(collection => ({
+        ...collection,
+        products: collection.subcategories.flatMap(sub => sub.products)
+      }));
     }
-    return collectionsData.filter(collection => 
-      collection.title.toLowerCase().replace(/\s+/g, '-') === activeTab
+    const collection = collectionsData.find(
+      col => col.title.toLowerCase().replace(/\s+/g, '-') === activeCollection
     );
+    if (!collection) return [];
+    const subcategory = collection.subcategories.find(
+      sub => sub.title.toLowerCase().replace(/\s+/g, '-') === activeSubcategory.toLowerCase().replace(/\s+/g, '-')
+    );
+    return [{ ...collection, products: subcategory ? subcategory.products : [] }];
   };
 
   const filteredContent = getFilteredContent();
@@ -107,20 +132,33 @@ export default function ProductsSection() {
         {/* Header */}
         <HeaderSection />
 
-        {/* Professional Tabs */}
-        <TabsSection tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+        {/* Collection Tabs */}
+        <TabsSection tabs={collectionTabs} activeTab={activeCollection} setActiveTab={(id) => {
+          setActiveCollection(id);
+          setActiveSubcategory('PharmaPack Products'); // Reset subcategory when switching collections
+        }} />
 
-        {/* Filtered Content */}
+        {/* Subcategory Tabs (only shown when not on "All Products") */}
+        {activeCollection !== 'all' && (
+          <TabsSection 
+            tabs={subcategoryTabs} 
+            activeTab={activeSubcategory.toLowerCase().replace(/\s+/g, '-')} 
+            setActiveTab={setActiveSubcategory} 
+            isSubcategory
+          />
+        )}
+
+        {/* Filtered Products */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeTab}
+            key={`${activeCollection}-${activeSubcategory}`}
             variants={tabContentVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
             className="mt-16 lg:mt-20"
           >
-            <FilteredCollectionsSection collections={filteredContent} activeTab={activeTab} />
+            <FilteredCollectionsSection collections={filteredContent} activeTab={activeCollection} />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -185,13 +223,13 @@ function HeaderTitle() {
   );
 }
 
-function TabsSection({ tabs, activeTab, setActiveTab }) {
+function TabsSection({ tabs, activeTab, setActiveTab, isSubcategory = false }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.3 }}
-      className="relative"
+      transition={{ duration: 0.6, delay: isSubcategory ? 0.4 : 0.3 }}
+      className={`relative ${isSubcategory ? '' : ''}`}
     >
       {/* Tab Navigation */}
       <div className="relative">
@@ -199,7 +237,7 @@ function TabsSection({ tabs, activeTab, setActiveTab }) {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"></div>
         
         {/* Tabs Container */}
-        <div className="relative flex flex-nowrap gap-2 sm:gap-4 overflow-x-auto scrollbar-hide py-2 sm:py-4 px-2 sm:px-0 bg-white rounded-lg sm:bg-transparent sm:rounded-none">
+        <div className={`relative flex flex-nowrap gap-2 sm:gap-4 overflow-x-auto scrollbar-hide py-2 sm:py-4 px-2 sm:px-0 bg-white rounded-lg sm:bg-transparent sm:rounded-none ${isSubcategory ? 'justify-center' : ''}`}>
           {tabs.map((tab, index) => (
             <TabButton
               key={tab.id}
@@ -207,6 +245,7 @@ function TabsSection({ tabs, activeTab, setActiveTab }) {
               isActive={activeTab === tab.id}
               onClick={() => setActiveTab(tab.id)}
               index={index}
+              isSubcategory={isSubcategory}
             />
           ))}
         </div>
@@ -215,7 +254,7 @@ function TabsSection({ tabs, activeTab, setActiveTab }) {
       {/* Active Tab Indicator Line */}
       <motion.div
         className="absolute bottom-0 h-0.5 bg-gradient-to-r from-brand-red via-brand-red to-brand-red/60"
-        layoutId="activeTabIndicator"
+        layoutId={isSubcategory ? "activeSubcategoryIndicator" : "activeTabIndicator"}
         transition={{
           type: "spring",
           stiffness: 400,
@@ -226,7 +265,7 @@ function TabsSection({ tabs, activeTab, setActiveTab }) {
   );
 }
 
-function TabButton({ tab, isActive, onClick, index }) {
+function TabButton({ tab, isActive, onClick, index, isSubcategory }) {
   return (
     <motion.button
       onClick={onClick}
@@ -291,7 +330,7 @@ function FilteredCollectionsSection({ collections, activeTab }) {
             className="border-b border-gray-100 last:border-b-0 pb-24 lg:pb-32 last:pb-0"
           >
             <CollectionHeader collection={collection} />
-            <ProductGrid products={collection.products} />
+            <ProductGrid products={collection.products} activeTab={activeTab} />
           </motion.div>
         ))}
       </div>
@@ -305,7 +344,8 @@ function FilteredCollectionsSection({ collections, activeTab }) {
           key={`${collection.title}-${index}`}
           variants={containerVariants}
         >
-          <ProductGrid products={collection.products} showCollectionTitle={false} />
+          <CollectionHeader collection={collection} />
+          <ProductGrid products={collection.products} showCollectionTitle={false} activeTab={activeTab} />
         </motion.div>
       ))}
     </div>
@@ -333,24 +373,42 @@ function CollectionHeader({ collection }) {
   );
 }
 
-function ProductGrid({ products, showCollectionTitle = true }) {
+function ProductGrid({ products, showCollectionTitle = true, activeTab }) {
   return (
     <motion.div 
       className="space-y-12 lg:space-y-16"
       variants={containerVariants}
     >
-      {products.map((product, index) => (
-        <ProductRow key={product.id} product={product} index={index} />
-      ))}
+      {products.length > 0 ? (
+        products.map((product, index) => (
+          <ProductRow key={product.id} product={product} index={index} activeTab={activeTab} />
+        ))
+      ) : (
+        <p className="text-center text-brand-gray">No products available.</p>
+      )}
     </motion.div>
   );
 }
 
-function ProductRow({ product, index }) {
+function ProductRow({ product, index, activeTab }) {
   const isReverse = index % 2 === 1;
 
+  // Determine the collection label by finding which subcategory the product belongs to
+  const getProductCollectionLabel = (product) => {
+    for (const collection of collectionsData) {
+      for (const subcategory of collection.subcategories) {
+        if (subcategory.products.some(p => p.id === product.id)) {
+          return subcategory.title === 'PharmaPack Products' ? 'PharmaPack' : 'Client';
+        }
+      }
+    }
+    return 'PharmaPack'; // Fallback
+  };
+
+  const collectionLabel = getProductCollectionLabel(product);
+
   return (
-    <Link href={`/products/${product.id}`} className="block group">
+    <Link href={`/products/${product.slug.replace(/^\//, '')}`} className="block group">
       <motion.div
         variants={productVariants}
         className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${
@@ -391,6 +449,24 @@ function ProductRow({ product, index }) {
           className={`space-y-6 ${isReverse ? "lg:col-start-1" : ""}`}
         >
           <div className="space-y-4">
+            {/* Collection Caption (shown only when activeTab is 'all') */}
+            {activeTab === 'all' && (
+              <motion.div
+                className="flex items-center gap-2"
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <motion.span
+                  className="inline-block text-xs font-medium text-brand-gray uppercase tracking-wide bg-gray-100 px-3 py-1 rounded-full"
+                  variants={itemVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  {collectionLabel} Product
+                </motion.span>
+              </motion.div>
+            )}
             <h4 className="text-2xl sm:text-3xl lg:text-4xl font-light text-brand-black group-hover:text-brand-red transition-colors duration-300">
               {product.title}
             </h4>

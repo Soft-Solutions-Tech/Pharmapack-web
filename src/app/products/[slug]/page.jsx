@@ -2,13 +2,14 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { useRouter, useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { collectionsData } from "@/data/products-data";
+import ProductDetailClient from "./ProductDetailClient.jsx";
 
+// Generate all products, ensuring uniqueness by ID
 const allProducts = collectionsData
-  .flatMap((collection) => collection.products)
+  .flatMap((collection) => collection.subcategories.flatMap((sub) => sub.products))
   .reduce((unique, product) => {
     const exists = unique.find((p) => p.id === product.id);
     if (!exists) {
@@ -17,7 +18,7 @@ const allProducts = collectionsData
     return unique;
   }, []);
 
-// animation variants
+// Animation variants
 const animations = {
   fadeIn: {
     hidden: { opacity: 0 },
@@ -57,7 +58,6 @@ const animations = {
       transition: { duration: 0.5, ease: "easeOut" },
     },
   },
-  //  mobile-optimized animations
   mobileSlideUp: {
     hidden: { opacity: 0, y: 40 },
     visible: {
@@ -68,35 +68,49 @@ const animations = {
   },
 };
 
-// Back Button Component
-function BackButton() {
-  const router = useRouter();
+// Server Component: ProductDetailPage
+export default async function ProductDetailPage({ params }) {
+  // Await params to ensure it's resolved
+  const { slug } = await params;
+  console.log("productSlug:", slug); // Debug
 
-  const handleBack = () => {
-    router.back();
-  };
+  // Normalize slug for comparison
+  const normalizedSlug = slug?.toLowerCase().replace(/^\//, "") || "";
+  const product = allProducts.find(
+    (p) => p.slug.replace(/^\//, "").toLowerCase() === normalizedSlug
+  );
+
+  if (!product) {
+    console.log("Product not found for slug:", normalizedSlug);
+    console.log("Available slugs:", allProducts.map((p) => p.slug));
+    return <ProductNotFound />;
+  }
 
   return (
-    <motion.button
-      onClick={handleBack}
-      className="inline-flex items-center gap-2 mb-8 sm:mb-10 px-4 py-3 -ml-4 text-sm sm:text-base font-medium text-brand-red hover:text-red-700 hover:bg-red-50 rounded-xl transition-all duration-300 group touch-manipulation"
-      whileHover={{ x: -2 }}
-      whileTap={{ scale: 0.96 }}
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.4 }}
+    <motion.div
+      className="min-h-screen bg-white mt-4"
+      variants={animations.fadeIn}
+      initial="hidden"
+      animate="visible"
     >
-      <span className="text-lg sm:text-xl group-hover:-translate-x-1 transition-transform duration-300">
-        ←
-      </span>
-      <span className="hidden sm:inline">Back to Products</span>
-      <span className="sm:hidden">Back</span>
-    </motion.button>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-32">
+        <div className="pt-16 sm:pt-20 lg:pt-0">
+          <ProductDetailClient product={product} />
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
-// Product Image Component
-function ProductImage({ product }) {
+// Generate static parameters for SSG
+export async function generateStaticParams() {
+  return allProducts.map((product) => ({
+    slug: product.slug.replace(/^\//, "").toLowerCase(),
+  }));
+}
+
+// ProductImage, ProductInfo, Breadcrumb, ProductNotFound components
+export function ProductImage({ product }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -106,7 +120,7 @@ function ProductImage({ product }) {
     >
       <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl border border-gray-100/50">
         <Image
-          src={product.image}
+          src={product.image || "/products/fallback-image.jpg"}
           alt={product.title}
           width={1850}
           height={825}
@@ -119,8 +133,7 @@ function ProductImage({ product }) {
   );
 }
 
-// Product Info Component
-function ProductInfo({ product }) {
+export function ProductInfo({ product }) {
   return (
     <motion.div
       variants={animations.mobileSlideUp}
@@ -128,7 +141,6 @@ function ProductInfo({ product }) {
       animate="visible"
       className="space-y-8 sm:space-y-10"
     >
-      {/* Product Header */}
       <div className="space-y-4 sm:space-y-6">
         <motion.h1
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-brand-black leading-[1.1] tracking-tight"
@@ -147,8 +159,6 @@ function ProductInfo({ product }) {
           {product.description}
         </motion.p>
       </div>
-
-      {/* Detailed Description */}
       <motion.div
         className="bg-gray-50/80 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-gray-100"
         initial={{ opacity: 0, y: 20 }}
@@ -162,15 +172,12 @@ function ProductInfo({ product }) {
           {product.detailedDescription}
         </p>
       </motion.div>
-
-      {/* Features and Specifications Grid */}
       <motion.div
         variants={animations.staggerContainer}
         initial="hidden"
         animate="visible"
         className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2"
       >
-        {/* Key Features */}
         <motion.div
           variants={animations.staggerItem}
           className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100/80 order-1"
@@ -196,8 +203,6 @@ function ProductInfo({ product }) {
             ))}
           </ul>
         </motion.div>
-
-        {/* Specifications - Enhanced mobile design */}
         <motion.div
           variants={animations.staggerItem}
           className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100/80 order-2"
@@ -207,29 +212,25 @@ function ProductInfo({ product }) {
             Specifications
           </h3>
           <div className="space-y-4 sm:space-y-5">
-            {Object.entries(product.specifications).map(
-              ([key, value], index) => (
-                <motion.div
-                  key={key}
-                  className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-3 border-b border-gray-100 last:border-b-0 group hover:bg-gray-50/50 -mx-2 px-2 rounded-lg transition-colors duration-200 gap-1 sm:gap-0"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.4 + index * 0.08 }}
-                >
-                  <span className="font-medium capitalize text-brand-black text-base sm:text-lg">
-                    {key.replace(/([A-Z])/g, " $1").trim()}
-                  </span>
-                  <span className="text-brand-gray text-base sm:text-lg font-medium sm:text-right">
-                    {value}
-                  </span>
-                </motion.div>
-              )
-            )}
+            {Object.entries(product.specifications).map(([key, value], index) => (
+              <motion.div
+                key={key}
+                className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-3 border-b border-gray-100 last:border-b-0 group hover:bg-gray-50/50 -mx-2 px-2 rounded-lg transition-colors duration-200 gap-1 sm:gap-0"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.4 + index * 0.08 }}
+              >
+                <span className="font-medium capitalize text-brand-black text-base sm:text-lg">
+                  {key.replace(/([A-Z])/g, " $1").trim()}
+                </span>
+                <span className="text-brand-gray text-base sm:text-lg font-medium sm:text-right">
+                  {value}
+                </span>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </motion.div>
-
-      {/* CTA Section - Enhanced mobile design */}
       <motion.div
         className="pt-6 sm:pt-8 border-t border-gray-200"
         initial={{ opacity: 0, y: 20 }}
@@ -252,10 +253,13 @@ function ProductInfo({ product }) {
   );
 }
 
-// Enhanced Breadcrumb Component with better mobile handling
-function Breadcrumb({ product }) {
+export function Breadcrumb({ product }) {
   const collection = collectionsData.find((col) =>
-    col.products.some((p) => p.id === product.id)
+    col.subcategories.some((sub) => sub.products.some((p) => p.slug === product.slug))
+  );
+
+  const subcategory = collection?.subcategories.find((sub) =>
+    sub.products.some((p) => p.slug === product.slug)
   );
 
   return (
@@ -274,22 +278,42 @@ function Breadcrumb({ product }) {
             Products
           </Link>
         </li>
-        <li className="flex items-center flex-shrink-0">
-          <svg
-            className="w-4 h-4 sm:w-5 sm:h-5 mx-2 sm:mx-3 text-gray-400"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              fillRule="evenodd"
-              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-              clipRule="evenodd"
-            />
-          </svg>
-          <span className="text-brand-gray font-medium whitespace-nowrap">
-            {collection?.title}
-          </span>
-        </li>
+        {collection && (
+          <li className="flex items-center flex-shrink-0">
+            <svg
+              className="w-4 h-4 sm:w-5 sm:h-5 mx-2 sm:mx-3 text-gray-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <span className="text-brand-gray font-medium whitespace-nowrap">
+              {collection.title}
+            </span>
+          </li>
+        )}
+        {subcategory && (
+          <li className="flex items-center flex-shrink-0">
+            <svg
+              className="w-4 h-4 sm:w-5 sm:h-5 mx-2 sm:mx-3 text-gray-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <span className="text-brand-gray font-medium whitespace-nowrap">
+              {subcategory.title}
+            </span>
+          </li>
+        )}
         <li className="flex items-center min-w-0">
           <svg
             className="w-4 h-4 sm:w-5 sm:h-5 mx-2 sm:mx-3 text-gray-400 flex-shrink-0"
@@ -299,20 +323,19 @@ function Breadcrumb({ product }) {
             <path
               fillRule="evenodd"
               d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-              clipRule="evenodd"
-            />
-          </svg>
-          <span className="text-brand-black font-semibold truncate">
-            {product.title}
-          </span>
-        </li>
-      </ol>
+                clipRule="evenodd"
+              />
+            </svg>
+            <span className="text-brand-black font-semibold truncate">
+              {product.title}
+            </span>
+          </li>
+        </ol>
     </motion.nav>
   );
 }
 
-// Enhanced Error State Component
-function ProductNotFound() {
+export function ProductNotFound() {
   return (
     <div className="min-h-screen bg-white flex items-center justify-center px-4 pt-20 sm:pt-32">
       <motion.div
@@ -340,8 +363,7 @@ function ProductNotFound() {
           Product Not Found
         </h1>
         <p className="text-brand-gray mb-8 leading-relaxed text-sm sm:text-base px-4">
-          The requested product could not be found. It may have been moved or
-          removed.
+          The requested product could not be found. It may have been moved or removed.
         </p>
         <Link
           href="/products"
@@ -352,39 +374,5 @@ function ProductNotFound() {
         </Link>
       </motion.div>
     </div>
-  );
-}
-
-// Main Product Detail Component with enhanced mobile experience
-export default function ProductDetailPage() {
-  const params = useParams();
-  const productId = parseInt(params.id);
-  const product = allProducts.find((p) => p.id === productId);
-
-  if (!product) {
-    return <ProductNotFound />;
-  }
-
-  return (
-    <motion.div
-      className="min-h-screen bg-white mt-4"
-      variants={animations.fadeIn}
-      initial="hidden"
-      animate="visible"
-    >
-      {/* Enhanced container with better mobile padding */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-32">
-        <div className="pt-16 sm:pt-20 lg:pt-0">
-          <Breadcrumb product={product} />
-          <BackButton />
-
-          {/* Enhanced grid with better mobile spacing */}
-          <div className="grid grid-cols-1 gap-10 sm:gap-12 mb-12 sm:mb-16">
-            <ProductImage product={product} />
-            <ProductInfo product={product} />
-          </div>
-        </div>
-      </div>
-    </motion.div>
   );
 }
