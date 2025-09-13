@@ -126,7 +126,7 @@ function MobileMenu({ onClose, pathname }) {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -20, scale: 0.95 }}
       transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-      className="mobile-menu fixed top-0 left-0 w-full h-screen bg-[var(--color-background)/95] backdrop-blur-xl flex flex-col items-center justify-center z-50 text-[var(--color-brand-gray)]"
+      className="mobile-menu fixed top-0 left-0 w-full h-screen bg-white flex flex-col items-center justify-center z-50 text-[var(--color-brand-gray)]"
     >
       <Button
         variant="ghost"
