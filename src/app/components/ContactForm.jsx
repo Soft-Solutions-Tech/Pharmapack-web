@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MessageSquare, Copy } from 'lucide-react';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Mail, Phone, MessageSquare, Copy } from "lucide-react";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    message: '',
-    inquiryType: 'General Question', // Default value for dropdown
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+    inquiryType: "General Question", // Default value for dropdown
   });
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [copied, setCopied] = useState({ email: false, phone: false });
 
@@ -31,34 +31,34 @@ export default function ContactForm() {
       setCopied((prev) => ({ ...prev, [type]: true }));
       setTimeout(() => setCopied((prev) => ({ ...prev, [type]: false })), 2000);
     } catch (error) {
-      console.error('Failed to copy:', error);
+      console.error("Failed to copy:", error);
     }
   };
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    setStatus('');
+    setStatus("");
     try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        setStatus('success');
+        setStatus("success");
         setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          message: '',
-          inquiryType: 'General Question',
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          message: "",
+          inquiryType: "General Question",
         });
       } else {
-        setStatus('error');
+        setStatus("error");
       }
     } catch (error) {
-      setStatus('error');
+      setStatus("error");
     } finally {
       setIsSubmitting(false);
     }
@@ -90,20 +90,21 @@ export default function ContactForm() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              Get in{' '}
+              Get in{" "}
               <span className="font-normal text-brand-red relative">
                 Touch
                 <motion.div
                   className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-brand-red/60 to-transparent"
                   initial={{ width: 0 }}
-                  animate={{ width: '100%' }}
+                  animate={{ width: "100%" }}
                   transition={{ duration: 1 }}
                 />
               </span>
             </motion.h2>
 
             <p className="text-base sm:text-lg md:text-xl text-brand-gray leading-relaxed font-light max-w-2xl mx-auto">
-              Connect with our team to explore possibilities and discuss your next strategic initiative.
+              Connect with our team to explore possibilities and discuss your
+              next strategic initiative.
             </p>
           </motion.div>
 
@@ -119,27 +120,38 @@ export default function ContactForm() {
               <div className="flex flex-col justify-start bg-brand-white/80 p-6 rounded-lg shadow-sm border border-brand-gray/10">
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-2xl font-bold text-brand-black mb-4">Got a Question?</h3>
+                    <h3 className="text-2xl font-bold text-brand-black mb-4">
+                      Got a Question?
+                    </h3>
                     <p className="text-base font-light text-brand-gray leading-relaxed mb-6">
-                      We've got answers! Whether it's about our products, services, or just general inquiries, our team is here to help. Drop us a message and we'll get back to you as soon as possible.
+                      We've got answers! Whether it's about our products,
+                      services, or just general inquiries, our team is here to
+                      help. Drop us a message and we'll get back to you as soon
+                      as possible.
                     </p>
                   </div>
 
                   <div>
-                    <h4 className="text-lg font-semibold text-brand-black mb-3">Reach Out Today:</h4>
+                    <h4 className="text-lg font-semibold text-brand-black mb-3">
+                      Reach Out Today:
+                    </h4>
                     <ul className="space-y-2 text-base font-light text-brand-gray mb-6">
                       <li>• Fill out the form below</li>
                       <li className="flex items-center space-x-2 relative">
                         <span>• Email us at </span>
                         <button
-                          onClick={() => handleCopy('contact@company.com', 'email')}
+                          onClick={() =>
+                            handleCopy("contact@company.com", "email")
+                          }
                           className="font-semibold text-brand-black hover:text-brand-red transition-colors duration-300 relative"
                         >
                           contact@company.com
                         </button>
                         <Copy
                           className="w-4 h-4 text-brand-gray hover:text-brand-red cursor-pointer transition-colors duration-300"
-                          onClick={() => handleCopy('contact@company.com', 'email')}
+                          onClick={() =>
+                            handleCopy("contact@company.com", "email")
+                          }
                         />
                         {copied.email && (
                           <span className="absolute left-1/2 transform -translate-x-1/2 top-full mt-1 text-sm text-green-600 bg-brand-white px-2 py-1 rounded shadow z-10 transition-opacity duration-500 opacity-100">
@@ -150,14 +162,18 @@ export default function ContactForm() {
                       <li className="flex items-center space-x-2 relative">
                         <span>• Or call us at </span>
                         <button
-                          onClick={() => handleCopy('+1 (555) 123-4567', 'phone')}
+                          onClick={() =>
+                            handleCopy("+1 (555) 123-4567", "phone")
+                          }
                           className="font-semibold text-brand-black hover:text-brand-red transition-colors duration-300 relative"
                         >
                           +1 (555) 123-4567
                         </button>
                         <Copy
                           className="w-4 h-4 text-brand-gray hover:text-brand-red cursor-pointer transition-colors duration-300"
-                          onClick={() => handleCopy('+1 (555) 123-4567', 'phone')}
+                          onClick={() =>
+                            handleCopy("+1 (555) 123-4567", "phone")
+                          }
                         />
                         {copied.phone && (
                           <span className="absolute left-1/2 transform -translate-x-1/2 top-full mt-1 text-sm text-green-600 bg-brand-white px-2 py-1 rounded shadow z-10 transition-opacity duration-500 opacity-100">
@@ -292,7 +308,7 @@ export default function ContactForm() {
                     <div className="absolute inset-0 bg-brand-red -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
                     <div className="relative flex items-center justify-center space-x-3 group-hover:text-brand-white transition-colors duration-500">
                       <span className="text-base font-medium">
-                        {isSubmitting ? 'Sending...' : 'Send Message'}
+                        {isSubmitting ? "Sending..." : "Send Message"}
                       </span>
                     </div>
                   </motion.button>
@@ -300,12 +316,12 @@ export default function ContactForm() {
               </div>
             </div>
 
-            {status === 'error' && (
+            {status === "error" && (
               <p className="mt-4 text-center text-brand-red text-sm">
                 Failed to send your message. Please try again.
               </p>
             )}
-            {status === 'success' && (
+            {status === "success" && (
               <p className="mt-4 text-center text-green-600 text-sm">
                 Your message has been sent successfully!
               </p>
