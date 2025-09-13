@@ -65,7 +65,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="h-[65vh] w-full pt-32 pb-16 bg-gradient-to-b from-brand-white to-gray-50 relative">
+    <section className="min-h-screen w-full pt-32 pb-32 bg-gradient-to-b from-brand-white to-gray-50 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <form className="space-y-6">
           {/* Header Section */}
