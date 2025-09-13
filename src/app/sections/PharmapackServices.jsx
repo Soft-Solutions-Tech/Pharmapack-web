@@ -44,12 +44,6 @@ const contentVariants = {
 export default function PharmapackServices() {
   const [activeService, setActiveService] = useState(servicesContent.services[0]);
 
-  const handleServiceClick = (service) => {
-    if (service.link) {
-      window.open(service.link, '_blank', 'noopener,noreferrer');
-    }
-  };
-
   return (
     <section id="PharmaPackServices" className="min-h-screen flex flex-col px-6 bg-white">
       <div className="max-w-7xl mx-auto flex-1 flex flex-col mb-20">
@@ -238,19 +232,7 @@ export default function PharmapackServices() {
                           </motion.div>
                         ))}
                       </div>
-                    </div>
-
-                    {/* CTA Button */}
-                    <motion.button
-                      onClick={() => handleServiceClick(activeService)}
-                      className="group bg-brand-red hover:bg-brand-black text-white px-6 py-3 rounded-xl font-medium text-base transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl cursor-pointer"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      aria-label={`Learn more about ${activeService.title}`}
-                    >
-                      <span>Explore Service</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                    </motion.button>
+                    </div>      
                   </div>
                 </motion.div>
               </AnimatePresence>

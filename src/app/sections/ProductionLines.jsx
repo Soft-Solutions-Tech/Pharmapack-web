@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
 import { productionContent, iconMap } from '@/data/production-data';
 
 // Animation variants
@@ -30,18 +29,6 @@ const cardVariants = {
 };
 
 const ProductionLines = () => {
-  const handleCardClick = (website) => {
-    if (website) {
-      window.open(website, '_blank', 'noopener,noreferrer');
-    }
-  };
-
-  const handleCtaClick = () => {
-    if (productionContent.ctaWebsite) {
-      window.open(productionContent.ctaWebsite, '_blank', 'noopener,noreferrer');
-    }
-  };
-
   return (
     <section id="production-lines" className="py-20 px-6 bg-white relative overflow-hidden">
       {/* Subtle background pattern */}
@@ -104,8 +91,7 @@ const ProductionLines = () => {
               <motion.div
                 key={line.id}
                 variants={cardVariants}
-                onClick={() => handleCardClick(line.website)}
-                className="group bg-white shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-brand-gray/20 flex flex-col"
+                className="group bg-white shadow-sm hover:shadow-xl transition-all duration-500 border border-brand-gray/20 flex flex-col"
               >
                 {/* Card Header */}
                 <div className="p-8 pb-6 flex-grow">
@@ -113,7 +99,6 @@ const ProductionLines = () => {
                     <div className="p-3 bg-white/80 rounded-xl group-hover:bg-brand-red transition-colors duration-300">
                       <IconComponent className="w-6 h-6 text-brand-gray group-hover:text-brand-white transition-colors duration-300" />
                     </div>
-                    <ArrowUpRight className="w-5 h-5 text-brand-gray group-hover:text-brand-black group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
                   </div>
 
                   <h3 className="text-xl font-medium text-brand-black mb-3 leading-snug group-hover:text-brand-red">
