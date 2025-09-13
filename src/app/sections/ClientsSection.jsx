@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { Building2, ArrowUpRight } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { clients, sectionContent } from '@/data/clients-data';
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Building2, ArrowUpRight } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { clients, sectionContent } from "@/data/clients-data";
 
 // Animation variants
 const containerVariants = {
@@ -25,7 +25,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 };
@@ -37,7 +37,7 @@ const logoVariants = {
     scale: 1,
     transition: {
       duration: 0.5,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
   hover: {
@@ -45,7 +45,7 @@ const logoVariants = {
     opacity: 1,
     transition: {
       duration: 0.3,
-      ease: 'easeInOut',
+      ease: "easeInOut",
     },
   },
 };
@@ -57,7 +57,7 @@ const nameVariants = {
     y: 0,
     transition: {
       duration: 0.3,
-      ease: 'easeInOut',
+      ease: "easeInOut",
     },
   },
 };
@@ -109,12 +109,12 @@ export default function ClientsSection() {
 
   const handleClientClick = (website) => {
     if (website) {
-      window.open(website, '_blank', 'noopener,noreferrer');
+      window.open(website, "_blank", "noopener,noreferrer");
     }
   };
 
   const handleCtaClick = () => {
-    router.push('/contact');
+    router.push("/contact");
   };
 
   return (
@@ -145,13 +145,13 @@ export default function ClientsSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Trusted by{' '}
+            Trusted by{" "}
             <span className="font-normal text-brand-red relative">
               Industry Leaders
               <motion.div
                 className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-brand-red/60 to-transparent"
                 initial={{ width: 0 }}
-                animate={{ width: '100%' }}
+                animate={{ width: "100%" }}
                 transition={{ duration: 1 }}
               />
             </span>
@@ -173,7 +173,7 @@ export default function ClientsSection() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6"
           >
             {clients.map((client) => (
               <motion.div
@@ -184,14 +184,14 @@ export default function ClientsSection() {
                 whileHover="hover"
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleClientClick(client.website)}
-                className="group relative bg-white/50 rounded-2xl p-6 flex flex-col items-center justify-center hover:bg-white border border-brand-gray/10 hover:border-brand-gray/20 transition-all duration-300 cursor-pointer hover:shadow-lg"
+                className="group relative bg-white rounded-2xl p-4 md:p-5 flex flex-col items-center justify-center border border-brand-gray/10 hover:border-brand-gray/20 transition-all duration-300 cursor-pointer hover:shadow-lg"
               >
-                <div className="relative w-full h-20">
+                <div className="relative w-full h-24 md:h-32">
                   <Image
-                    src={client.logo}
+                    src={`/clients/${client.logo.split("/").pop()}`}
                     alt={`${client.name} logo`}
                     fill
-                    className="object-contain p-4 opacity-60 group-hover:opacity-100 transition-all duration-300 filter grayscale group-hover:grayscale-0"
+                    className="object-contain p-3 md:p-4 opacity-100 group-hover:opacity-100 transition-all duration-300 group-hover:filter group-hover:grayscale"
                     sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 16vw"
                   />
                 </div>
@@ -199,7 +199,7 @@ export default function ClientsSection() {
                   variants={nameVariants}
                   initial="hidden"
                   animate="visible"
-                  className="text-sm font-light text-center text-brand-gray tracking-wider mt-2 opacity-0 group-hover:opacity-100 transition-all duration-300"
+                  className="text-xs md:text-sm font-light text-center text-brand-gray tracking-wider mt-2 opacity-0 group-hover:opacity-100 transition-all duration-300"
                 >
                   {client.name}
                 </motion.span>
@@ -219,10 +219,10 @@ export default function ClientsSection() {
           >
             <div
               onClick={handleCtaClick}
-              className="group inline-flex flex-col items-center gap-2 text-brand-gray hover:text-brand-black transition-colors duration-300 cursor-pointer"
+              className="group inline-flex flex-col items-center gap-2 text-brand-red hover:text-brand-black transition-colors duration-300 cursor-pointer"
             >
               <div>
-                {sectionContent.placeholder.button}{' '}
+                {sectionContent.placeholder.button}{" "}
                 <ArrowUpRight className="w-4 h-4 inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </div>
               <span className="text-sm font-medium tracking-wide">
