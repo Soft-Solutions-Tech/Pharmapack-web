@@ -212,7 +212,7 @@ export default function PharmapackServices() {
                     </p>
 
                     {/* Features */}
-                    <div className="mb-6">
+                    <div >
                       <h4 className="text-brand-black font-medium mb-3 text-sm uppercase tracking-wider">
                         Key Capabilities
                       </h4>

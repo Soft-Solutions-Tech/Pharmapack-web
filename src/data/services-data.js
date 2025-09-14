@@ -37,12 +37,12 @@ export const servicesContent = {
       ],
       link: "/services/formulation",
     },
-      {
+    {
       id: 3,
       title: "Product Registration",
       shortTitle: "Product Registration",
       description:
-        "Preparing all required documentation Supporting clients in registering products with relevant authorities Ensuring smooth regulatory approval for market launch",
+        "Preparing all required documentation, supporting clients in registering products with relevant authorities, and ensuring smooth regulatory approval for market launch.",
       image: "/Product-Registration.jpg",
       features: [
         "Documentation Prepared",
@@ -96,6 +96,21 @@ export const servicesContent = {
         "Long-term Partnership",
       ],
       link: "/services/private-label-branding",
+    },
+    {
+      id: 7,
+      title: "Exporting & Logistics",
+      shortTitle: "Logistics",
+      description:
+        "Complete support for domestic and international shipping, handling customs documentation and regulatory requirements, and ensuring secure, on-time delivery through trusted logistics partners worldwide.",
+      image: "/logistics.jpg",
+      features: [
+        "Domestic & International Shipping",
+        "Customs Documentation",
+        "Regulatory Compliance",
+        "On-Time & Secure Delivery",
+      ],
+      link: "/services/exporting-logistics",
     },
   ],
 };

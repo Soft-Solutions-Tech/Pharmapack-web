@@ -42,8 +42,8 @@ const footerData = {
     ],
   },
   social: [
-    { icon: "Facebook", href: "https://facebook.com/pharmapack" },
-    { icon: "Instagram", href: "https://instagram.com/pharmapack" },
+    { icon: "Facebook", href: "https://www.facebook.com/pharmapackegypt" },
+    { icon: "Instagram", href: "https://www.instagram.com/pharmapackegypt/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D#" },
     { icon: "Linkedin", href: "https://linkedin.com/company/pharmapack" },
   ],
   production: {

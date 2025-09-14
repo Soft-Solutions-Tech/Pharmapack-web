@@ -23,7 +23,7 @@ export const whoWeAreContent = {
   descriptionParagraphs: [
     "Established in 2003 in the 1st Industrial Zone, 6th of October City, Giza, Egypt, Pharmapack Pharmaceutical Industries has been a trusted leader in toll manufacturing and private label solutions for over 22 years, specializing in pharmaceutical, cosmeceutical, and healthcare product development.",
     "We partner with over <strong>100 leading brands</strong> across the Middle East, Africa, and beyond, transforming innovative concepts into market-ready products through our expertise in R&D, formulation, manufacturing, and packaging. Our products are distributed through key partners like Multi Pharma, UCP, and local stores in Delta, Alexandria, and Upper Egypt.",
-    "Our <strong>100% GMP-compliant production lines</strong> and certifications (ISO 9001:2015, ISO 45001:2018, GMP, CE) ensure we deliver safe, effective, and high-quality products to global markets. With a 10,800 m² factory and 7 production lines, we aim to expand to over 10 lines by 2027.",
+    "Our <strong>100% GMP-compliant production lines</strong> and certifications (ISO 9001:2015, ISO 14001:2015, ISO 13485:2016, GMP, CE) ensure we deliver safe, effective, and high-quality products to global markets. With a 10,800 m² factory and 7 production lines, we aim to expand to over 10 lines by 2027.",
   ],
   stats: [
     {
@@ -127,13 +127,23 @@ export const whoWeAreContent = {
           "International standard for Quality Management Systems, ensuring consistent product quality and customer satisfaction through systematic approach to quality control.",
         icon: FileCheck,
         year: "2015",
+        file: "/PHARMAPACK PHARMACEUTICAL INDUSTRIES_9001.pdf",
       },
       {
-        name: "ISO 45001:2018",
+        name: "ISO 14001:2015",
         description:
-          "Occupational Health and Safety Management Systems certification, demonstrating our commitment to providing safe and healthy workplaces for all employees.",
+          "Environmental Management Systems certification, emphasizing our responsibility to minimize environmental impact and promote sustainability throughout our manufacturing processes.",
         icon: ShieldCheck,
-        year: "2018",
+        year: "2015",
+        file: "/PHARMAPACK PHARMACEUTICAL INDUSTRIES_14001.pdf",
+      },
+      {
+        name: "ISO 13485:2016",
+        description:
+          "Specifies requirements for a quality management system for medical devices and related services, ensuring safety, regulatory compliance, and performance reliability.",
+        icon: FileCheck,
+        year: "2016",
+        file: "/ISO 13485 24.pdf",
       },
       {
         name: "GMP Certification",
@@ -141,6 +151,15 @@ export const whoWeAreContent = {
           "Good Manufacturing Practice certification ensuring pharmaceutical products are consistently produced and controlled according to quality standards.",
         icon: AwardCert,
         year: "Current",
+        file: "/PHARMAPACK PHARMACEUTICAL INDUSTRIES_GMP.pdf",
+      },
+      {
+        name: "CE Marking",
+        description:
+          "Demonstrates compliance with EU safety, health, and environmental protection standards, allowing our products to be marketed in the European Economic Area.",
+        icon: AwardCert,
+        year: "2024",
+        file: "/CE 24.pdf",
       },
     ],
   },

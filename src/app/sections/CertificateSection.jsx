@@ -120,7 +120,8 @@ export default function CertificatesSection() {
                 key={index}
                 variants={cardVariants}
                 whileHover="hover"
-                className="group relative bg-white rounded-3xl p-8 sm:p-10 shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-brand-red/20 cursor-default overflow-hidden"
+                onClick={() => cert.file && window.open(cert.file, "_blank")}
+                className="group relative bg-white rounded-3xl p-8 sm:p-10 shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-brand-red/20 cursor-pointer overflow-hidden"
               >
                 <div className="relative">
                   <motion.div

@@ -10,6 +10,8 @@ import {
   Clock,
   Hand,
   Droplet,
+  Bandage,
+  Layers, // For better visual match
 } from "lucide-react";
 
 export const productionContent = {
@@ -17,10 +19,10 @@ export const productionContent = {
   titlePart1: "Production",
   titlePart2: "Excellence",
   subtitle:
-    "State-of-the-art manufacturing facilities delivering pharmaceutical-grade products with uncompromising quality, precision, and innovation across six specialized production lines.",
+    "State-of-the-art manufacturing facilities delivering pharmaceutical-grade products with uncompromising quality, precision, and innovation across eight specialized production lines.",
   stats: [
     {
-      number: "6",
+      number: "8",
       label: "Specialized Production Lines",
       icon: "Zap",
       suffix: "",
@@ -49,6 +51,22 @@ export const productionContent = {
     },
     {
       id: 2,
+      title: "Alcohol Swabs Production Line",
+      description:
+        "Individually packed sterile swabs for medical, first-aid, and personal hygiene use, ensuring maximum cleanliness and safety.",
+      icon: "Droplet",
+      features: ["Sterile Packaging", "Medical Grade", "Convenient & Safe"],
+    },
+    {
+      id: 3,
+      title: "Face Masks Production Line",
+      description:
+        "High-quality disposable face masks designed for medical use and personal protection with superior filtration and comfort.",
+      icon: "Shield",
+      features: ["High Filtration", "Comfort Fit", "Medical & Personal Use"],
+    },
+    {
+      id: 4,
       title: "Wet Wipes Production Line",
       description:
         "Wide range of wipes in multiple sizes (single to 160 wipes) and specialized formulations, such as: Makeup remover, Anti-acne, Anti-aging, Mosquito repellent, Nail polish remover, Alcohol wipes, and more.",
@@ -56,7 +74,7 @@ export const productionContent = {
       features: ["160+ Wipes", "Multi-Purpose", "Specialized Formula"],
     },
     {
-      id: 3,
+      id: 5,
       title: "Hydrogel Patches Production Line",
       description:
         "Specialized healthcare and skincare patches: Baby fever cooling patches, Pain-relieving patches (cold & hot), Period pain-relieving patches, Under-eye patches with targeted skin benefits.",
@@ -64,7 +82,7 @@ export const productionContent = {
       features: ["Healthcare Grade", "Pain Relief", "Targeted Care"],
     },
     {
-      id: 4,
+      id: 6,
       title: "Face Sheet Mask Production Line",
       description:
         "High-quality sheet masks infused with various formulations for: Hydration, Brightening, Anti-aging, Soothing & calming care, Customized solutions for skincare brands.",
@@ -72,15 +90,15 @@ export const productionContent = {
       features: ["Anti-Aging", "Custom Solutions", "Premium Quality"],
     },
     {
-      id: 5,
+      id: 7,
       title: "Semi Solid Production Line",
       description:
-        "Advanced production of semi-solid formulations, including: Lubricant gels (medical & personal care uses) Creams and ointments (cosmetic & healthcare applications)",
+        "Advanced production of semi-solid formulations, including: Lubricant gels (medical & personal care uses), Creams, and ointments (cosmetic & healthcare applications).",
       icon: "TestTube",
       features: ["Precision Blending", "Uniform Mixing", "Safe Formula"],
     },
     {
-      id: 6,
+      id: 8,
       title: "Sea Water Production Line",
       description:
         "Natural sea salt water designed for medical and cosmetic applications.",
@@ -88,10 +106,10 @@ export const productionContent = {
       features: ["Natural Source", "Medical Use", "Cosmetic Grade"],
     },
     {
-      id: 7,
+      id: 9,
       title: "Paraffin Gauze Dressing Production Line",
       description:
-        "Sterile paraffin gauze dressings designed for: Wound care and burn treatment Maintaining a moist healing environment Easy removal with minimal pain or tissue damage",
+        "Sterile paraffin gauze dressings designed for wound care and burn treatment, maintaining a moist healing environment and easy removal with minimal pain or tissue damage.",
       icon: "Hand",
       features: ["Moist Healing", "Pain-Free Removal", "Burn & Wound Care"],
     },
@@ -111,4 +129,6 @@ export const iconMap = {
   Clock,
   Hand,
   Droplet,
+  Bandage,
+  Layers,
 };
