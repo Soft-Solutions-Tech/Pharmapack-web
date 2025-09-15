@@ -7,7 +7,9 @@ import { collectionsData } from "@/data/products-data";
 
 export default function Breadcrumb({ product }) {
   const collection = collectionsData.find((col) =>
-    col.subcategories.some((sub) => sub.products.some((p) => p.slug === product.slug))
+    col.subcategories.some((sub) =>
+      sub.products.some((p) => p.slug === product.slug)
+    )
   );
 
   const subcategory = collection?.subcategories.find((sub) =>
@@ -75,14 +77,14 @@ export default function Breadcrumb({ product }) {
             <path
               fillRule="evenodd"
               d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <span className="text-brand-black font-semibold truncate">
-              {product.name}
-            </span>
-          </li>
-        </ol>
+              clipRule="evenodd"
+            />
+          </svg>
+          <span className="text-brand-black font-semibold truncate">
+            {product.name}
+          </span>
+        </li>
+      </ol>
     </motion.nav>
   );
 }

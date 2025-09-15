@@ -14,7 +14,11 @@ export default function ProductImage({ product }) {
     >
       <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl border border-gray-100/50">
         <Image
-          src={product.slug ? `/products/index-products/${product.slug}.jpg` : "/products/fallback-image.jpg"}
+          src={
+            product.slug
+              ? `/products/index-products/${product.slug}.jpg`
+              : "/products/fallback-image.jpg"
+          }
           alt={product.name}
           width={1850}
           height={825}

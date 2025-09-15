@@ -32,7 +32,8 @@ export default function ProductNotFound() {
           Product Not Found
         </h1>
         <p className="text-brand-gray mb-8 leading-relaxed text-sm sm:text-base px-4">
-          The requested product could not be found. It may have been moved or removed.
+          The requested product could not be found. It may have been moved or
+          removed.
         </p>
         <Link
           href="/products"

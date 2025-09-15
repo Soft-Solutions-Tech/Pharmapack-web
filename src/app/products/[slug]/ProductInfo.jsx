@@ -57,7 +57,9 @@ export default function ProductInfo({ product }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {product.features && product.features.length ? product.features[0] : ''}
+          {product.features && product.features.length
+            ? product.features[0]
+            : ""}
         </motion.p>
       </div>
       <motion.div
@@ -70,7 +72,9 @@ export default function ProductInfo({ product }) {
           Product Overview
         </h3>
         <p className="leading-relaxed text-brand-gray text-base sm:text-lg">
-          {product.features && product.features.length > 1 ? product.features[1] : ''}
+          {product.features && product.features.length > 1
+            ? product.features[1]
+            : ""}
         </p>
       </motion.div>
       <motion.div
@@ -113,22 +117,23 @@ export default function ProductInfo({ product }) {
             Key Specifications
           </h3>
           <div className="space-y-4 sm:space-y-5">
-            {product.keySpecifications && product.keySpecifications.map((item, index) => (
-              <motion.div
-                key={`${item.spec}-${index}`}
-                className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-3 border-b border-gray-100 last:border-b-0 group hover:bg-gray-50/50 -mx-2 px-2 rounded-lg transition-colors duration-200 gap-1 sm:gap-0"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.4 + index * 0.08 }}
-              >
-                <span className="font-medium text-brand-black text-base sm:text-lg">
-                  {item.spec}
-                </span>
-                <span className="text-brand-gray text-base sm:text-lg font-medium sm:text-right">
-                  {item.value}
-                </span>
-              </motion.div>
-            ))}
+            {product.keySpecifications &&
+              product.keySpecifications.map((item, index) => (
+                <motion.div
+                  key={`${item.spec}-${index}`}
+                  className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-3 border-b border-gray-100 last:border-b-0 group hover:bg-gray-50/50 -mx-2 px-2 rounded-lg transition-colors duration-200 gap-1 sm:gap-0"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.4 + index * 0.08 }}
+                >
+                  <span className="font-medium text-brand-black text-base sm:text-lg">
+                    {item.spec}
+                  </span>
+                  <span className="text-brand-gray text-base sm:text-lg font-medium sm:text-right">
+                    {item.value}
+                  </span>
+                </motion.div>
+              ))}
           </div>
         </motion.div>
       </motion.div>
@@ -163,36 +168,46 @@ export default function ProductInfo({ product }) {
 }
 
 function DetailTabs({ product }) {
-  const [active, setActive] = React.useState('pharmapack');
+  const [active, setActive] = React.useState("pharmapack");
   return (
     <div>
       <div className="flex gap-3 border-b border-gray-200">
         <button
-          className={`px-4 py-2 -mb-px ${active === 'pharmapack' ? 'text-brand-red border-b-2 border-brand-red' : 'text-brand-gray'}`}
-          onClick={() => setActive('pharmapack')}
+          className={`px-4 py-2 -mb-px ${
+            active === "pharmapack"
+              ? "text-brand-red border-b-2 border-brand-red"
+              : "text-brand-gray"
+          }`}
+          onClick={() => setActive("pharmapack")}
         >
           Pharmapack
         </button>
         <button
-          className={`px-4 py-2 -mb-px ${active === 'privatelabeling' ? 'text-brand-red border-b-2 border-brand-red' : 'text-brand-gray'}`}
-          onClick={() => setActive('privatelabeling')}
+          className={`px-4 py-2 -mb-px ${
+            active === "privatelabeling"
+              ? "text-brand-red border-b-2 border-brand-red"
+              : "text-brand-gray"
+          }`}
+          onClick={() => setActive("privatelabeling")}
         >
           Private Labeling
         </button>
       </div>
       <div className="pt-6">
-        {active === 'pharmapack' ? (
+        {active === "pharmapack" ? (
           <div className="space-y-6">
             {product.pharmapack && (
               <div className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {[1,2,3].map((i) => (
+                  {[1, 2, 3].map((i) => (
                     <img
                       key={i}
                       src={`/products/pharmapack-products/pharmapack-${product.slug}-${i}.jpg`}
                       alt={`${product.name} Pharmapack ${i}`}
                       className="w-full rounded-xl border border-gray-100"
-                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
                     />
                   ))}
                 </div>
@@ -211,15 +226,23 @@ function DetailTabs({ product }) {
             {product.privateLabeling && product.privateLabeling.length > 0 ? (
               product.privateLabeling.map((pl, idx) => (
                 <div key={idx} className="space-y-4">
-                  <div className="text-brand-black font-medium">{pl.clientName}</div>
+                  <div className="text-brand-black font-medium">
+                    {pl.clientName}
+                  </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {[1,2,3].map((i) => (
+                    {[1, 2, 3].map((i) => (
                       <img
                         key={i}
-                        src={`/products/clients-products/privatelabeling-${product.slug}-${pl.clientName.toLowerCase().replace(/\s+/g,'-')}-${i}.jpg`}
+                        src={`/products/clients-products/privatelabeling-${
+                          product.slug
+                        }-${pl.clientName
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}-${i}.jpg`}
                         alt={`${product.name} - ${pl.clientName} ${i}`}
                         className="w-full rounded-xl border border-gray-100"
-                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                        }}
                       />
                     ))}
                   </div>
@@ -233,7 +256,9 @@ function DetailTabs({ product }) {
                 </div>
               ))
             ) : (
-              <div className="text-brand-gray">No private labeling data available.</div>
+              <div className="text-brand-gray">
+                No private labeling data available.
+              </div>
             )}
           </div>
         )}
