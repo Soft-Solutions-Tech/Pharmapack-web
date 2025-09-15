@@ -49,7 +49,7 @@ export default function ProductInfo({ product }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          {product.title}
+          {product.name}
         </motion.h1>
         <motion.p
           className="text-lg sm:text-xl md:text-2xl text-brand-gray leading-relaxed max-w-2xl"
@@ -57,7 +57,7 @@ export default function ProductInfo({ product }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {product.description}
+          {product.features && product.features.length ? product.features[0] : ''}
         </motion.p>
       </div>
       <motion.div
@@ -70,7 +70,7 @@ export default function ProductInfo({ product }) {
           Product Overview
         </h3>
         <p className="leading-relaxed text-brand-gray text-base sm:text-lg">
-          {product.detailedDescription}
+          {product.features && product.features.length > 1 ? product.features[1] : ''}
         </p>
       </motion.div>
       <motion.div
@@ -110,27 +110,35 @@ export default function ProductInfo({ product }) {
         >
           <h3 className="text-xl sm:text-2xl font-medium text-brand-black mb-5 sm:mb-6 flex items-center gap-3">
             <div className="w-1.5 sm:w-2 h-6 sm:h-8 bg-brand-red rounded-full"></div>
-            Specifications
+            Key Specifications
           </h3>
           <div className="space-y-4 sm:space-y-5">
-            {Object.entries(product.specifications).map(([key, value], index) => (
+            {product.keySpecifications && product.keySpecifications.map((item, index) => (
               <motion.div
-                key={key}
+                key={`${item.spec}-${index}`}
                 className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-3 border-b border-gray-100 last:border-b-0 group hover:bg-gray-50/50 -mx-2 px-2 rounded-lg transition-colors duration-200 gap-1 sm:gap-0"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.4 + index * 0.08 }}
               >
-                <span className="font-medium capitalize text-brand-black text-base sm:text-lg">
-                  {key.replace(/([A-Z])/g, " $1").trim()}
+                <span className="font-medium text-brand-black text-base sm:text-lg">
+                  {item.spec}
                 </span>
                 <span className="text-brand-gray text-base sm:text-lg font-medium sm:text-right">
-                  {value}
+                  {item.value}
                 </span>
               </motion.div>
             ))}
           </div>
         </motion.div>
+      </motion.div>
+      <motion.div
+        className="pt-6 sm:pt-8 border-t border-gray-200"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+      >
+        <DetailTabs product={product} />
       </motion.div>
       <motion.div
         className="pt-6 sm:pt-8 border-t border-gray-200"
@@ -151,5 +159,85 @@ export default function ProductInfo({ product }) {
         </div>
       </motion.div>
     </motion.div>
+  );
+}
+
+function DetailTabs({ product }) {
+  const [active, setActive] = React.useState('pharmapack');
+  return (
+    <div>
+      <div className="flex gap-3 border-b border-gray-200">
+        <button
+          className={`px-4 py-2 -mb-px ${active === 'pharmapack' ? 'text-brand-red border-b-2 border-brand-red' : 'text-brand-gray'}`}
+          onClick={() => setActive('pharmapack')}
+        >
+          Pharmapack
+        </button>
+        <button
+          className={`px-4 py-2 -mb-px ${active === 'privatelabeling' ? 'text-brand-red border-b-2 border-brand-red' : 'text-brand-gray'}`}
+          onClick={() => setActive('privatelabeling')}
+        >
+          Private Labeling
+        </button>
+      </div>
+      <div className="pt-6">
+        {active === 'pharmapack' ? (
+          <div className="space-y-6">
+            {product.pharmapack && (
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {[1,2,3].map((i) => (
+                    <img
+                      key={i}
+                      src={`/products/pharmapack-products/pharmapack-${product.slug}-${i}.jpg`}
+                      alt={`${product.name} Pharmapack ${i}`}
+                      className="w-full rounded-xl border border-gray-100"
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                    />
+                  ))}
+                </div>
+                {product.pharmapack.uniqueFeatures && (
+                  <ul className="list-disc pl-6 space-y-2 text-brand-gray">
+                    {product.pharmapack.uniqueFeatures.map((f, i) => (
+                      <li key={i}>{f}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="space-y-8">
+            {product.privateLabeling && product.privateLabeling.length > 0 ? (
+              product.privateLabeling.map((pl, idx) => (
+                <div key={idx} className="space-y-4">
+                  <div className="text-brand-black font-medium">{pl.clientName}</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {[1,2,3].map((i) => (
+                      <img
+                        key={i}
+                        src={`/products/clients-products/privatelabeling-${product.slug}-${pl.clientName.toLowerCase().replace(/\s+/g,'-')}-${i}.jpg`}
+                        alt={`${product.name} - ${pl.clientName} ${i}`}
+                        className="w-full rounded-xl border border-gray-100"
+                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                      />
+                    ))}
+                  </div>
+                  {pl.uniqueFeatures && (
+                    <ul className="list-disc pl-6 space-y-2 text-brand-gray">
+                      {pl.uniqueFeatures.map((f, i) => (
+                        <li key={i}>{f}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))
+            ) : (
+              <div className="text-brand-gray">No private labeling data available.</div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
   );
 }

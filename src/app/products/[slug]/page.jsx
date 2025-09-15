@@ -12,7 +12,12 @@ const allProducts = collectionsData
       unique.push(product);
     }
     return unique;
-  }, []);
+  }, [])
+  .map((p) => ({
+    ...p,
+    // Ensure fields used in components are present
+    indexImage: p.indexImage,
+  }));
 
 // Server Component: ProductDetailPage
 export default async function ProductDetailPage({ params }) {

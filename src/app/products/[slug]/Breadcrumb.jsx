@@ -79,7 +79,7 @@ export default function Breadcrumb({ product }) {
               />
             </svg>
             <span className="text-brand-black font-semibold truncate">
-              {product.title}
+              {product.name}
             </span>
           </li>
         </ol>
