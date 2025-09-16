@@ -218,8 +218,11 @@ export const collectionsData = [
             },
             privateLabeling: [
               {
-                clientName: "Client A",
-                image: "privatelabeling-fever-cooling-patches-client-a.jpg",
+                clientName: "Temp",
+                image: [
+                   "privatelabeling-fever-cooling-patches-Temp-1.jpg",
+                   "privatelabeling-fever-cooling-patches-Temp-2.jpg"
+                ],
                 uniqueFeatures: [
                   "Custom packaging design",
                   "Branded cooling gel",
@@ -227,26 +230,11 @@ export const collectionsData = [
                 ]
               },
               {
-                clientName: "Client B",
-                image: "privatelabeling-fever-cooling-patches-client-b.jpg",
-                uniqueFeatures: [
-                  "Eco-friendly materials",
-                  "Premium quality assurance",
-                  "Fast production turnaround"
-                ]
-              },
-              {
-                clientName: "Client C",
-                image: "privatelabeling-fever-cooling-patches-client-c.jpg",
-                uniqueFeatures: [
-                  "Custom scent infusion",
-                  "Enhanced adhesive formula",
-                  "Branded retail packaging"
-                ]
-              },
-              {
-                clientName: "Client D",
-                image: "privatelabeling-fever-cooling-patches-client-d.jpg",
+                clientName: "Qualita",
+                image: [
+                  "privatelabeling-fever-cooling-patches-Qualita-1.jpg",
+                  "privatelabeling-fever-cooling-patches-Qualita-2.jpg"
+                ],
                 uniqueFeatures: [
                   "Child-friendly designs",
                   "Extended cooling duration",
@@ -281,8 +269,8 @@ export const collectionsData = [
             },
             privateLabeling: [
               {
-                clientName: "Client A",
-                image: "privatelabeling-cold-pain-relieving-patches-client-a.jpg",
+                clientName: "Sulfax",
+                image: "privatelabeling-cold-pain-relieving-patches-Sulfax-1.jpg",
                 uniqueFeatures: [
                   "Custom menthol strength",
                   "Branded packaging",
@@ -317,8 +305,8 @@ export const collectionsData = [
             },
             privateLabeling: [
               {
-                clientName: "Client A",
-                image: "privatelabeling-hot-cold-pain-relieving-patches-client-a.jpg",
+                clientName: "Sulfax",
+                image: "privatelabeling-hot-cold-pain-relieving-patches-Sulfax-1.jpg",
                 uniqueFeatures: [
                   "Custom temperature settings",
                   "Branded reusable packaging",
@@ -353,8 +341,8 @@ export const collectionsData = [
             },
             privateLabeling: [
               {
-                clientName: "Client A",
-                image: "privatelabeling-period-pain-relieving-patches-client-a.jpg",
+                clientName: "Sekoun",
+                image: "privatelabeling-period-pain-relieving-patches-Sekoun-1.jpg",
                 uniqueFeatures: [
                   "Custom herbal blend",
                   "Branded discreet packaging",
@@ -529,8 +517,11 @@ export const collectionsData = [
             },
             privateLabeling: [
               {
-                clientName: "Client A",
-                image: "privatelabeling-makeup-remover-wipes-client-a.jpg",
+                clientName: "StarVille",
+                image:[ 
+                  "privatelabeling-makeup-remover-wipes-StraVille-1.jpg",
+                  "privatelabeling-makeup-remover-wipes-StraVille-2.jpg"
+                ],
                 uniqueFeatures: [
                   "Custom micellar formula",
                   "Branded eco-packaging",
@@ -538,17 +529,8 @@ export const collectionsData = [
                 ]
               },
               {
-                clientName: "Client B",
-                image: "privatelabeling-makeup-remover-wipes-client-b.jpg",
-                uniqueFeatures: [
-                  "Custom aloe vera infusion",
-                  "Premium quality assurance",
-                  "Fast production turnaround"
-                ]
-              },
-              {
-                clientName: "Client C",
-                image: "privatelabeling-makeup-remover-wipes-client-c.jpg",
+                clientName: "WipeIt",
+                image: "privatelabeling-makeup-remover-wipes-WipeIt-1.jpg",
                 uniqueFeatures: [
                   "Custom biodegradable fabric",
                   "Branded retail packaging",
@@ -556,32 +538,18 @@ export const collectionsData = [
                 ]
               },
               {
-                clientName: "Client D",
-                image: "privatelabeling-makeup-remover-wipes-client-d.jpg",
+                clientName: "Eva",
+                image: [
+                  "privatelabeling-makeup-remover-wipes-Eva-1.jpg",
+                  "privatelabeling-makeup-remover-wipes-Eva-2.jpg",
+                  "privatelabeling-makeup-remover-wipes-Eva-3.jpg"
+                ],
                 uniqueFeatures: [
                   "Custom scent options",
                   "Premium softness",
                   "Hypoallergenic formula"
                 ]
               },
-              {
-                clientName: "Client E",
-                image: "privatelabeling-makeup-remover-wipes-client-e.jpg",
-                uniqueFeatures: [
-                  "Custom waterproof makeup formula",
-                  "Branded eco-materials",
-                  "Enhanced skin hydration"
-                ]
-              },
-              {
-                clientName: "Client F",
-                image: "privatelabeling-makeup-remover-wipes-client-f.jpg",
-                uniqueFeatures: [
-                  "Custom packaging design",
-                  "Premium quality assurance",
-                  "Fast production turnaround"
-                ]
-              }
             ]
           },
           {
@@ -610,8 +578,8 @@ export const collectionsData = [
             },
             privateLabeling: [
               {
-                clientName: "Client A",
-                image: "privatelabeling-mosquito-repellent-wipes-client-a.jpg",
+                clientName: "Wipe It",
+                image: "privatelabeling-mosquito-repellent-wipes-WipeIt.jpg",
                 uniqueFeatures: [
                   "Custom DEET concentration",
                   "Branded packaging",
@@ -646,8 +614,8 @@ export const collectionsData = [
             },
             privateLabeling: [
               {
-                clientName: "Client A",
-                image: "privatelabeling-nail-polish-remover-wipes-client-a.jpg",
+                clientName: "Ciliver",
+                image: "privatelabeling-nail-polish-remover-wipes-Ciliver-1.jpg",
                 uniqueFeatures: [
                   "Custom vitamin E infusion",
                   "Branded packaging",
@@ -707,8 +675,11 @@ export const collectionsData = [
             },
             privateLabeling: [
               {
-                clientName: "Client A",
-                image: "privatelabeling-antiseptic-wipes-client-a.jpg",
+                clientName: "Clorox",
+                image: [
+                  "privatelabeling-antiseptic-wipes-Clorox-1.jpg",
+                  "privatelabeling-antiseptic-wipes-Clorox-2.jpg"
+                ],
                 uniqueFeatures: [
                   "Custom antimicrobial formula",
                   "Branded resealable packaging",
@@ -716,41 +687,18 @@ export const collectionsData = [
                 ]
               },
               {
-                clientName: "Client B",
-                image: "privatelabeling-antiseptic-wipes-client-b.jpg",
+                clientName: "Qualita",
+                image: [
+                  "privatelabeling-antiseptic-wipes-Qualita-1.jpg",
+                  "privatelabeling-antiseptic-wipes-Qualita-2.jpg",
+                  "privatelabeling-antiseptic-wipes-Qualita-3.jpg"
+                ],
                 uniqueFeatures: [
                   "Eco-friendly materials",
                   "Premium quality assurance",
                   "Fast production turnaround"
                 ]
               },
-              {
-                clientName: "Client C",
-                image: "privatelabeling-antiseptic-wipes-client-c.jpg",
-                uniqueFeatures: [
-                  "Custom wipe size",
-                  "Branded retail packaging",
-                  "Enhanced antimicrobial strength"
-                ]
-              },
-              {
-                clientName: "Client D",
-                image: "privatelabeling-antiseptic-wipes-client-d.jpg",
-                uniqueFeatures: [
-                  "Custom scent options",
-                  "Premium softness",
-                  "Hypoallergenic formula"
-                ]
-              },
-              {
-                clientName: "Client E",
-                image: "privatelabeling-antiseptic-wipes-client-e.jpg",
-                uniqueFeatures: [
-                  "Custom packaging design",
-                  "Enhanced durability",
-                  "Branded eco-materials"
-                ]
-              }
             ]
           },
           {
@@ -835,8 +783,8 @@ export const collectionsData = [
             },
             privateLabeling: [
               {
-                clientName: "Client A",
-                image: "privatelabeling-face-sheet-masks-client-a.jpg",
+                clientName: "Mother Naked",
+                image: "privatelabeling-face-sheet-masks-MotherNaked-1.jpg",
                 uniqueFeatures: [
                   "Custom hyaluronic acid formula",
                   "Branded eco-packaging",
@@ -844,8 +792,8 @@ export const collectionsData = [
                 ]
               },
               {
-                clientName: "Client B",
-                image: "privatelabeling-face-sheet-masks-client-b.jpg",
+                clientName: "Like",
+                image: "privatelabeling-face-sheet-masks-Like-1.jpg",
                 uniqueFeatures: [
                   "Custom biodegradable fabric",
                   "Premium quality assurance",
@@ -880,32 +828,18 @@ export const collectionsData = [
             },
             privateLabeling: [
               {
-                clientName: "Client A",
-                image: "privatelabeling-under-eye-patches-client-a.jpg",
+                clientName: "MotherNaked",
+                image: [
+                  "privatelabeling-under-eye-patches-MotherNaked-1.jpg",
+                  "privatelabeling-under-eye-patches-MotherNaked-2.jpg",
+                  "privatelabeling-under-eye-patches-MotherNaked-3.jpg"
+                ],
                 uniqueFeatures: [
                   "Custom collagen formula",
                   "Branded packaging",
                   "Enhanced anti-puffiness"
                 ]
               },
-              {
-                clientName: "Client B",
-                image: "privatelabeling-under-eye-patches-client-b.jpg",
-                uniqueFeatures: [
-                  "Eco-friendly hydrogel",
-                  "Premium quality assurance",
-                  "Fast production turnaround"
-                ]
-              },
-              {
-                clientName: "Client C",
-                image: "privatelabeling-under-eye-patches-client-c.jpg",
-                uniqueFeatures: [
-                  "Custom anti-aging formula",
-                  "Branded retail packaging",
-                  "Enhanced skin hydration"
-                ]
-              }
             ]
           },
           {
