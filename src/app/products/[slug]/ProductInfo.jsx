@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 // Animation variants
 const animations = {
@@ -56,26 +57,31 @@ const animations = {
       },
     },
   },
-  buttonHover: {
-    rest: {
+  buttonVariants: {
+    hidden: {
+      opacity: 0,
+      y: 20,
+      scale: 0.95,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
       scale: 1,
-      boxShadow:
-        "0 4px 6px -1px rgba(239, 68, 68, 0.1), 0 2px 4px -1px rgba(239, 68, 68, 0.06)",
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+        delay: 0.4,
+      },
     },
     hover: {
-      scale: 1.05,
-      boxShadow:
-        "0 20px 25px -5px rgba(239, 68, 68, 0.25), 0 10px 10px -5px rgba(239, 68, 68, 0.1)",
+      scale: 1.02,
       transition: {
         duration: 0.2,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: "easeInOut",
       },
     },
     tap: {
       scale: 0.98,
-      transition: {
-        duration: 0.1,
-      },
     },
   },
   listItem: {
@@ -109,6 +115,112 @@ const animations = {
     transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
+
+// Image Carousel Component
+function ImageCarousel({ images, alt }) {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+
+  const nextImage = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  if (images.length === 0) return null;
+
+  if (images.length === 1) {
+    return (
+      <motion.div
+        className="flex justify-center"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.div
+          whileHover={{ scale: 1.03, y: -4 }}
+          transition={{ duration: 0.3 }}
+          className="w-96 h-72" // Bigger dimensions
+        >
+          <img
+            src={images[0]}
+            alt={alt}
+            className="w-full h-full object-cover rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300"
+            onError={(e) => {
+              e.currentTarget.style.display = "none";
+            }}
+          />
+        </motion.div>
+      </motion.div>
+    );
+  }
+
+  return (
+    <div className="relative max-w-2xl mx-auto">
+      {" "}
+      {/* Bigger container */}
+      <div className="overflow-hidden rounded-xl">
+        <motion.div
+          className="flex transition-transform duration-300 ease-in-out"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {images.map((src, index) => (
+            <div key={index} className="w-full flex-shrink-0">
+              {" "}
+              {/* Removed padding that caused extra slide */}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                className="w-full h-72" // Bigger height for consistency
+              >
+                <img
+                  src={src}
+                  alt={`${alt} ${index + 1}`}
+                  className="w-full h-full object-cover rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              </motion.div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+      {/* Navigation Buttons */}
+      <motion.button
+        onClick={prevImage}
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-200 rounded-full p-2 shadow-md transition-all duration-200 hover:scale-110"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <ChevronLeft className="w-4 h-4 text-gray-600" />
+      </motion.button>
+      <motion.button
+        onClick={nextImage}
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-200 rounded-full p-2 shadow-md transition-all duration-200 hover:scale-110"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <ChevronRight className="w-4 h-4 text-gray-600" />
+      </motion.button>
+      {/* Dots Indicator */}
+      <div className="flex justify-center mt-4 space-x-2">
+        {images.map((_, index) => (
+          <motion.button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-200 ${
+              currentIndex === index ? "bg-brand-red" : "bg-gray-300"
+            }`}
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function ProductInfo({ product }) {
   return (
@@ -281,29 +393,25 @@ export default function ProductInfo({ product }) {
         className="pt-6 sm:pt-8 border-t border-gray-200"
       >
         <div className="flex flex-col items-center text-center">
-          <motion.div
-            variants={animations.buttonHover}
-            whileHover="hover"
-            whileTap="tap"
-            initial="rest"
-            animate="rest"
-          >
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center w-full sm:w-auto px-8 sm:px-10 py-4 bg-gradient-to-r from-brand-red to-red-600 text-white rounded-xl sm:rounded-2xl font-medium text-base sm:text-lg transition-all duration-300 transform touch-manipulation relative overflow-hidden group"
+          <motion.div variants={animations.buttonVariants}>
+            <motion.button
+              className="group relative bg-brand-black text-brand-white px-8 py-4 rounded-lg overflow-hidden cursor-pointer"
+              variants={animations.buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+              aria-label="Contact for Pricing"
+              asChild
             >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full"
-                animate={{ translateX: ["100%", "100%", "-100%", "-100%"] }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatDelay: 2,
-                  ease: "linear",
-                }}
-              />
-              <span className="relative">Contact for Pricing</span>
-            </Link>
+              <Link href="/contact">
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-black to-brand-red transition-opacity duration-300 group-hover:opacity-90"></div>
+                <div className="relative flex items-center justify-center space-x-3">
+                  <span className="text-lg font-medium">
+                    Contact for Pricing
+                  </span>
+                  <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </div>
+              </Link>
+            </motion.button>
           </motion.div>
           <motion.p
             initial={{ opacity: 0 }}
@@ -321,6 +429,30 @@ export default function ProductInfo({ product }) {
 
 function DetailTabs({ product }) {
   const [active, setActive] = React.useState("pharmapack");
+
+  // Helper function to get images for pharmapack
+  const getPharmapackImages = () => {
+    const images = [];
+    for (let i = 1; i <= 3; i++) {
+      images.push(
+        `/products/pharmapack-products/pharmapack-${product.slug}-${i}.jpg`
+      );
+    }
+    return images;
+  };
+
+  // Helper function to get images for private labeling
+  const getPrivateLabelingImages = (clientName) => {
+    const images = [];
+    for (let i = 1; i <= 3; i++) {
+      images.push(
+        `/products/clients-products/privatelabeling-${product.slug}-${clientName
+          .toLowerCase()
+          .replace(/\s+/g, "-")}-${i}.jpg`
+      );
+    }
+    return images;
+  };
 
   return (
     <div>
@@ -380,30 +512,10 @@ function DetailTabs({ product }) {
           <div className="space-y-6">
             {product.pharmapack && (
               <div className="space-y-6">
-                <motion.div
-                  className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-                  initial="hidden"
-                  animate="visible"
-                  variants={animations.staggerContainer}
-                >
-                  {[1, 2, 3].map((i) => (
-                    <motion.div
-                      key={i}
-                      variants={animations.staggerItem}
-                      whileHover={{ scale: 1.03, y: -4 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <img
-                        src={`/products/pharmapack-products/pharmapack-${product.slug}-${i}.jpg`}
-                        alt={`${product.name} Pharmapack ${i}`}
-                        className="w-full rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300"
-                        onError={(e) => {
-                          e.currentTarget.style.display = "none";
-                        }}
-                      />
-                    </motion.div>
-                  ))}
-                </motion.div>
+                <ImageCarousel
+                  images={getPharmapackImages()}
+                  alt={`${product.name} Pharmapack`}
+                />
                 {product.pharmapack.uniqueFeatures && (
                   <motion.ul
                     className="list-disc pl-6 space-y-2 text-brand-gray"
@@ -435,34 +547,10 @@ function DetailTabs({ product }) {
                   <motion.div className="text-brand-black font-medium text-lg">
                     {pl.clientName}
                   </motion.div>
-                  <motion.div
-                    className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-                    initial="hidden"
-                    animate="visible"
-                    variants={animations.staggerContainer}
-                  >
-                    {[1, 2, 3].map((i) => (
-                      <motion.div
-                        key={i}
-                        variants={animations.staggerItem}
-                        whileHover={{ scale: 1.03, y: -4 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <img
-                          src={`/products/clients-products/privatelabeling-${
-                            product.slug
-                          }-${pl.clientName
-                            .toLowerCase()
-                            .replace(/\s+/g, "-")}-${i}.jpg`}
-                          alt={`${product.name} - ${pl.clientName} ${i}`}
-                          className="w-full rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300"
-                          onError={(e) => {
-                            e.currentTarget.style.display = "none";
-                          }}
-                        />
-                      </motion.div>
-                    ))}
-                  </motion.div>
+                  <ImageCarousel
+                    images={getPrivateLabelingImages(pl.clientName)}
+                    alt={`${product.name} - ${pl.clientName}`}
+                  />
                   {pl.uniqueFeatures && (
                     <motion.ul
                       className="list-disc pl-6 space-y-2 text-brand-gray"

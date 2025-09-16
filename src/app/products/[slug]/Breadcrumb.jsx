@@ -50,24 +50,6 @@ export default function Breadcrumb({ product }) {
             </span>
           </li>
         )}
-        {subcategory && (
-          <li className="flex items-center flex-shrink-0">
-            <svg
-              className="w-4 h-4 sm:w-5 sm:h-5 mx-2 sm:mx-3 text-gray-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <span className="text-brand-gray font-medium whitespace-nowrap">
-              {subcategory.title}
-            </span>
-          </li>
-        )}
         <li className="flex items-center min-w-0">
           <svg
             className="w-4 h-4 sm:w-5 sm:h-5 mx-2 sm:mx-3 text-gray-400 flex-shrink-0"
