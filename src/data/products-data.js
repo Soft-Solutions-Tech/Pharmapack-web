@@ -400,8 +400,8 @@ export const collectionsData = [
             },
             privateLabeling: [
               {
-                clientName: "Client A",
-                image: "privatelabeling-baby-wipes-client-a.jpg",
+                clientName: "Pharmachem",
+                image: "privatelabeling-baby-wipes-Pharmachem.jpg",
                 uniqueFeatures: [
                   "Custom packaging design",
                   "Branded hypoallergenic formula",
@@ -409,8 +409,8 @@ export const collectionsData = [
                 ]
               },
               {
-                clientName: "Client B",
-                image: "privatelabeling-baby-wipes-client-b.jpg",
+                clientName: "Eva",
+                image: "privatelabeling-baby-wipes-Eva.jpg",
                 uniqueFeatures: [
                   "Enhanced chamomile infusion",
                   "Premium quality assurance",
@@ -418,8 +418,8 @@ export const collectionsData = [
                 ]
               },
               {
-                clientName: "Client C",
-                image: "privatelabeling-baby-wipes-client-c.jpg",
+                clientName: "Qualita",
+                image: "privatelabeling-baby-wipes-Qualita.jpg",
                 uniqueFeatures: [
                   "Custom scent options",
                   "Thicker wipe design",
@@ -454,8 +454,8 @@ export const collectionsData = [
             },
             privateLabeling: [
               {
-                clientName: "Client A",
-                image: "privatelabeling-baby-water-wipes-client-a.jpg",
+                clientName: "Tay",
+                image: "privatelabeling-baby-water-wipes-Tay-1.jpg",
                 uniqueFeatures: [
                   "Custom biodegradable fabric",
                   "Branded minimalist packaging",
@@ -463,8 +463,8 @@ export const collectionsData = [
                 ]
               },
               {
-                clientName: "Client B",
-                image: "privatelabeling-baby-water-wipes-client-b.jpg",
+                clientName: "Amazon",
+                image: "privatelabeling-baby-water-wipes-Amazon-1.jpg",
                 uniqueFeatures: [
                   "Eco-conscious materials",
                   "Premium quality assurance",
@@ -472,8 +472,8 @@ export const collectionsData = [
                 ]
               },
               {
-                clientName: "Client C",
-                image: "privatelabeling-baby-water-wipes-client-c.jpg",
+                clientName: "AmazonA",
+                image: "privatelabeling-baby-water-wipes-AmazonA-1.jpg",
                 uniqueFeatures: [
                   "Custom water purity levels",
                   "Branded eco-packaging",
@@ -481,8 +481,11 @@ export const collectionsData = [
                 ]
               },
               {
-                clientName: "Client D",
-                image: "privatelabeling-baby-water-wipes-client-d.jpg",
+                clientName: "Penduline",
+                image: [
+                  "privatelabeling-baby-water-wipes-Penduline-1.jpg",
+                  "privatelabeling-baby-water-wipes-Penduline-2.jpg"
+                ],
                 uniqueFeatures: [
                   "Custom wipe thickness",
                   "Branded newborn-safe formula",
@@ -490,17 +493,8 @@ export const collectionsData = [
                 ]
               },
               {
-                clientName: "Client E",
-                image: "privatelabeling-baby-water-wipes-client-e.jpg",
-                uniqueFeatures: [
-                  "Custom scent-free options",
-                  "Enhanced durability",
-                  "Branded retail packaging"
-                ]
-              },
-              {
-                clientName: "Client F",
-                image: "privatelabeling-baby-water-wipes-client-f.jpg",
+                clientName: "Qualita",
+                image: "privatelabeling-baby-water-wipes-Qualita-1.jpg",
                 uniqueFeatures: [
                   "Custom eco-friendly packaging",
                   "Premium softness",
@@ -785,8 +779,8 @@ export const collectionsData = [
             },
             privateLabeling: [
               {
-                clientName: "Client A",
-                image: "privatelabeling-hand-and-body-wipes-client-a.jpg",
+                clientName: "Bemart",
+                image: "privatelabeling-hand-and-body-wipes-Bemart-1.jpg",
                 uniqueFeatures: [
                   "Custom aloe vera infusion",
                   "Branded travel packaging",
@@ -794,8 +788,10 @@ export const collectionsData = [
                 ]
               },
               {
-                clientName: "Client B",
-                image: "privatelabeling-hand-and-body-wipes-client-b.jpg",
+                clientName: "Qualita",
+                image: ["privatelabeling-hand-and-body-wipes-Qualita-1.jpg",
+                    "privatelabeling-hand-and-body-wipes-Qualita-2.jpg"
+                ],
                 uniqueFeatures: [
                   "Eco-friendly materials",
                   "Premium quality assurance",
@@ -803,23 +799,14 @@ export const collectionsData = [
                 ]
               },
               {
-                clientName: "Client C",
-                image: "privatelabeling-hand-and-body-wipes-client-c.jpg",
+                clientName: "Eva",
+                image: "privatelabeling-hand-and-body-wipes-Eva-1.jpg",
                 uniqueFeatures: [
                   "Custom wipe size",
                   "Branded retail packaging",
                   "Enhanced skin hydration"
                 ]
               },
-              {
-                clientName: "Client D",
-                image: "privatelabeling-hand-and-body-wipes-client-d.jpg",
-                uniqueFeatures: [
-                  "Custom scent options",
-                  "Premium softness",
-                  "Hypoallergenic formula"
-                ]
-              }
             ]
           },
           {
