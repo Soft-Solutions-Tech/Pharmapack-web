@@ -1,7 +1,8 @@
 export const collectionsData = [
   {
     title: "Medical & Pharmaceutical Solutions",
-    description: "Products developed to meet healthcare and pharmaceutical standards.",
+    description:
+      "Products developed to meet healthcare and pharmaceutical standards.",
     subcategories: [
       {
         title: "PharmaPack Products",
@@ -15,21 +16,21 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Volume", value: "500ml" },
               { spec: "Purity", value: "99.9%" },
-              { spec: "Shelf Life", value: "2 years" }
+              { spec: "Shelf Life", value: "2 years" },
             ],
             features: [
               "Sterile and safe",
               "Meets USP standards",
-              "Convenient packaging"
+              "Convenient packaging",
             ],
             pharmapack: {
               image: "pharmapack-purified-water.jpg",
               uniqueFeatures: [
                 "Processed for medical use",
                 "Ideal for antibiotic dissolution",
-                "Safe for baby formulations"
-              ]
-            }
+                "Safe for baby formulations",
+              ],
+            },
           },
           {
             id: 2,
@@ -40,21 +41,17 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "10 dressings per pack" },
               { spec: "Size", value: "10x10 cm" },
-              { spec: "Shelf Life", value: "3 years" }
+              { spec: "Shelf Life", value: "3 years" },
             ],
-            features: [
-              "Sterile packaging",
-              "Non-adherent",
-              "Promotes healing"
-            ],
+            features: ["Sterile packaging", "Non-adherent", "Promotes healing"],
             pharmapack: {
               image: "pharmapack-paraffin-gauze-dressings.jpg",
               uniqueFeatures: [
                 "Soothes burns and wounds",
                 "Maintains moist wound environment",
-                "Easy to apply and remove"
-              ]
-            }
+                "Easy to apply and remove",
+              ],
+            },
           },
           {
             id: 3,
@@ -65,21 +62,21 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Volume", value: "250ml" },
               { spec: "Active Ingredient", value: "Sodium Chloride 0.9%" },
-              { spec: "Shelf Life", value: "2 years" }
+              { spec: "Shelf Life", value: "2 years" },
             ],
             features: [
               "Medical-grade saline",
               "Non-irritating",
-              "Multi-purpose use"
+              "Multi-purpose use",
             ],
             pharmapack: {
               image: "pharmapack-sea-salt-water.jpg",
               uniqueFeatures: [
                 "Suitable for wound irrigation",
                 "Safe for cosmetic applications",
-                "Sterile and preservative-free"
-              ]
-            }
+                "Sterile and preservative-free",
+              ],
+            },
           },
           {
             id: 4,
@@ -90,21 +87,17 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Volume", value: "100ml" },
               { spec: "Material", value: "Water-based gel" },
-              { spec: "Shelf Life", value: "2 years" }
+              { spec: "Shelf Life", value: "2 years" },
             ],
-            features: [
-              "Non-irritating",
-              "Sterile formula",
-              "Easy application"
-            ],
+            features: ["Non-irritating", "Sterile formula", "Easy application"],
             pharmapack: {
               image: "pharmapack-lubricant-gels-medical.jpg",
               uniqueFeatures: [
                 "Optimized for ultrasound exams",
                 "Hypoallergenic formula",
-                "Non-sticky residue"
-              ]
-            }
+                "Non-sticky residue",
+              ],
+            },
           },
           {
             id: 5,
@@ -115,21 +108,21 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "100 wipes per pack" },
               { spec: "Active Ingredient", value: "Povidone-Iodine 10%" },
-              { spec: "Shelf Life", value: "3 years" }
+              { spec: "Shelf Life", value: "3 years" },
             ],
             features: [
               "Antiseptic action",
               "Single-use wipes",
-              "Portable packaging"
+              "Portable packaging",
             ],
             pharmapack: {
               image: "pharmapack-povidone-iodine-wipes.jpg",
               uniqueFeatures: [
                 "Broad-spectrum disinfection",
                 "Non-staining formula",
-                "Gentle on skin"
-              ]
-            }
+                "Gentle on skin",
+              ],
+            },
           },
           {
             id: 6,
@@ -140,21 +133,17 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "200 swabs per box" },
               { spec: "Alcohol Content", value: "70% isopropyl" },
-              { spec: "Shelf Life", value: "3 years" }
+              { spec: "Shelf Life", value: "3 years" },
             ],
-            features: [
-              "Sterile and sealed",
-              "Quick-drying",
-              "Compact size"
-            ],
+            features: ["Sterile and sealed", "Quick-drying", "Compact size"],
             pharmapack: {
               image: "pharmapack-alcohol-swabs.jpg",
               uniqueFeatures: [
                 "Pre-injection skin prep",
                 "High alcohol purity",
-                "Individually wrapped"
-              ]
-            }
+                "Individually wrapped",
+              ],
+            },
           },
           {
             id: 7,
@@ -165,29 +154,30 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "50 masks per box" },
               { spec: "Material", value: "Non-woven fabric" },
-              { spec: "Shelf Life", value: "2 years" }
+              { spec: "Shelf Life", value: "2 years" },
             ],
             features: [
               "3-layer protection",
               "Breathable material",
-              "Comfortable fit"
+              "Comfortable fit",
             ],
             pharmapack: {
               image: "pharmapack-face-masks.jpg",
               uniqueFeatures: [
                 "High filtration efficiency",
                 "Adjustable nose clip",
-                "Latex-free ear loops"
-              ]
-            }
-          }
-        ]
-      }
-    ]
+                "Latex-free ear loops",
+              ],
+            },
+          },
+        ],
+      },
+    ],
   },
   {
     title: "Hydrogel Patches",
-    description: "Therapeutic patches designed for pain relief and fever management.",
+    description:
+      "Therapeutic patches designed for pain relief and fever management.",
     subcategories: [
       {
         title: "PharmaPack Products",
@@ -201,47 +191,47 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "6 patches per pack" },
               { spec: "Active Ingredient", value: "Hydrogel" },
-              { spec: "Shelf Life", value: "3 years" }
+              { spec: "Shelf Life", value: "3 years" },
             ],
             features: [
               "Long-lasting cooling",
               "Safe for all ages",
-              "Comfortable fit"
+              "Comfortable fit",
             ],
             pharmapack: {
               image: "pharmapack-fever-cooling-patches.jpg",
               uniqueFeatures: [
                 "Instant fever relief",
                 "No refrigeration needed",
-                "Non-medicated formula"
-              ]
+                "Non-medicated formula",
+              ],
             },
             privateLabeling: [
               {
                 clientName: "Temp",
                 image: [
-                   "privatelabeling-fever-cooling-patches-Temp-1.jpg",
-                   "privatelabeling-fever-cooling-patches-Temp-2.jpg"
+                  "privatelabeling-fever-cooling-patches-Temp-1.jpg",
+                  "privatelabeling-fever-cooling-patches-Temp-2.jpg",
                 ],
                 uniqueFeatures: [
                   "Custom packaging design",
                   "Branded cooling gel",
-                  "Tailored patch sizes"
-                ]
+                  "Tailored patch sizes",
+                ],
               },
               {
                 clientName: "Qualita",
                 image: [
                   "privatelabeling-fever-cooling-patches-Qualita-1.jpg",
-                  "privatelabeling-fever-cooling-patches-Qualita-2.jpg"
+                  "privatelabeling-fever-cooling-patches-Qualita-2.jpg",
                 ],
                 uniqueFeatures: [
                   "Child-friendly designs",
                   "Extended cooling duration",
-                  "Hypoallergenic materials"
-                ]
-              }
-            ]
+                  "Hypoallergenic materials",
+                ],
+              },
+            ],
           },
           {
             id: 11,
@@ -252,32 +242,33 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "5 patches per pack" },
               { spec: "Active Ingredient", value: "Menthol 5%" },
-              { spec: "Shelf Life", value: "3 years" }
+              { spec: "Shelf Life", value: "3 years" },
             ],
             features: [
               "Targeted pain relief",
               "Cooling sensation",
-              "Flexible material"
+              "Flexible material",
             ],
             pharmapack: {
               image: "pharmapack-cold-pain-relieving-patches.jpg",
               uniqueFeatures: [
                 "Soothes muscle aches",
                 "Non-greasy adhesive",
-                "Up to 8 hours of relief"
-              ]
+                "Up to 8 hours of relief",
+              ],
             },
             privateLabeling: [
               {
                 clientName: "Sulfax",
-                image: "privatelabeling-cold-pain-relieving-patches-Sulfax-1.jpg",
+                image:
+                  "privatelabeling-cold-pain-relieving-patches-Sulfax-1.jpg",
                 uniqueFeatures: [
                   "Custom menthol strength",
                   "Branded packaging",
-                  "Enhanced adhesive"
-                ]
-              }
-            ]
+                  "Enhanced adhesive",
+                ],
+              },
+            ],
           },
           {
             id: 12,
@@ -288,32 +279,33 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "4 patches per pack" },
               { spec: "Material", value: "Non-woven fabric" },
-              { spec: "Shelf Life", value: "3 years" }
+              { spec: "Shelf Life", value: "3 years" },
             ],
             features: [
               "Dual-action relief",
               "Flexible application",
-              "Non-medicated"
+              "Non-medicated",
             ],
             pharmapack: {
               image: "pharmapack-hot-cold-pain-relieving-patches.jpg",
               uniqueFeatures: [
                 "Adjustable temperature therapy",
                 "Reusable design",
-                "Ergonomic fit"
-              ]
+                "Ergonomic fit",
+              ],
             },
             privateLabeling: [
               {
                 clientName: "Sulfax",
-                image: "privatelabeling-hot-cold-pain-relieving-patches-Sulfax-1.jpg",
+                image:
+                  "privatelabeling-hot-cold-pain-relieving-patches-Sulfax-1.jpg",
                 uniqueFeatures: [
                   "Custom temperature settings",
                   "Branded reusable packaging",
-                  "Enhanced ergonomic design"
-                ]
-              }
-            ]
+                  "Enhanced ergonomic design",
+                ],
+              },
+            ],
           },
           {
             id: 13,
@@ -324,36 +316,33 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "5 patches per pack" },
               { spec: "Active Ingredient", value: "Herbal blend" },
-              { spec: "Shelf Life", value: "3 years" }
+              { spec: "Shelf Life", value: "3 years" },
             ],
-            features: [
-              "Targeted relief",
-              "Comfortable wear",
-              "Non-irritating"
-            ],
+            features: ["Targeted relief", "Comfortable wear", "Non-irritating"],
             pharmapack: {
               image: "pharmapack-period-pain-relieving-patches.jpg",
               uniqueFeatures: [
                 "Natural herbal formula",
                 "Long-lasting comfort",
-                "Discreet application"
-              ]
+                "Discreet application",
+              ],
             },
             privateLabeling: [
               {
                 clientName: "Sekoun",
-                image: "privatelabeling-period-pain-relieving-patches-Sekoun-1.jpg",
+                image:
+                  "privatelabeling-period-pain-relieving-patches-Sekoun-1.jpg",
                 uniqueFeatures: [
                   "Custom herbal blend",
                   "Branded discreet packaging",
-                  "Enhanced adhesive formula"
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                  "Enhanced adhesive formula",
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     title: "Personal Care & Cosmetics",
@@ -371,20 +360,16 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "72 wipes per pack" },
               { spec: "Material", value: "Non-woven fabric" },
-              { spec: "Shelf Life", value: "2 years" }
+              { spec: "Shelf Life", value: "2 years" },
             ],
-            features: [
-              "Hypoallergenic",
-              "Fragrance-free",
-              "Soft texture"
-            ],
+            features: ["Hypoallergenic", "Fragrance-free", "Soft texture"],
             pharmapack: {
               image: "pharmapack-baby-wipes.jpg",
               uniqueFeatures: [
                 "Enriched with chamomile",
                 "pH-balanced for baby skin",
-                "Thick and durable"
-              ]
+                "Thick and durable",
+              ],
             },
             privateLabeling: [
               {
@@ -393,8 +378,8 @@ export const collectionsData = [
                 uniqueFeatures: [
                   "Custom packaging design",
                   "Branded hypoallergenic formula",
-                  "Eco-friendly materials"
-                ]
+                  "Eco-friendly materials",
+                ],
               },
               {
                 clientName: "Eva",
@@ -402,8 +387,8 @@ export const collectionsData = [
                 uniqueFeatures: [
                   "Enhanced chamomile infusion",
                   "Premium quality assurance",
-                  "Fast production turnaround"
-                ]
+                  "Fast production turnaround",
+                ],
               },
               {
                 clientName: "Qualita",
@@ -411,10 +396,10 @@ export const collectionsData = [
                 uniqueFeatures: [
                   "Custom scent options",
                   "Thicker wipe design",
-                  "Branded retail packaging"
-                ]
-              }
-            ]
+                  "Branded retail packaging",
+                ],
+              },
+            ],
           },
           {
             id: 16,
@@ -425,20 +410,16 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "80 wipes per pack" },
               { spec: "Material", value: "Non-woven fabric" },
-              { spec: "Shelf Life", value: "2 years" }
+              { spec: "Shelf Life", value: "2 years" },
             ],
-            features: [
-              "99% water-based",
-              "Gentle on skin",
-              "Biodegradable"
-            ],
+            features: ["99% water-based", "Gentle on skin", "Biodegradable"],
             pharmapack: {
               image: "pharmapack-baby-water-wipes.jpg",
               uniqueFeatures: [
                 "Minimal ingredients",
                 "Safe for newborns",
-                "Eco-friendly packaging"
-              ]
+                "Eco-friendly packaging",
+              ],
             },
             privateLabeling: [
               {
@@ -447,8 +428,8 @@ export const collectionsData = [
                 uniqueFeatures: [
                   "Custom biodegradable fabric",
                   "Branded minimalist packaging",
-                  "Enhanced purity formula"
-                ]
+                  "Enhanced purity formula",
+                ],
               },
               {
                 clientName: "Amazon",
@@ -456,8 +437,8 @@ export const collectionsData = [
                 uniqueFeatures: [
                   "Eco-conscious materials",
                   "Premium quality assurance",
-                  "Fast production turnaround"
-                ]
+                  "Fast production turnaround",
+                ],
               },
               {
                 clientName: "AmazonA",
@@ -465,20 +446,20 @@ export const collectionsData = [
                 uniqueFeatures: [
                   "Custom water purity levels",
                   "Branded eco-packaging",
-                  "Hypoallergenic certification"
-                ]
+                  "Hypoallergenic certification",
+                ],
               },
               {
                 clientName: "Penduline",
                 image: [
                   "privatelabeling-baby-water-wipes-Penduline-1.jpg",
-                  "privatelabeling-baby-water-wipes-Penduline-2.jpg"
+                  "privatelabeling-baby-water-wipes-Penduline-2.jpg",
                 ],
                 uniqueFeatures: [
                   "Custom wipe thickness",
                   "Branded newborn-safe formula",
-                  "Sustainable materials"
-                ]
+                  "Sustainable materials",
+                ],
               },
               {
                 clientName: "Qualita",
@@ -486,10 +467,10 @@ export const collectionsData = [
                 uniqueFeatures: [
                   "Custom eco-friendly packaging",
                   "Premium softness",
-                  "Fast production turnaround"
-                ]
-              }
-            ]
+                  "Fast production turnaround",
+                ],
+              },
+            ],
           },
           {
             id: 17,
@@ -500,33 +481,33 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "25 wipes per pack" },
               { spec: "Material", value: "Biodegradable fabric" },
-              { spec: "Shelf Life", value: "2 years" }
+              { spec: "Shelf Life", value: "2 years" },
             ],
             features: [
               "Micellar water infused",
               "Non-irritating",
-              "Hydrates skin"
+              "Hydrates skin",
             ],
             pharmapack: {
               image: "pharmapack-makeup-remover-wipes.jpg",
               uniqueFeatures: [
                 "Removes waterproof makeup",
                 "Enriched with aloe vera",
-                "Suitable for sensitive skin"
-              ]
+                "Suitable for sensitive skin",
+              ],
             },
             privateLabeling: [
               {
                 clientName: "StarVille",
-                image:[ 
+                image: [
                   "privatelabeling-makeup-remover-wipes-StraVille-1.jpg",
-                  "privatelabeling-makeup-remover-wipes-StraVille-2.jpg"
+                  "privatelabeling-makeup-remover-wipes-StraVille-2.jpg",
                 ],
                 uniqueFeatures: [
                   "Custom micellar formula",
                   "Branded eco-packaging",
-                  "Enhanced hydration"
-                ]
+                  "Enhanced hydration",
+                ],
               },
               {
                 clientName: "WipeIt",
@@ -534,23 +515,23 @@ export const collectionsData = [
                 uniqueFeatures: [
                   "Custom biodegradable fabric",
                   "Branded retail packaging",
-                  "Enhanced cleansing power"
-                ]
+                  "Enhanced cleansing power",
+                ],
               },
               {
                 clientName: "Eva",
                 image: [
                   "privatelabeling-makeup-remover-wipes-Eva-1.jpg",
                   "privatelabeling-makeup-remover-wipes-Eva-2.jpg",
-                  "privatelabeling-makeup-remover-wipes-Eva-3.jpg"
+                  "privatelabeling-makeup-remover-wipes-Eva-3.jpg",
                 ],
                 uniqueFeatures: [
                   "Custom scent options",
                   "Premium softness",
-                  "Hypoallergenic formula"
-                ]
+                  "Hypoallergenic formula",
+                ],
               },
-            ]
+            ],
           },
           {
             id: 18,
@@ -561,20 +542,20 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "30 wipes per pack" },
               { spec: "Active Ingredient", value: "DEET 10%" },
-              { spec: "Shelf Life", value: "2 years" }
+              { spec: "Shelf Life", value: "2 years" },
             ],
             features: [
               "Long-lasting protection",
               "Non-greasy",
-              "Portable packaging"
+              "Portable packaging",
             ],
             pharmapack: {
               image: "pharmapack-mosquito-repellent-wipes.jpg",
               uniqueFeatures: [
                 "Safe for family use",
                 "Pleasant scent",
-                "Quick application"
-              ]
+                "Quick application",
+              ],
             },
             privateLabeling: [
               {
@@ -583,10 +564,10 @@ export const collectionsData = [
                 uniqueFeatures: [
                   "Custom DEET concentration",
                   "Branded packaging",
-                  "Enhanced scent profile"
-                ]
-              }
-            ]
+                  "Enhanced scent profile",
+                ],
+              },
+            ],
           },
           {
             id: 19,
@@ -597,32 +578,29 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "40 wipes per pack" },
               { spec: "Material", value: "Non-woven fabric" },
-              { spec: "Shelf Life", value: "2 years" }
+              { spec: "Shelf Life", value: "2 years" },
             ],
-            features: [
-              "Acetone-free",
-              "Moisturizing formula",
-              "Easy to use"
-            ],
+            features: ["Acetone-free", "Moisturizing formula", "Easy to use"],
             pharmapack: {
               image: "pharmapack-nail-polish-remover-wipes.jpg",
               uniqueFeatures: [
                 "Removes glitter polish",
                 "Enriched with vitamin E",
-                "Non-drying formula"
-              ]
+                "Non-drying formula",
+              ],
             },
             privateLabeling: [
               {
                 clientName: "Ciliver",
-                image: "privatelabeling-nail-polish-remover-wipes-Ciliver-1.jpg",
+                image:
+                  "privatelabeling-nail-polish-remover-wipes-Ciliver-1.jpg",
                 uniqueFeatures: [
                   "Custom vitamin E infusion",
                   "Branded packaging",
-                  "Enhanced glitter removal"
-                ]
-              }
-            ]
+                  "Enhanced glitter removal",
+                ],
+              },
+            ],
           },
           {
             id: 20,
@@ -633,21 +611,17 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "50 wipes per pack" },
               { spec: "Alcohol Content", value: "70% isopropyl" },
-              { spec: "Shelf Life", value: "2 years" }
+              { spec: "Shelf Life", value: "2 years" },
             ],
-            features: [
-              "Quick-drying",
-              "Antimicrobial action",
-              "Portable size"
-            ],
+            features: ["Quick-drying", "Antimicrobial action", "Portable size"],
             pharmapack: {
               image: "pharmapack-alcohol-wipes.jpg",
               uniqueFeatures: [
                 "Sterile for hygiene",
                 "Soft non-woven material",
-                "Resealable packaging"
-              ]
-            }
+                "Resealable packaging",
+              ],
+            },
           },
           {
             id: 21,
@@ -657,49 +631,52 @@ export const collectionsData = [
             indexImage: "antiseptic-wipes.jpg",
             keySpecifications: [
               { spec: "Quantity", value: "50 wipes per pack" },
-              { spec: "Active Ingredient", value: "Benzalkonium Chloride 0.13%" },
-              { spec: "Shelf Life", value: "2 years" }
+              {
+                spec: "Active Ingredient",
+                value: "Benzalkonium Chloride 0.13%",
+              },
+              { spec: "Shelf Life", value: "2 years" },
             ],
             features: [
               "Alcohol-free",
               "Broad-spectrum antimicrobial",
-              "Gentle on skin"
+              "Gentle on skin",
             ],
             pharmapack: {
               image: "pharmapack-antiseptic-wipes.jpg",
               uniqueFeatures: [
                 "Safe for frequent use",
                 "Non-irritating formula",
-                "Resealable pack"
-              ]
+                "Resealable pack",
+              ],
             },
             privateLabeling: [
               {
                 clientName: "Clorox",
                 image: [
                   "privatelabeling-antiseptic-wipes-Clorox-1.jpg",
-                  "privatelabeling-antiseptic-wipes-Clorox-2.jpg"
+                  "privatelabeling-antiseptic-wipes-Clorox-2.jpg",
                 ],
                 uniqueFeatures: [
                   "Custom antimicrobial formula",
                   "Branded resealable packaging",
-                  "Enhanced skin gentleness"
-                ]
+                  "Enhanced skin gentleness",
+                ],
               },
               {
                 clientName: "Qualita",
                 image: [
                   "privatelabeling-antiseptic-wipes-Qualita-1.jpg",
                   "privatelabeling-antiseptic-wipes-Qualita-2.jpg",
-                  "privatelabeling-antiseptic-wipes-Qualita-3.jpg"
+                  "privatelabeling-antiseptic-wipes-Qualita-3.jpg",
                 ],
                 uniqueFeatures: [
                   "Eco-friendly materials",
                   "Premium quality assurance",
-                  "Fast production turnaround"
-                ]
+                  "Fast production turnaround",
+                ],
               },
-            ]
+            ],
           },
           {
             id: 22,
@@ -710,20 +687,20 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "80 wipes per pack" },
               { spec: "Material", value: "Non-woven fabric" },
-              { spec: "Shelf Life", value: "2 years" }
+              { spec: "Shelf Life", value: "2 years" },
             ],
             features: [
               "Moisturizing formula",
               "Large wipe size",
-              "Multi-purpose use"
+              "Multi-purpose use",
             ],
             pharmapack: {
               image: "pharmapack-hand-and-body-wipes.jpg",
               uniqueFeatures: [
                 "Infused with aloe vera",
                 "Gentle for all skin types",
-                "Travel-friendly pack"
-              ]
+                "Travel-friendly pack",
+              ],
             },
             privateLabeling: [
               {
@@ -732,19 +709,20 @@ export const collectionsData = [
                 uniqueFeatures: [
                   "Custom aloe vera infusion",
                   "Branded travel packaging",
-                  "Enhanced moisturizing formula"
-                ]
+                  "Enhanced moisturizing formula",
+                ],
               },
               {
                 clientName: "Qualita",
-                image: ["privatelabeling-hand-and-body-wipes-Qualita-1.jpg",
-                    "privatelabeling-hand-and-body-wipes-Qualita-2.jpg"
+                image: [
+                  "privatelabeling-hand-and-body-wipes-Qualita-1.jpg",
+                  "privatelabeling-hand-and-body-wipes-Qualita-2.jpg",
                 ],
                 uniqueFeatures: [
                   "Eco-friendly materials",
                   "Premium quality assurance",
-                  "Fast production turnaround"
-                ]
+                  "Fast production turnaround",
+                ],
               },
               {
                 clientName: "Eva",
@@ -752,10 +730,10 @@ export const collectionsData = [
                 uniqueFeatures: [
                   "Custom wipe size",
                   "Branded retail packaging",
-                  "Enhanced skin hydration"
-                ]
+                  "Enhanced skin hydration",
+                ],
               },
-            ]
+            ],
           },
           {
             id: 23,
@@ -766,20 +744,20 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "5 masks per pack" },
               { spec: "Material", value: "Biodegradable fabric" },
-              { spec: "Shelf Life", value: "2 years" }
+              { spec: "Shelf Life", value: "2 years" },
             ],
             features: [
               "Hydrating formula",
               "Fits all face shapes",
-              "Single-use masks"
+              "Single-use masks",
             ],
             pharmapack: {
               image: "pharmapack-face-sheet-masks.jpg",
               uniqueFeatures: [
                 "Infused with hyaluronic acid",
                 "Promotes radiant skin",
-                "Eco-friendly materials"
-              ]
+                "Eco-friendly materials",
+              ],
             },
             privateLabeling: [
               {
@@ -788,8 +766,8 @@ export const collectionsData = [
                 uniqueFeatures: [
                   "Custom hyaluronic acid formula",
                   "Branded eco-packaging",
-                  "Enhanced skin radiance"
-                ]
+                  "Enhanced skin radiance",
+                ],
               },
               {
                 clientName: "Like",
@@ -797,10 +775,10 @@ export const collectionsData = [
                 uniqueFeatures: [
                   "Custom biodegradable fabric",
                   "Premium quality assurance",
-                  "Fast production turnaround"
-                ]
-              }
-            ]
+                  "Fast production turnaround",
+                ],
+              },
+            ],
           },
           {
             id: 24,
@@ -811,20 +789,20 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Quantity", value: "10 pairs per pack" },
               { spec: "Material", value: "Hydrogel" },
-              { spec: "Shelf Life", value: "2 years" }
+              { spec: "Shelf Life", value: "2 years" },
             ],
             features: [
               "Reduces puffiness",
               "Hydrates delicate skin",
-              "Easy to apply"
+              "Easy to apply",
             ],
             pharmapack: {
               image: "pharmapack-under-eye-patches.jpg",
               uniqueFeatures: [
                 "Collagen-infused formula",
                 "Targets dark circles",
-                "Non-slip design"
-              ]
+                "Non-slip design",
+              ],
             },
             privateLabeling: [
               {
@@ -832,15 +810,15 @@ export const collectionsData = [
                 image: [
                   "privatelabeling-under-eye-patches-MotherNaked-1.jpg",
                   "privatelabeling-under-eye-patches-MotherNaked-2.jpg",
-                  "privatelabeling-under-eye-patches-MotherNaked-3.jpg"
+                  "privatelabeling-under-eye-patches-MotherNaked-3.jpg",
                 ],
                 uniqueFeatures: [
                   "Custom collagen formula",
                   "Branded packaging",
-                  "Enhanced anti-puffiness"
-                ]
+                  "Enhanced anti-puffiness",
+                ],
               },
-            ]
+            ],
           },
           {
             id: 25,
@@ -851,21 +829,17 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Volume", value: "100ml" },
               { spec: "Alcohol Content", value: "70% ethyl alcohol" },
-              { spec: "Shelf Life", value: "2 years" }
+              { spec: "Shelf Life", value: "2 years" },
             ],
-            features: [
-              "Kills 99.9% of germs",
-              "Non-sticky",
-              "Travel-friendly"
-            ],
+            features: ["Kills 99.9% of germs", "Non-sticky", "Travel-friendly"],
             pharmapack: {
               image: "pharmapack-hand-sanitizers.jpg",
               uniqueFeatures: [
                 "Moisturizing with aloe vera",
                 "Quick-drying formula",
-                "Compact bottle design"
-              ]
-            }
+                "Compact bottle design",
+              ],
+            },
           },
           {
             id: 26,
@@ -876,24 +850,20 @@ export const collectionsData = [
             keySpecifications: [
               { spec: "Volume", value: "100ml" },
               { spec: "Material", value: "Water-based gel" },
-              { spec: "Shelf Life", value: "2 years" }
+              { spec: "Shelf Life", value: "2 years" },
             ],
-            features: [
-              "Non-irritating",
-              "Long-lasting",
-              "Easy to apply"
-            ],
+            features: ["Non-irritating", "Long-lasting", "Easy to apply"],
             pharmapack: {
               image: "pharmapack-lubricant-gel.jpg",
               uniqueFeatures: [
                 "Hypoallergenic formula",
                 "Safe for sensitive skin",
-                "Non-sticky residue"
-              ]
-            }
-          }
-        ]
-      }
-    ]
-  }
+                "Non-sticky residue",
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
 ];
