@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { collectionsData } from "@/data/products-data";
 
 // Animation variants (unchanged)
@@ -77,7 +78,33 @@ const tabContentVariants = {
 };
 
 export default function ProductsSection() {
-  const [activeCollection, setActiveCollection] = useState("all");
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const [activeCollection, setActiveCollectionInternal] = useState(() => {
+    const collection = searchParams.get("collection");
+    return collection || "all";
+  });
+
+  useEffect(() => {
+    const collection = searchParams.get("collection");
+    const newActive = collection || "all";
+    if (newActive !== activeCollection) {
+      setActiveCollectionInternal(newActive);
+    }
+  }, [searchParams]);
+
+  const setActiveCollection = (id) => {
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+    if (id === "all") {
+      newSearchParams.delete("collection");
+    } else {
+      newSearchParams.set("collection", id);
+    }
+    router.push(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
+    setActiveCollectionInternal(id);
+  };
 
   // Create collection tabs, including "All Products"
   const totalProductsCount = collectionsData.reduce(
@@ -134,9 +161,7 @@ export default function ProductsSection() {
         <TabsSection
           tabs={collectionTabs}
           activeTab={activeCollection}
-          setActiveTab={(id) => {
-            setActiveCollection(id);
-          }}
+          setActiveTab={setActiveCollection}
         />
 
         {/* Filtered Products */}

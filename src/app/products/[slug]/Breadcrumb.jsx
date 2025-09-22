@@ -6,15 +6,17 @@ import Link from "next/link";
 import { collectionsData } from "@/data/products-data";
 
 export default function Breadcrumb({ product }) {
+  // Find the collection containing the product
   const collection = collectionsData.find((col) =>
     col.subcategories.some((sub) =>
       sub.products.some((p) => p.slug === product.slug)
     )
   );
 
-  const subcategory = collection?.subcategories.find((sub) =>
-    sub.products.some((p) => p.slug === product.slug)
-  );
+  // Generate the collection ID for the URL
+  const collectionId = collection
+    ? collection.title.toLowerCase().replace(/\s+/g, "-")
+    : "";
 
   return (
     <motion.nav
@@ -45,9 +47,12 @@ export default function Breadcrumb({ product }) {
                 clipRule="evenodd"
               />
             </svg>
-            <span className="text-brand-gray font-medium whitespace-nowrap">
+            <Link
+              href={`/products?collection=${encodeURIComponent(collectionId)}`}
+              className="text-brand-gray hover:text-brand-red transition-colors duration-200 font-medium whitespace-nowrap"
+            >
               {collection.title}
-            </span>
+            </Link>
           </li>
         )}
         <li className="flex items-center min-w-0">
