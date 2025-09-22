@@ -1,8 +1,8 @@
-import ProductsSection from "../sections/ProductsSection";
+import ProductsSectionWrapper from "../components/ProductsSectionWrapper";
 export default function ProductsPage() {
   return (
     <>
-        <ProductsSection/>
+        <ProductsSectionWrapper/>
     </>
   );
 }
