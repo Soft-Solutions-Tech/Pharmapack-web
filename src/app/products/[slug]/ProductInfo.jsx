@@ -24,7 +24,7 @@ const staggerItem = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
-// Simple Image Display Component
+// Image Display Component
 function ImageDisplay({ images, alt }) {
   if (!images || images.length === 0) return null;
 
@@ -109,14 +109,14 @@ function DetailTabs({ product }) {
                 />
                 {product.pharmapack.uniqueFeatures && (
                   <ul className="list-disc pl-6 space-y-2 text-brand-gray">
-                    {product.pharmapack.uniqueFeatures.map((f, i) => (
+                    {product.pharmapack.uniqueFeatures.map((feature, i) => (
                       <motion.li
                         key={i}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.1, duration: 0.4 }}
                       >
-                        {f}
+                        {feature}
                       </motion.li>
                     ))}
                   </ul>
@@ -144,14 +144,14 @@ function DetailTabs({ product }) {
                   />
                   {pl.uniqueFeatures && (
                     <ul className="list-disc pl-6 space-y-2 text-brand-gray">
-                      {pl.uniqueFeatures.map((f, i) => (
+                      {pl.uniqueFeatures.map((feature, i) => (
                         <motion.li
                           key={i}
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: i * 0.1, duration: 0.4 }}
                         >
-                          {f}
+                          {feature}
                         </motion.li>
                       ))}
                     </ul>
@@ -170,7 +170,7 @@ function DetailTabs({ product }) {
   );
 }
 
-// Simplified Feature Card
+// Feature Card Component
 function FeatureCard({ title, children, className = "" }) {
   return (
     <motion.div
