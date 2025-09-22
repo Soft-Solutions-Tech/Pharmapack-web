@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 import { collectionsData } from "@/data/products-data";
 
 // Animation variants (unchanged)
@@ -55,60 +55,70 @@ const imageVariants = {
 };
 
 const tabContentVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: 20,
-    transition: { duration: 0.2 }
+    transition: { duration: 0.2 },
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.4,
-      ease: 'easeOut',
-      staggerChildren: 0.1
+      ease: "easeOut",
+      staggerChildren: 0.1,
     },
   },
   exit: {
     opacity: 0,
     y: -20,
-    transition: { duration: 0.2 }
-  }
+    transition: { duration: 0.2 },
+  },
 };
 
 export default function ProductsSection() {
-  const [activeCollection, setActiveCollection] = useState('all');
+  const [activeCollection, setActiveCollection] = useState("all");
 
   // Create collection tabs, including "All Products"
   const totalProductsCount = collectionsData.reduce(
-    (acc, collection) => acc + collection.subcategories.reduce((subAcc, sub) => subAcc + sub.products.length, 0),
+    (acc, collection) =>
+      acc +
+      collection.subcategories.reduce(
+        (subAcc, sub) => subAcc + sub.products.length,
+        0
+      ),
     0
   );
   const collectionTabs = [
-    { id: 'all', label: 'All Products', count: totalProductsCount },
-    ...collectionsData.map(collection => ({
-      id: collection.title.toLowerCase().replace(/\s+/g, '-'),
+    { id: "all", label: "All Products", count: totalProductsCount },
+    ...collectionsData.map((collection) => ({
+      id: collection.title.toLowerCase().replace(/\s+/g, "-"),
       label: collection.title,
-      count: collection.subcategories.reduce((acc, sub) => acc + sub.products.length, 0)
-    }))
+      count: collection.subcategories.reduce(
+        (acc, sub) => acc + sub.products.length,
+        0
+      ),
+    })),
   ];
 
   // Subcategory tabs removed per requirement
 
   // Get filtered content based on active collection only (no subcategories)
   const getFilteredContent = () => {
-    if (activeCollection === 'all') {
-      return collectionsData.map(collection => ({
+    if (activeCollection === "all") {
+      return collectionsData.map((collection) => ({
         ...collection,
-        products: collection.subcategories.flatMap(sub => sub.products)
+        products: collection.subcategories.flatMap((sub) => sub.products),
       }));
     }
     const collection = collectionsData.find(
-      col => col.title.toLowerCase().replace(/\s+/g, '-') === activeCollection
+      (col) => col.title.toLowerCase().replace(/\s+/g, "-") === activeCollection
     );
     if (!collection) return [];
     // Combine all products under the selected collection
-    const combinedProducts = collection.subcategories.flatMap(sub => sub.products);
+    const combinedProducts = collection.subcategories.flatMap(
+      (sub) => sub.products
+    );
     return [{ ...collection, products: combinedProducts }];
   };
 
@@ -121,9 +131,13 @@ export default function ProductsSection() {
         <HeaderSection />
 
         {/* Collection Tabs */}
-        <TabsSection tabs={collectionTabs} activeTab={activeCollection} setActiveTab={(id) => {
-          setActiveCollection(id);
-        }} />
+        <TabsSection
+          tabs={collectionTabs}
+          activeTab={activeCollection}
+          setActiveTab={(id) => {
+            setActiveCollection(id);
+          }}
+        />
 
         {/* Filtered Products */}
         <AnimatePresence mode="wait">
@@ -135,7 +149,10 @@ export default function ProductsSection() {
             exit="exit"
             className="mt-16 lg:mt-20"
           >
-            <FilteredCollectionsSection collections={filteredContent} activeTab={activeCollection} />
+            <FilteredCollectionsSection
+              collections={filteredContent}
+              activeTab={activeCollection}
+            />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -206,15 +223,17 @@ function TabsSection({ tabs, activeTab, setActiveTab, isSubcategory = false }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: isSubcategory ? 0.4 : 0.3 }}
-      className={`relative ${isSubcategory ? '' : ''}`}
+      className={`relative ${isSubcategory ? "" : ""}`}
     >
       {/* Tab Navigation */}
       <div className="relative">
         {/* Background Border */}
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"></div>
-        
+
         {/* Tabs Container */}
-        <div className={`relative flex flex-nowrap gap-2 sm:gap-4 overflow-x-auto scrollbar-hide py-2 sm:py-4 px-2 sm:px-0 bg-white rounded-lg sm:bg-transparent sm:rounded-none justify-center`}>
+        <div
+          className={`relative flex flex-nowrap gap-2 sm:gap-4 overflow-x-auto scrollbar-hide py-2 sm:py-4 px-2 sm:px-0 bg-white rounded-lg sm:bg-transparent sm:rounded-none justify-center`}
+        >
           {tabs.map((tab, index) => (
             <TabButton
               key={tab.id}
@@ -231,11 +250,13 @@ function TabsSection({ tabs, activeTab, setActiveTab, isSubcategory = false }) {
       {/* Active Tab Indicator Line */}
       <motion.div
         className="absolute bottom-0 h-0.5 bg-gradient-to-r from-brand-red via-brand-red to-brand-red/60"
-        layoutId={isSubcategory ? "activeSubcategoryIndicator" : "activeTabIndicator"}
+        layoutId={
+          isSubcategory ? "activeSubcategoryIndicator" : "activeTabIndicator"
+        }
         transition={{
           type: "spring",
           stiffness: 400,
-          damping: 30
+          damping: 30,
         }}
       />
     </motion.div>
@@ -249,9 +270,10 @@ function TabButton({ tab, isActive, onClick, index, isSubcategory }) {
       className={`
         relative px-4 py-2 sm:px-6 sm:py-4 flex-shrink-0 group
         transition-all duration-300 ease-out rounded-lg sm:rounded-none
-        ${isActive 
-          ? 'text-brand-red bg-gray-50 sm:bg-transparent' 
-          : 'text-brand-gray hover:text-brand-black hover:bg-gray-50 sm:hover:bg-transparent'
+        ${
+          isActive
+            ? "text-brand-red bg-gray-50 sm:bg-transparent"
+            : "text-brand-gray hover:text-brand-black hover:bg-gray-50 sm:hover:bg-transparent"
         }
         sm:cursor-pointer
       `}
@@ -263,21 +285,24 @@ function TabButton({ tab, isActive, onClick, index, isSubcategory }) {
     >
       {/* Tab Content */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3 text-left sm:text-center">
-        <span className={`
+        <span
+          className={`
           text-xs sm:text-base font-medium tracking-wide transition-all duration-300
-          ${isActive ? 'font-semibold' : 'group-hover:font-medium'}
-        `}>
+          ${isActive ? "font-semibold" : "group-hover:font-medium"}
+        `}
+        >
           {tab.label}
         </span>
-        
+
         {/* Product Count Badge */}
-        <motion.span 
+        <motion.span
           className={`
             inline-flex items-center justify-center min-w-[1.5rem] h-5 sm:h-6 px-2 mt-1 sm:mt-0
             text-xs font-medium rounded-full transition-all duration-300
-            ${isActive 
-              ? 'bg-brand-red text-white' 
-              : 'bg-gray-100 text-brand-gray group-hover:bg-gray-200'
+            ${
+              isActive
+                ? "bg-brand-red text-white"
+                : "bg-gray-100 text-brand-gray group-hover:bg-gray-200"
             }
           `}
           whileHover={{ scale: 1.05 }}
@@ -297,7 +322,7 @@ function TabButton({ tab, isActive, onClick, index, isSubcategory }) {
 }
 
 function FilteredCollectionsSection({ collections, activeTab }) {
-  if (activeTab === 'all') {
+  if (activeTab === "all") {
     return (
       <div className="space-y-24 lg:space-y-32">
         {collections.map((collection, index) => (
@@ -322,7 +347,11 @@ function FilteredCollectionsSection({ collections, activeTab }) {
           variants={containerVariants}
         >
           <CollectionHeader collection={collection} />
-          <ProductGrid products={collection.products} showCollectionTitle={false} activeTab={activeTab} />
+          <ProductGrid
+            products={collection.products}
+            showCollectionTitle={false}
+            activeTab={activeTab}
+          />
         </motion.div>
       ))}
     </div>
@@ -339,7 +368,7 @@ function CollectionHeader({ collection }) {
         <motion.div
           className="h-px flex-1 ml-8 bg-gradient-to-r from-gray-200 to-transparent"
           initial={{ width: 0 }}
-          animate={{ width: '100%' }}
+          animate={{ width: "100%" }}
           transition={{ duration: 1, delay: 0.3 }}
         />
       </div>
@@ -352,13 +381,18 @@ function CollectionHeader({ collection }) {
 
 function ProductGrid({ products, showCollectionTitle = true, activeTab }) {
   return (
-    <motion.div 
+    <motion.div
       className="space-y-12 lg:space-y-16"
       variants={containerVariants}
     >
       {products.length > 0 ? (
         products.map((product, index) => (
-          <ProductRow key={product.id} product={product} index={index} activeTab={activeTab} />
+          <ProductRow
+            key={product.id}
+            product={product}
+            index={index}
+            activeTab={activeTab}
+          />
         ))
       ) : (
         <p className="text-center text-brand-gray">No products available.</p>
@@ -371,7 +405,10 @@ function ProductRow({ product, index, activeTab }) {
   const isReverse = index % 2 === 1;
 
   return (
-    <Link href={`/products/${product.slug.replace(/^\//, '')}`} className="block group">
+    <Link
+      href={`/products/${product.slug.replace(/^\//, "")}`}
+      className="block group"
+    >
       <motion.div
         variants={productVariants}
         className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${
@@ -384,7 +421,7 @@ function ProductRow({ product, index, activeTab }) {
         <motion.div
           variants={imageVariants}
           className={`relative h-64 sm:h-80 lg:h-96 overflow-hidden rounded-lg ${
-            isReverse ? 'lg:col-start-2' : ''
+            isReverse ? "lg:col-start-2" : ""
           }`}
         >
           <Image
@@ -395,14 +432,16 @@ function ProductRow({ product, index, activeTab }) {
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          
+
           {/* Overlay Badge */}
           <motion.div
             className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             initial={{ scale: 0 }}
             whileHover={{ scale: 1 }}
           >
-            <span className="text-sm font-medium text-brand-black">View Details</span>
+            <span className="text-sm font-medium text-brand-black">
+              View Details
+            </span>
           </motion.div>
         </motion.div>
 
@@ -416,11 +455,13 @@ function ProductRow({ product, index, activeTab }) {
               {product.name}
             </h4>
             <p className="text-base sm:text-lg text-brand-gray leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
-              {product.features && product.features.length ? product.features[0] : ''}
+              {product.features && product.features.length
+                ? product.features[0]
+                : ""}
             </p>
           </div>
 
-          <motion.div 
+          <motion.div
             className="flex items-center gap-3 text-brand-red group-hover:gap-4 transition-all duration-300"
             whileHover={{ x: 4 }}
           >

@@ -32,12 +32,11 @@ export default function ProductNotFound() {
           Product Not Found
         </h1>
         <p className="text-brand-gray mb-8 leading-relaxed text-sm sm:text-base px-4">
-          The requested product could not be found. It may have been moved or
-          removed.
+          The requested product could not be found.
         </p>
         <Link
           href="/products"
-          className="inline-flex items-center gap-2 w-full sm:w-auto px-6 py-3 bg-brand-red text-white rounded-xl font-medium hover:bg-red-700 transition-colors duration-300 justify-center touch-manipulation"
+          className="inline-flex items-center gap-2 w-full sm:w-auto px-6 py-3 bg-brand-red text-white rounded-xl font-medium hover:bg-red-700 transition-colors duration-300 justify-center touch-manipulation cursor-pointer"
         >
           <span className="text-lg">←</span>
           Back to Products

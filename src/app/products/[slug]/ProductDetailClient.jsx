@@ -50,7 +50,7 @@ function BackButton() {
   return (
     <motion.button
       onClick={handleBack}
-      className="inline-flex items-center gap-2 mb-8 sm:mb-10 px-4 py-3 -ml-4 text-sm sm:text-base font-medium text-brand-red hover:text-red-700 hover:bg-red-50 rounded-xl transition-all duration-300 group touch-manipulation"
+      className="inline-flex items-center gap-2 mb-8 sm:mb-10 px-4 py-3 -ml-4 text-sm sm:text-base font-medium text-brand-red hover:text-red-700 hover:bg-red-50 rounded-xl transition-all duration-300 group touch-manipulation cursor-pointer"
       whileHover={{ x: -2 }}
       whileTap={{ scale: 0.96 }}
       initial={{ opacity: 0, x: 20 }}
