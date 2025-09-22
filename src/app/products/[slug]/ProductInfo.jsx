@@ -24,30 +24,62 @@ const staggerItem = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
-// Image Display Component
+// Image Display Component with fixes and enhancements
 function ImageDisplay({ images, alt }) {
+  const [selectedImage, setSelectedImage] = useState(null);
+
   if (!images || images.length === 0) return null;
 
+  const handleImageClick = (src) => {
+    setSelectedImage(src);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedImage(null);
+  };
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
-      {images.map((src, index) => (
-        <motion.div
-          key={index}
-          whileHover={{ scale: 1.03, y: -4 }}
-          transition={{ duration: 0.3 }}
-          className="w-96 h-72 image-wrapper"
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
+        {images.map((src, index) => (
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.03, y: -4 }}
+            transition={{ duration: 0.3 }}
+            className="w-96 h-72 image-wrapper relative overflow-hidden group cursor-pointer"
+            onClick={() => handleImageClick(src)}
+          >
+            <img
+              src={src}
+              alt={`${alt} ${index + 1}`}
+              className="w-full h-full object-cover rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 opacity-0"
+              onLoad={(e) => {
+                e.currentTarget.style.opacity = 1;
+              }}
+              onError={(e) => {
+                e.currentTarget.closest(".image-wrapper").style.display = "none";
+              }}
+            />
+            <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Modal for zoomed image */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
+          onClick={handleCloseModal}
         >
           <img
-            src={src}
-            alt={`${alt} ${index + 1}`}
-            className="w-full h-full object-cover rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300"
-            onError={(e) => {
-              e.currentTarget.closest(".image-wrapper").style.display = "none";
-            }}
+            src={selectedImage}
+            alt="Zoomed image"
+            className="max-w-[90%] max-h-[90%] object-contain"
+            onClick={(e) => e.stopPropagation()} // Prevent close on image click
           />
-        </motion.div>
-      ))}
-    </div>
+        </div>
+      )}
+    </>
   );
 }
 

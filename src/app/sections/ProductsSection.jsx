@@ -128,8 +128,6 @@ export default function ProductsSection() {
     })),
   ];
 
-  // Subcategory tabs removed per requirement
-
   // Get filtered content based on active collection only (no subcategories)
   const getFilteredContent = () => {
     if (activeCollection === "all") {
@@ -257,7 +255,7 @@ function TabsSection({ tabs, activeTab, setActiveTab, isSubcategory = false }) {
 
         {/* Tabs Container */}
         <div
-          className={`relative flex flex-nowrap gap-2 sm:gap-4 overflow-x-auto scrollbar-hide py-2 sm:py-4 px-2 sm:px-0 bg-white rounded-lg sm:bg-transparent sm:rounded-none justify-center`}
+          className={`relative flex flex-nowrap gap-2 sm:gap-4 overflow-x-auto scrollbar-hide py-2 sm:py-4 px-2 sm:px-0 bg-white rounded-lg sm:bg-transparent sm:rounded-none justify-start sm:justify-center`}
         >
           {tabs.map((tab, index) => (
             <TabButton
