@@ -29,21 +29,24 @@ function ImageDisplay({ images, alt }) {
   if (!images || images.length === 0) return null;
 
   return (
-    <div className="flex justify-center">
-      <motion.div
-        whileHover={{ scale: 1.03, y: -4 }}
-        transition={{ duration: 0.3 }}
-        className="w-96 h-72"
-      >
-        <img
-          src={images[0]}
-          alt={alt}
-          className="w-full h-full object-cover rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300"
-          onError={(e) => {
-            e.currentTarget.style.display = "none";
-          }}
-        />
-      </motion.div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
+      {images.map((src, index) => (
+        <motion.div
+          key={index}
+          whileHover={{ scale: 1.03, y: -4 }}
+          transition={{ duration: 0.3 }}
+          className="w-96 h-72 image-wrapper"
+        >
+          <img
+            src={src}
+            alt={`${alt} ${index + 1}`}
+            className="w-full h-full object-cover rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300"
+            onError={(e) => {
+              e.currentTarget.closest(".image-wrapper").style.display = "none";
+            }}
+          />
+        </motion.div>
+      ))}
     </div>
   );
 }
@@ -51,19 +54,37 @@ function ImageDisplay({ images, alt }) {
 function DetailTabs({ product }) {
   const [active, setActive] = useState("pharmapack");
 
-  const getPharmapackImages = () => [
-    `/products/pharmapack-products/pharmapack-${product.slug}-1.jpg`,
-  ];
+  const getPharmapackImages = () => {
+    // Assuming images follow the pattern pharmapack-${product.slug}-X.jpg
+    // We can't check file existence in the browser, so we rely on onError to hide invalid images
+    // If product.pharmapack has an images array, use it; otherwise, try common suffixes
+    const base = `/products/pharmapack-products/pharmapack-${product.slug}`;
+    if (product.pharmapack?.images?.length) {
+      return product.pharmapack.images;
+    }
+    // Fallback to trying -1.jpg, -2.jpg, -3.jpg
+    return [1, 2, 3].map((i) => `${base}-${i}.jpg`);
+  };
 
-  const getPrivateLabelingImages = (clientName) => [
-    `/products/clients-products/privatelabeling-${product.slug}-${clientName
+  const getPrivateLabelingImages = (clientName) => {
+    // Assuming images follow the pattern privatelabeling-${product.slug}-${clientName}-X.jpg
+    const base = `/products/clients-products/privatelabeling-${product.slug}-${clientName
       .toLowerCase()
-      .replace(/\s+/g, "-")}-1.jpg`,
-  ];
+      .replace(/\s+/g, "-")}`;
+    // If privateLabeling entry has an images array, use it
+    const plEntry = product.privateLabeling?.find(
+      (pl) => pl.clientName.toLowerCase().replace(/\s+/g, "-") === clientName.toLowerCase().replace(/\s+/g, "-")
+    );
+    if (plEntry?.images?.length) {
+      return plEntry.images;
+    }
+    // Fallback to trying -1.jpg, -2.jpg, -3.jpg
+    return [1, 2, 3].map((i) => `${base}-${i}.jpg`);
+  };
 
   const TabButton = ({ tabKey, label }) => (
     <motion.button
-      className={`px-4 py-2 -mb-px relative transition-colors duration-200 ${
+      className={`px-4 py-2 -mb-px relative transition-colors duration-200 cursor-pointer ${
         active === tabKey
           ? "text-brand-red"
           : "text-brand-gray hover:text-brand-black"
