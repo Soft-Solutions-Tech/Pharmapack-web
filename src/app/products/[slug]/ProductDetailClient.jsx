@@ -32,10 +32,8 @@ export default function ProductDetailClient({ product }) {
     <>
       <Breadcrumb product={product} />
       <BackButton />
-      <div className="grid grid-cols-1 gap-10 sm:gap-12 mb-12 sm:mb-16">
-        <ProductImage product={product} />
-        <ProductInfo product={product} />
-      </div>
+      <ProductImage product={product} />
+      <ProductInfo product={product} />
     </>
   );
 }
