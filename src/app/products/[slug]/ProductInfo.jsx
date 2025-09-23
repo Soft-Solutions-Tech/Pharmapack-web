@@ -57,7 +57,8 @@ function ImageDisplay({ images, alt }) {
                 e.currentTarget.style.opacity = 1;
               }}
               onError={(e) => {
-                e.currentTarget.closest(".image-wrapper").style.display = "none";
+                e.currentTarget.closest(".image-wrapper").style.display =
+                  "none";
               }}
             />
             <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
@@ -75,7 +76,7 @@ function ImageDisplay({ images, alt }) {
             src={selectedImage}
             alt="Zoomed image"
             className="max-w-[90%] max-h-[90%] object-contain"
-            onClick={(e) => e.stopPropagation()} // Prevent close on image click
+            onClick={(e) => e.stopPropagation()}
           />
         </div>
       )}
@@ -100,12 +101,14 @@ function DetailTabs({ product }) {
 
   const getPrivateLabelingImages = (clientName) => {
     // Assuming images follow the pattern privatelabeling-${product.slug}-${clientName}-X.jpg
-    const base = `/products/clients-products/privatelabeling-${product.slug}-${clientName
-      .toLowerCase()
-      .replace(/\s+/g, "-")}`;
+    const base = `/products/clients-products/privatelabeling-${
+      product.slug
+    }-${clientName.toLowerCase().replace(/\s+/g, "-")}`;
     // If privateLabeling entry has an images array, use it
     const plEntry = product.privateLabeling?.find(
-      (pl) => pl.clientName.toLowerCase().replace(/\s+/g, "-") === clientName.toLowerCase().replace(/\s+/g, "-")
+      (pl) =>
+        pl.clientName.toLowerCase().replace(/\s+/g, "-") ===
+        clientName.toLowerCase().replace(/\s+/g, "-")
     );
     if (plEntry?.images?.length) {
       return plEntry.images;
