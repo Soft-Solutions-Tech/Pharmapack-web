@@ -18,7 +18,7 @@ export default function Breadcrumb({ product }) {
 
   return (
     <motion.nav
-      className="mb-8 sm:mb-12 mt-8"
+      className="mb-8 sm:mb-12 mt-18 sm:mt-16"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
