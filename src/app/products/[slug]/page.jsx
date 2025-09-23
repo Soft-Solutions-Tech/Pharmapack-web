@@ -44,10 +44,8 @@ export default async function ProductDetailPage({ params }) {
 
   return (
     <div className="min-h-screen bg-white mt-4">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-32">
-        <div className="pt-16 sm:pt-20 lg:pt-0">
-          <ProductDetailClient product={product} />
-        </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <ProductDetailClient product={product} />
       </div>
     </div>
   );

@@ -22,7 +22,7 @@ export default function ProductImage({ product }) {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[1950/825]"
+      className="w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[1950/825] mb-8 sm:mb-12"
     >
       <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl border border-gray-100/50 relative">
         {/* Loading placeholder */}

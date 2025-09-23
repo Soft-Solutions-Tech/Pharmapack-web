@@ -143,8 +143,7 @@ const ImageModal = ({ src, onClose }) => (
     exit="exit"
     onClick={onClose}
     style={{
-      background:
-        "linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(17,24,39,0.9) 50%, rgba(0,0,0,0.95) 100%)",
+      backgroundColor: "rgba(0,0,0,0.85)",
     }}
   >
     {/* Modal Content */}
