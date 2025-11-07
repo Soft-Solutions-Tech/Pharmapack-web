@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { heroContent } from "@/data/hero-data";
 
-// Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
