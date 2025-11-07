@@ -7,9 +7,6 @@ import ProductImage from "./ProductImage.jsx";
 import ProductInfo from "./ProductInfo.jsx";
 import Breadcrumb from "./Breadcrumb.jsx";
 
-// Debug: Log imported components to verify they are defined
-console.log("Imported components:", { ProductImage, ProductInfo, Breadcrumb });
-
 export default function ProductDetailClient({ product }) {
   // Debug: Check if components are defined
   if (!ProductImage || !ProductInfo || !Breadcrumb) {
@@ -20,9 +17,6 @@ export default function ProductDetailClient({ product }) {
     });
     return <div>Error: Missing components</div>;
   }
-
-  // Debug: Log product data
-  console.log("ProductDetailClient product:", product);
 
   if (!product) {
     return <div>Error: No product data</div>;
