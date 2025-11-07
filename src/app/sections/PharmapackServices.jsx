@@ -6,7 +6,6 @@ import Image from "next/image";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { servicesContent } from "@/data/services-data";
 
-// Animation Variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -43,7 +42,7 @@ const contentVariants = {
 
 export default function PharmapackServices() {
   const [activeService, setActiveService] = useState(
-    servicesContent.services[0],
+    servicesContent.services[0]
   );
 
   return (
