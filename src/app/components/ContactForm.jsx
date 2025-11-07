@@ -392,7 +392,6 @@ export default function ContactForm() {
                 ))}
               </div>
             </div>
-            
           </motion.div>
         </div>
       </section>

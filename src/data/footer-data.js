@@ -11,7 +11,7 @@ const footerData = {
     links: [
       { name: "About Pharmapack", href: "/about" },
       { name: "Vision & Mission", href: "/about#vision-mission" },
-    //  { name: "The Young GIANT", href: "/about#young-giant" },
+      //  { name: "The Young GIANT", href: "/about#young-giant" },
       { name: "Distribution Channels", href: "/about#distribution-channels" },
     ],
   },
@@ -25,7 +25,10 @@ const footerData = {
       { name: "Hand Sanitizer", href: "/products/hand-sanitizer" },
       { name: "Family Wipes", href: "/products/family-wipes" },
       { name: "Baby Wipes", href: "/products/baby-wipes" },
-      { name: "Make Up Remover Wipes", href: "/products/make-up-remover-wipes" },
+      {
+        name: "Make Up Remover Wipes",
+        href: "/products/make-up-remover-wipes",
+      },
       { name: "Pain Relief Patches", href: "/products/pain-relief-patches" },
       { name: "Cooling Patches", href: "/products/cooling-patches" },
       { name: "Massage Cream", href: "/products/massage-cream" },
@@ -43,7 +46,10 @@ const footerData = {
   },
   social: [
     { icon: "Facebook", href: "https://www.facebook.com/pharmapackegypt" },
-    { icon: "Instagram", href: "https://www.instagram.com/pharmapackegypt/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D#" },
+    {
+      icon: "Instagram",
+      href: "https://www.instagram.com/pharmapackegypt/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D#",
+    },
     { icon: "Linkedin", href: "https://linkedin.com/company/pharmapack" },
   ],
   production: {

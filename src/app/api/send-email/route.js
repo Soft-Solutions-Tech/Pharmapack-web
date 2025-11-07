@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 
 export async function POST(request) {
   const gmailUser = process.env.GMAIL_USERNAME;
@@ -8,11 +8,12 @@ export async function POST(request) {
   if (!gmailUser || !gmailPass || !toEmail) {
     return new Response(
       JSON.stringify({
-        message: 'Server configuration error. Please check environment variables.',
+        message:
+          "Server configuration error. Please check environment variables.",
         error: true,
         success: false,
       }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+      { status: 500, headers: { "Content-Type": "application/json" } },
     );
   }
 
@@ -23,21 +24,35 @@ export async function POST(request) {
     const { firstName, lastName, email, phone, message, inquiryType } = body;
 
     // Validate required fields
-    if (!firstName || !lastName || !email || !phone || !message || !inquiryType) {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !phone ||
+      !message ||
+      !inquiryType
+    ) {
       return new Response(
         JSON.stringify({
-          message: 'All fields are required.',
+          message: "All fields are required.",
           error: true,
           success: false,
-          fieldValues: { firstName, lastName, email, phone, message, inquiryType },
+          fieldValues: {
+            firstName,
+            lastName,
+            email,
+            phone,
+            message,
+            inquiryType,
+          },
         }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+        { status: 400, headers: { "Content-Type": "application/json" } },
       );
     }
 
     // Create transporter correctly
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: "gmail",
       auth: {
         user: gmailUser,
         pass: gmailPass, // Use App Password
@@ -72,23 +87,23 @@ ${message}`,
 
     return new Response(
       JSON.stringify({
-        message: 'Email sent successfully!',
+        message: "Email sent successfully!",
         error: false,
         success: true,
       }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
+      { status: 200, headers: { "Content-Type": "application/json" } },
     );
   } catch (error) {
-    console.error('Email error:', error);
+    console.error("Email error:", error);
 
     return new Response(
       JSON.stringify({
-        message: 'Failed to send email. Try again later.',
+        message: "Failed to send email. Try again later.",
         error: true,
         success: false,
         errorDetails: error.message,
       }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+      { status: 500, headers: { "Content-Type": "application/json" } },
     );
   }
 }

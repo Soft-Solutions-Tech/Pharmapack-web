@@ -112,9 +112,9 @@ export default function ProductsSection() {
       acc +
       collection.subcategories.reduce(
         (subAcc, sub) => subAcc + sub.products.length,
-        0
+        0,
       ),
-    0
+    0,
   );
   const collectionTabs = [
     { id: "all", label: "All Products", count: totalProductsCount },
@@ -123,7 +123,7 @@ export default function ProductsSection() {
       label: collection.title,
       count: collection.subcategories.reduce(
         (acc, sub) => acc + sub.products.length,
-        0
+        0,
       ),
     })),
   ];
@@ -137,12 +137,13 @@ export default function ProductsSection() {
       }));
     }
     const collection = collectionsData.find(
-      (col) => col.title.toLowerCase().replace(/\s+/g, "-") === activeCollection
+      (col) =>
+        col.title.toLowerCase().replace(/\s+/g, "-") === activeCollection,
     );
     if (!collection) return [];
     // Combine all products under the selected collection
     const combinedProducts = collection.subcategories.flatMap(
-      (sub) => sub.products
+      (sub) => sub.products,
     );
     return [{ ...collection, products: combinedProducts }];
   };
@@ -455,7 +456,7 @@ function ProductRow({ product, index, activeTab }) {
             className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-          
+
           {/* Overlay Badge */}
           <motion.div
             className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"

@@ -90,7 +90,7 @@ export const collectionsData = [
               { spec: "Shelf Life", value: "2 years" },
             ],
             features: ["Non-irritating", "Sterile formula", "Easy application"],
-           /*  pharmapack: {
+            /*  pharmapack: {
               image: "pharmapack-lubricant-gels-medical.jpg",
               uniqueFeatures: [
                 "Optimized for ultrasound exams",
@@ -765,7 +765,7 @@ export const collectionsData = [
                   "privatelabeling-face-sheet-masks-MotherNaked-3.jpg",
                   "privatelabeling-face-sheet-masks-MotherNaked-4.jpg",
                   "privatelabeling-face-sheet-masks-MotherNaked-5.jpg",
-                  "privatelabeling-face-sheet-masks-MotherNaked-6.jpg"
+                  "privatelabeling-face-sheet-masks-MotherNaked-6.jpg",
                 ],
                 uniqueFeatures: [
                   "Custom hyaluronic acid formula",

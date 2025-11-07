@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { productionContent, iconMap } from '@/data/production-data';
+import React from "react";
+import { motion } from "framer-motion";
+import { productionContent, iconMap } from "@/data/production-data";
 
 // Animation variants
 const containerVariants = {
@@ -23,14 +23,17 @@ const cardVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 };
 
 const ProductionLines = () => {
   return (
-    <section id="production-lines" className="py-20 px-6 bg-white relative overflow-hidden">
+    <section
+      id="production-lines"
+      className="py-20 px-6 bg-white relative overflow-hidden"
+    >
       {/* Subtle background pattern */}
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
@@ -58,13 +61,13 @@ const ProductionLines = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {productionContent.titlePart1}{' '}
+            {productionContent.titlePart1}{" "}
             <span className="font-normal text-brand-red relative">
               {productionContent.titlePart2}
               <motion.div
                 className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-brand-red/60 to-transparent"
                 initial={{ width: 0 }}
-                animate={{ width: '100%' }}
+                animate={{ width: "100%" }}
                 transition={{ duration: 1 }}
               />
             </span>

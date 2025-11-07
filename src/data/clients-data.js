@@ -68,7 +68,7 @@ export const clients = [
     id: 12,
     name: "SuperKids",
     logo: "superkids-logo.png",
-    website: "https://eparkville.com/collections/superkids"
+    website: "https://eparkville.com/collections/superkids",
   },
   {
     id: 13,
@@ -79,7 +79,7 @@ export const clients = [
     id: 14,
     name: "Sulfax",
     logo: "sulfax-logo.png",
-    website: "https://eparkville.com/collections/sulfax"
+    website: "https://eparkville.com/collections/sulfax",
   },
 ];
 

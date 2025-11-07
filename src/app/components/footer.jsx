@@ -130,7 +130,9 @@ export const Footer = () => {
                 ))}
                 <div
                   className={`transition-all duration-500 ease-in-out ${
-                    showAllProducts ? "opacity-100 max-h-96" : "opacity-0 max-h-0"
+                    showAllProducts
+                      ? "opacity-100 max-h-96"
+                      : "opacity-0 max-h-0"
                   } overflow-hidden`}
                 >
                   {additionalProducts.map((link, index) => (
@@ -297,7 +299,9 @@ export const Footer = () => {
                 ))}
                 <div
                   className={`transition-all duration-500 ease-in-out ${
-                    showAllProducts ? "opacity-100 max-h-96" : "opacity-0 max-h-0"
+                    showAllProducts
+                      ? "opacity-100 max-h-96"
+                      : "opacity-0 max-h-0"
                   } overflow-hidden`}
                 >
                   {additionalProducts.map((link, index) => (

@@ -4,7 +4,8 @@ export const visionMissionContent = {
   headerLabel: "Our Foundation",
   headline: "Vision & Mission",
   headlineHighlight: "Mission",
-  subtitle: "We aim to be the preferred strategic partner for brands that seek to transform ideas into reliable, market-ready products that improve health, hygiene and everyday wellbeing across the Middle East and beyond.",
+  subtitle:
+    "We aim to be the preferred strategic partner for brands that seek to transform ideas into reliable, market-ready products that improve health, hygiene and everyday wellbeing across the Middle East and beyond.",
   bottomStatement:
     "These principles guide every decision we make, ensuring we deliver exceptional results while building a sustainable future for our partners and communities.",
   cards: [

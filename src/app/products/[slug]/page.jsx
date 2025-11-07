@@ -6,7 +6,7 @@ import ProductNotFound from "./ProductNotFound.jsx";
 // Generate all products, ensuring uniqueness by ID
 const allProducts = collectionsData
   .flatMap((collection) =>
-    collection.subcategories.flatMap((sub) => sub.products)
+    collection.subcategories.flatMap((sub) => sub.products),
   )
   .reduce((unique, product) => {
     const exists = unique.find((p) => p.id === product.id);
@@ -30,14 +30,14 @@ export default async function ProductDetailPage({ params }) {
   // Normalize slug for comparison
   const normalizedSlug = slug?.toLowerCase().replace(/^\//, "") || "";
   const product = allProducts.find(
-    (p) => p.slug.replace(/^\//, "").toLowerCase() === normalizedSlug
+    (p) => p.slug.replace(/^\//, "").toLowerCase() === normalizedSlug,
   );
 
   if (!product) {
     console.log("Product not found for slug:", normalizedSlug);
     console.log(
       "Available slugs:",
-      allProducts.map((p) => p.slug)
+      allProducts.map((p) => p.slug),
     );
     return <ProductNotFound />;
   }

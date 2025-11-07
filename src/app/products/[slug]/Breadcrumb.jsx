@@ -8,8 +8,8 @@ import { collectionsData } from "@/data/products-data";
 export default function Breadcrumb({ product }) {
   const collection = collectionsData.find((col) =>
     col.subcategories.some((sub) =>
-      sub.products.some((p) => p.slug === product.slug)
-    )
+      sub.products.some((p) => p.slug === product.slug),
+    ),
   );
 
   const collectionId = collection

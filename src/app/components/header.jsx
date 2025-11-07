@@ -77,7 +77,7 @@ export function Header() {
                     className={cn(
                       "px-4 py-2 text-sm rounded-lg font-medium text-[var(--color-brand-gray)] hover:text-[var(--color-brand-red)] hover:bg-[var(--color-brand-red)/10] border-2 border-transparent hover:border-[var(--color-brand-red)/20] transition-all duration-300",
                       pathname === item.href &&
-                        "text-[var(--color-brand-red)] font-semibold bg-[var(--color-brand-red)/10] border-[var(--color-brand-red)/30]"
+                        "text-[var(--color-brand-red)] font-semibold bg-[var(--color-brand-red)/10] border-[var(--color-brand-red)/30]",
                     )}
                   >
                     {item.name}
@@ -108,10 +108,7 @@ export function Header() {
 
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <MobileMenu
-              onClose={toggleMobileMenu}
-              pathname={clientPathname}
-            />
+            <MobileMenu onClose={toggleMobileMenu} pathname={clientPathname} />
           )}
         </AnimatePresence>
       </div>
@@ -155,7 +152,7 @@ function MobileMenu({ onClose, pathname }) {
               className={cn(
                 "w-full inline-block py-4 px-6 text-lg font-medium rounded-xl border-2 border-transparent text-[var(--color-brand-gray)] hover:text-[var(--color-brand-red)] hover:bg-[var(--color-brand-red)/10] hover:border-[var(--color-brand-red)/20] transition-all duration-300",
                 pathname === item.href &&
-                  "text-[var(--color-brand-red)] font-semibold bg-[var(--color-brand-red)/10] border-[var(--color-brand-red)/30]"
+                  "text-[var(--color-brand-red)] font-semibold bg-[var(--color-brand-red)/10] border-[var(--color-brand-red)/30]",
               )}
             >
               {item.name}

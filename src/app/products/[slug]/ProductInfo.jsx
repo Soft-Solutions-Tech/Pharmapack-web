@@ -67,13 +67,13 @@ const getImagePaths = (product, type, clientName = null) => {
     const plEntry = product.privateLabeling?.find(
       (pl) =>
         pl.clientName.toLowerCase().replace(/\s+/g, "-") ===
-        clientName.toLowerCase().replace(/\s+/g, "-")
+        clientName.toLowerCase().replace(/\s+/g, "-"),
     );
 
     if (plEntry?.images?.length) {
       return plEntry.images;
     }
-    return [1, 2, 3 , 4, 5, 6].map((i) => `${base}-${i}.jpg`);
+    return [1, 2, 3, 4, 5, 6].map((i) => `${base}-${i}.jpg`);
   }
 
   return [];
